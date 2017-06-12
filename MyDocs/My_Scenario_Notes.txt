@@ -1,0 +1,110 @@
+1. 	CSS - Position : realtive, absolute, fixed, static
+
+	http://stackoverflow.com/questions/12405528/div-after-a-div-which-position-is-fixed-in-css
+	http://stackoverflow.com/questions/20718577/how-css-positions-work-why-absolute-elements-stack-up-on-each-other-instead-of
+
+	When you have an element that is fixed (or absolute), there is no element after it. The fixed element is taken out of the document flow.
+
+	If you want two elements after each other at a fixed position, make a container that is fixed, and put the two elements inside it.
+
+	You can put another container with a top-margin around them, and set a top-margin on the second element. If the first element is empty, there is nothing to have a margin to, so the margin will collapse outside the container and the second element will be at the top of the container.
+
+	(The second container is needed because the margin will not collapse outside the fixed element.)
+
+	Demo: http://jsfiddle.net/Guffa/r5crS/
+	
+	
+	
+	
+2. Prototype
+
+	The JavaScript prototype property allows you to add new properties/methods to an existing prototype
+	
+	function Person(first, last) {
+		this.firstName = first;
+		this.lastName = last;
+	}
+	Person.prototype.nationality = "English";
+	Person.prototype.name = function() {
+		return this.firstName + " " + this.lastName;
+	};
+
+3. typeof , isPrototypeOf,  instanceof
+	
+4. Accessing JavaScript Properties
+
+	var person = {fname:"John", lname:"Doe", age:25};
+	
+	i. person.fname
+	ii. person["fname"]
+
+	for (x in person) {
+		txt += person[x] + " ";
+	}
+	o/p: John Doe 25
+	
+	
+	JavaScript does not support arrays with named indexes.
+	In JavaScript, arrays use numbered indexes: 
+	In JavaScript, objects use named indexes.
+	
+5. JS Scope
+
+6. Loop functions ie, forEach, filter, map, reduce, unshift, slice, pop, includes, find, findIndex, sort, reverse
+
+7. setTimeout/clearTimeout, setInterval/clearInterval
+
+	myVar = setTimeout(function, milliseconds); ----> function will be executed after this many milliseconds
+	clearTimeout(myVar); ----> stops the execution of the function specified in setTimeout()
+	
+	myVar = setInterval(function, milliseconds); ----> repeats a given function at every given milliseconds.
+	clearInterval(myVar); ----> stops the execution of the function specified in setInterval()
+	
+	3000 milliseconds = 3 seconds
+	
+	var myVar = setInterval(myTimer ,1000);
+	function myTimer() {
+		document.getElementById("demo").innerHTML = new Date().toLocaleTimeString();
+	}
+
+8. Cookies
+
+9. Closures.
+
+10. JSON 
+
+11. Import
+
+12. Local Storage
+
+13. Get/post
+
+14. Callback functions
+
+15. Popups
+
+16. Hoisting
+
+17. Prototype Chaining
+
+18. 
+
+
+
+
+
+101. proxy
+
+102. npm
+
+103. bower
+
+104. node
+
+105. Proxy
+
+106. Request headers/ responses
+
+107. x2js
+
+108. 

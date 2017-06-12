@@ -1,0 +1,426 @@
+New Toll Free numbers 
+⦁	1-844-674-2268
+⦁	1-844-795-9512
+⦁	1-844-696-9390
+Bangalore Local number
+⦁	 +91-80-4011-3151 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+trade.sbismart.com/Horizon.html
+username: 31001570
+password: trade@123
+pan no: bofpk3100r
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+specific service config
+1. Create a new service using servicelocator(platform.js)
+2. Add resultcallback to the service
+3. Add the new service to main serviceconfig
+
+https://accounts.google.com/o/oauth2/token
+https://graph.facebook.com/v2.3/oauth/access_token
+
+http://localhost:8080/auth/facebook
+
+https://www.facebook.com/v2.3/dialog/oauth?client_id=1628611354023936&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Fauth%2Ffacebook&scope=email%2Cpublish_actions&state=71a7d1e9-5008-4906-8765-61357d607b47
+
+
+keytool -list -v -keystore keystore.jks
+keytool -import -file C:\Users\madhan.reddy\Desktop\certs\facebook_cert1.cer -keystore -fbstore
+keytool -import -file C:\Users\madhan.reddy\Desktop\certs\google_cert.cer -keystore -googlestore
+
+
+org.springframework.web.client.ResourceAccessException: I/O error on POST request for "https://accounts.google.com/o/oauth2/token":java.lang.RuntimeException: Unexpected error: java.security.InvalidAlgorithmParameterException: the trustAnchors parameter must be non-empty; nested exception is javax.net.ssl.SSLException: java.lang.RuntimeException: Unexpected error: java.security.InvalidAlgorithmParameterException: the trustAnchors parameter must be non-empty
+
+MAVEN_OPTS
+-Djavax.net.ssl.trustStore="C:\Program Files\Java\jdk1.8.0\jre\lib\cacerts"
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<context:annotation-config />
+<context:component-scan base-package="" />
+<mvc:annotation-driven>
+     <mvc:message-converters>
+          <!-- Use the HibernateAware mapper instead of the default -->
+          <bean class="">
+               <property name="objectMapper">
+                    <bean class="" />
+                </property>
+            </bean>
+     </mvc:message-converters>
+</mvc:annotation-driven>
+<mvc:resources mapping="" location="" />
+<bean id="viewResolver" 	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	    <property name="prefix" value="" />
+	    <property name="suffix" value="" />
+</bean>
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+<context:property-placeholder location=""/>
+<context:annotation-config/>
+<beans:bean id="" class="">
+	<beans:property name="" ref="" />
+	<beans:property name="" value="" />		
+	<beans:property name="hibernateProperties">
+		<beans:props>
+			<beans:prop key="">value</beans:prop>			
+	</beans:property>
+</beans:bean>
+<tx:annotation-driven transaction-manager="transactionManager"/>
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+cmdThink Like a Trader - questions - DB persistence -27/08
+Market Man - questions - DB persistence -28/09
+Market on Map - questions - DB persistence -29/09
+Possible UI changes on Game screens - 01/09
+Market on Map - Intermediate navigation screens - 01/09
+Quote Details Widget
+Forgot Password
+News Widget
+Mail Service Refactor
+Change Password
+Token expiration - Registeration & forgot password
+Quote Details bug
+Market on maps Bugs - Google Maps API issue, Score Card issues
+Question wrapper issue
+Widget Tray issue
+Google Maps API issue - Versioning
+Sub Autocomplete; Autocomplete wrapper plugin changes
+Quote Details - Option Entry
+Bugs - Order Ticket
+
+http://svn.corp.tavant.com/svnproj/Trading
+
+Autocomplete Framework issues -
+1. Thrwoing after exceeding limit
+2. 
+
+Adding screen for the last question in Bulls & Bears
+Backspace issue
+Social Login issues
+Code Refactoring
+Normalization of timers - option & opt currency - expiry
+Mobile Widget Tray
+POC - Mouseover Buy/Sell - Column formatters/ tooltip
+
+Line Chart - JQPlot POC
+
+Live data,
+multiple ds,
+tick renderer - styling labels(rotating)
+styling line
+config object
+
+tooltip - Highlighter plugin/ cursor plugin
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+mvn clean package
+mvn eclipse:eclipse
+mvn clean install
+mvn jetty:run
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+SlickGrid rows editable on conditions - http://stackoverflow.com/questions/20915430/slickgrid-with-only-one-row-editable
+SlickGrid Events 
+https://github.com/mleibman/SlickGrid/wiki/Grid-Events
+Spring
+http://crunchify.com/simplest-spring-mvc-hello-world-example-tutorial-spring-model-view-controller-tips/
+Hibernate
+http://www.tutorialspoint.com/hibernate/hibernate_query_language.htm
+http://www.mkyong.com/hibernate/hibernate-one-to-many-relationship-example-annotation/
+MVN Jetty
+http://www.eclipse.org/jetty/documentation/current/jetty-maven-plugin.html#get-up-and-running
+http://stackoverflow.com/questions/25644036/how-to-set-server-port-with-org-eclipse-jettyjetty-maven-plugin
+XStream
+http://tomaszdziurko.pl/2013/04/xstream-xstreamely-easy-work-xml-data-java/
+Google Maps Versioning
+https://developers.google.com/maps/documentation/javascript/versions
+
+http://javascript.info/tutorial/settimeout-setinterval
+
+
+http://stackoverflow.com/questions/13660883/jqplot-auto-refresh-chart-with-dynamic-ajax-data
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Git Commands:
+To checkout project
+	git clone https://gitlab.tavant.com/infinity/core.git or
+	git clone git@gitlab.tavant.com:infinity/core.git # for this you will have to register your public key with gitlab.
+
+To create a branch
+	git checkout -b
+		
+To push your branch to Remote (gitlab.tavant.com)
+	git push origin :
+
+To add files to your local branch
+	git add or
+	git add . # adds all the modification to your local branch
+
+To commit changes to your local branch
+	git commit -m "" # this will commit all the files that you have added
+
+To push your branch changes to Remote
+	git push origin
+
+To pull changes from master or a different branch
+	git pull --rebase origin master # rebase keyword is important
+	git pull --rebase origin
+
+To open a merge request
+	Login to gitlab and you will see option on your activity log to create merge request. or
+	Login to gitlab, navigate to merge request tab and create a merge request from your branch to master
+
+To merge your changes
+	git pull --rebase origin master # when you are on your branch
+	git checkout master
+	git merge
+	git push origin master
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+@Component - Scan the components automatically and registers BeanDefinition with ApplicationContext
+@Repository - Persistence layer(db repository) and eligible for persistence exception translation
+@Service - Business layer
+@Controller - Presentation Layer - Spring MVC
+@Autowired
+@Autowired(required=true) - Default is true. Throws exception if component is not found. Can be 										avoided by setting required=false  
+@Qualifier - Want to create two beans of same type
+
+@Transactional
+@Transactional(readOnly=false) - default
+@Value - to specify the property from a .properties file along with default value
+
+@RequestMapping - Used to map web requests onto specific handler classes and/or handler methods.
+@ResponseBody - To return an object as JSON without using view resolver. Spring will try to convert 					its return value and write it to the http response automatically.
+@RequestBody - Spring will try to convert the content of the incoming request body to your parameter 					object on the fly.
+@RequestParam
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+08030676376
+Indus
+4412857676880005
+08 2020
+08 2015
+753
+
+20112694210
+SBIN0017042
+
+UAN - 100231684440
+MH/BAN/48475/558883 
+264979
+PY/BOM/34284/3731
+
+YG449571CTJCYQ
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+amtek auto
+
+ashok leyland
+hdil
+reliance comm
+india cmts
+niit
+unitech
+jindal steel
+jaiprakash asso
+india bulls real
+idbi bank
+silzon enegy
+hcl info
+india hotels
+kcp
+reliance power
+nmdc
+sail
+hind constr
+hmt
+tata power
+qwality
+gmr infra
+adanti enterprise
+snowman loggis
+allahabaad bank
+jain irrigation
+ifci
+shree renuka
+jsw energy
+bajaj hind
+ncc
+syndicate bank
+l&T finance
+delta corp
+bombay dyiing
+hfcl
+
+idfc
+amtek auto
+
+sanco ind
+morepen lab
+auline ind
+tara jewels
+
+texmo pipes share
+
+visesh infotecnics ltd 
+antarctica limited 
+KSS Ltd
+Blue Chip India DS
+fcs software solution
+
+PTC India Ltd.
+Vedanta Ltd
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+http://www.business-standard.com/article/pf/changing-jobs-declare-past-income-to-new-employer-113070600609_1.html
+
+https://blog.cleartax.in/changing-jobs-4-things-to-keep-your-taxes-in-check/
+
+http://taxguru.in/income-tax/income-tax-slab-financial-year-201516.html
+
+http://timesofindia.indiatimes.com/business/india-business/Switching-jobs-Dont-get-caught-in-these-tax-complications/articleshow/44944166.cms
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+https://ceac.state.gov/GenNIV/General/complete/complete_personal.aspx?node=Personal1
+
+http://www.incometaxindia.gov.in/Pages/tools/income-tax-calculator-234ABC.aspx
+
+https://cleartax.in/Guide/Section80Deductions
+
+https://cleartax.in/s/80C-Deductions
+https://cleartax.in/s/fixed-deposit
+
+
+https://ess.paybooks.in/Views/Master.html#/expenseHistory
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Object oriented js
+Command Patterns
+
+Cluster setup
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+http://articles.mercola.com/sites/articles/archive/2013/10/31/9-foods-brain-health.aspx
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

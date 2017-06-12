@@ -1,0 +1,43 @@
+<html><body><br>
+<b>H 1 20132014 GoalSheet For Moole Madhan Mohan Reddy</b><hr><br><table border='1'><tr><td>Appraisee Number :</td><td>558883</td><td></td><td>Appraisee Name :</td><td>Moole Madhan Mohan Reddy</td></tr><tr><td>Project SWON :</td><td>2245925</td><td></td><td>Project Name :</td><td>ITHR Offshore Support 2013</td></tr><tr><td>Appraisal Type :</td><td>H 1</td><td></td><td>Year :</td><td>20132014</td></tr><tr><td>Role :</td><td>Developer</td></tr></table><br><br>
+<b>Goal Sheet</b>
+<br><br>
+<hr><br><table border='1' cellpadding='1' cellspacing='1'>
+<tr><td><b>Goal Perspective</b></td><td><b>Goal Measure</b></td><td><b>Target/Units</b></td><td><b>Goal Weightage</b></td><td><b>Difficulty Level</b></td><td><b>Aligned To Supervisor Goal</b></td><td><b>Appraisee Comments</b></td><td><b>Appraisee Rating</b></td><td><b>Appraiser Comments</b></td><td><b>Appraiser Rating</b></td></tr>
+<tr><td>Customer</td><td>% Acceptance Test Defects  (UAT)</td><td><5%</td><td>5</td><td>2</td><td>Yes</td><td>Code Clean up Project doesn't have QA. What ever the logs will fail, it will come under UAT as there is direct UAT.</td><td>3</td><td>Had minimal UAT defects in the projects delivered considering no QA</td><td>3</td></tr>
+<tr><td>Customer</td><td>% of on-time and on-budget deliveries</td><td>100%</td><td>5</td><td>1</td><td>Yes</td><td>I tried my best to give on time deliveries. But two logs have been reverted because of validations.</td><td>2</td><td>Agreed with the appraisee. Madhan is a hard worker and made sure his pages are delivered on time. Has done exceptionally good with the technical challenges involved in RBT Charts project</td><td>2</td></tr>
+<tr><td>Customer</td><td>Customer Satisfaction Index</td><td>95%</td><td>5</td><td>3</td><td>Yes</td><td>No CSI for RBT phase2, Code Clean Up phase 3</td><td>4</td><td>Received 100% CSI for RBT II project</td><td>5</td></tr>
+<tr><td>Customer</td><td>No of requirements missed before releasing to QA</td><td>0</td><td>5</td><td>1</td><td>Yes</td><td>For code celan up project, there is no QA direct UAT. I tried complete but two requirements have been missed.</td><td>1</td><td>Agreed with the appraisee. Madhan makes sure no requirements are missed in his projects. Nature of Code cleanup project was different where there was no requirements document and had to gather the requirements from code</td><td>2</td></tr>
+<tr><td>Customer</td><td>No of Sev1 & Sev2 UAT defects</td><td>0</td><td>5</td><td>2</td><td>Yes</td><td>In code clean up project, i got one sev2 defect.</td><td>2</td><td>Agreed with the appraisee</td><td>2</td></tr>
+<tr><td>Customer</td><td>No. of customer complaints</td><td>0</td><td>5</td><td>1</td><td>Yes</td><td>I got a customer complaint for education log.</td><td>1</td><td>Agreed</td><td>1</td></tr>
+<tr><td>Learning and Growth</td><td>Trainings attended as per project objectives/requirements & effective application in project</td><td>32 hours per half year</td><td>4</td><td>3</td><td>Yes</td><td>I have attended sessions on MSJ standards, functionalities and code checkins.</td><td>3</td><td>Agreed</td><td>3</td></tr>
+<tr><td>Learning and Growth</td><td>New Technology sessions conducted/ Technical forum presentations/ No of technical components created/experimented for new business</td><td>2 hours conducted/ 1 component/PoC created for new business</td><td>4</td><td>3</td><td>Yes</td><td>I haven't conducted any session. If I will get an opportunity I will take.</td><td>1</td><td>Has done POC for Ext JS charts and implemnted it in RBT II project. Also done R & D to get dynamic forms for Education page</td><td>4</td></tr>
+<tr><td>Internal</td><td>% Adherence to IQMS , Client processes - All docs relevant to the project</td><td>100%</td><td>4</td><td>2</td><td>Yes</td><td>We have done design review, code review and analysis for the projects.</td><td>3</td><td>Agreed</td><td>3</td></tr>
+<tr><td>Internal</td><td>TDCE at System Testing</td><td>80%</td><td>5</td><td>3</td><td>Yes</td><td>For our project, there is no QA only UAT.</td><td>4</td><td>Received 84% TDCE at ST for RBT II project</td><td>4</td></tr>
+<tr><td>Internal</td><td>Compliance to Checklist, PMD, Find Bug and coverage of Junit (60%)</td><td>100%</td><td>5</td><td>2</td><td>Yes</td><td>In our project, we followed find bug and all check lists.</td><td>3</td><td>Agreed</td><td>3</td></tr>
+<tr><td>Finance</td><td>Number of Team members mentored from En-1 to En</td><td>1 per H1</td><td>4</td><td>3</td><td>Yes</td><td>I helped to most of team members but not mentored any one specifically.</td><td>4</td><td>Madhan has trained Hazarat and other new joinees inspite of his assigned tasks.</td><td>4</td></tr>
+</table>
+<br><br><br>
+<b>Attribute Sheet</b> 
+<br><br>
+<hr><br><table border='1' cellpadding='1' cellspacing='1'>
+<tr><td><b>Attribute</b></td><td><b>Definition</b></td><td><b>Weightage</b></td><td><b>Appraisee Comments</b></td><td><b>Appraisee Rating</b></td><td><b>Appraiser Comments</b></td><td><b>Appraiser Rating</b></td></tr>
+<tr><td>Communication</td><td>Capability of an individual to convey the right information and influence others towards desired action either verbally or by written means</td><td>5</td><td>I was able to explain and communicate the approach followed for the problems I came up.</td><td>4</td><td>Agreed. Needs to maintain things discussed with onsite counter parts in written communication to avoid discrepancy. He has started doing the same now</td><td>4</td></tr>
+<tr><td>Analytical Ability</td><td>Ability to make systematic and rational judgments based on relevant information.</td><td>5</td><td>Having Adequate analytical abilities skills,helps me come up with solutions for implementing the client requirements.</td><td>5</td><td>Madhan's analytical skills are really good !!!</td><td>5</td></tr>
+<tr><td>Team Skill</td><td>It is the ability of an individual to create an environment of trust and cooperation through an open exchange of ideas towards achieving team goals.</td><td>4</td><td>I can actively interact with everyone in the team . I take their help when necessary and also help them when required. And also shared my ideas on the problems faced.</td><td>4</td><td>Good team player !!!</td><td>4</td></tr>
+<tr><td>Continual Learning</td><td>Attitude to continuously seek knowledge to enhance   one's professional growth & performance</td><td>4</td><td>Always eager to learn new things that can enhance my professional growth and performance.</td><td>5</td><td>Agreed with the appraisee</td><td>5</td></tr>
+<tr><td>Organizing & Planning</td><td>Ability to plan a course of action, manage and prioritize activities so as to execute them in a time-bound manner</td><td>5</td><td>My plan of action makes me to complete the tasks in time.</td><td>4</td><td>Agreed</td><td>4</td></tr>
+<tr><td>Customer Orientation</td><td>Focuses on discovering customer's needs and finding out how to best meet them. Works to create customer focused services and solutions.</td><td>5</td><td>I delivered the things assigned to me as per customer requirements and followed all the project guidelines.</td><td>3</td><td>Agreed</td><td>3</td></tr>
+<tr><td>Initiative / Proactiveness</td><td>Takes action to meet work-related objectives without being asked or required to do so. Seeks out and willingly undertakes new challenges, responsibilities / assignments.</td><td>5</td><td>I Used to take up the challenges and I am always keen to learn new technologies.</td><td>4</td><td>Agreed. Had taken initiative to help Online PIP team when the project was in trouble.</td><td>4</td></tr>
+<tr><td>Problem Solving</td><td>Identifies the problem, understands its nature and its component parts and the relation between them. Generates timely and well developed solution to addresses the problem.</td><td>4</td><td>Whenever I encountered any problem I try to understand the effect of my solution on the functionality and then incorporate the changes.</td><td>5</td><td>His problem solving skills are good</td><td>5</td></tr>
+</table>
+<br><br><br>
+<b><u>IPF</u></b> 
+<br><br>
+<hr><br><table border='1' cellpadding='1' cellspacing='1'>
+<tr><td><b>Goal IPF</b></td><td><b>2.9643</b></td></tr>
+<tr><td><b>Attribute IPF</b></td><td><b>4.2162</b></td></tr>
+<tr><td><b>Final IPF For This Appraisal</b></td><td><b>3.5903</b></td></tr>
+</table>
+<br><br><br>
+</body></html>
