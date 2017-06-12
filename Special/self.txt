@@ -1,0 +1,3224 @@
+JVM	
+	JVM is an acronym for Java Virtual Machine.
+	It is an abstract machine which provides the runtime environment in which java bytecode can be executed. 
+	It is a specification.
+	JVMs are available for many hardware and software platforms (so JVM is platform dependent).
+JRE
+	JRE stands for Java Runtime Environment. 
+	It is the implementation of JVM.
+
+JDK
+	JDK is an acronym for Java Development Kit.
+	It physically exists. It contains JRE + development tools.
+	
+
+Java utils package
+
+Collections
+	Collections in java is a framework that provides an architecture to store and manipulate the group of objects.
+	All the operations that you perform on a data such as searching, sorting, insertion, manipulation, deletion etc. can be performed by Java Collections.
+	
+	Java Collection simply means a single unit of objects. 
+	Java Collection framework provides many interfaces (Set, List, Queue, Deque etc.) 
+	and classes (ArrayList, Vector, LinkedList, PriorityQueue, HashSet, LinkedHashSet, TreeSet etc).
+	
+	Collection represents a single unit of objects i.e. a group.
+
+										Iterable Interface
+										Collections Interface
+			List Interface					Queue Interface 							Set Interface
+			|								|---------------Deque Interface				|------------SortedSet Interface
+			|								|					|	|					|							|
+			- ArrayList						- PriorityQueue		|	| 					- HashSet					- TreeSet
+			- LinkedList ---------------------------------------|	- ArrayDeque		- LinkedHashSet
+			- Vector
+				|
+				- Stack
+				
+				
+*** Collections is a framework, class, interface
+
+Java Collections class
+
+	Java collection class is used exclusively with static methods that operate on or return collections. 
+	It inherits Object class.
+
+	Features -
+		Java Collection class supports the polymorphic algorithms that operate on collections.
+		Java Collection class throws a NullPointerException if the collections or class objects provided to them are null.		
+		
+	Methods - 
+		addAll(collection, elems), replaceAll(list, oldVal, newVal), max(collection, comparator), min(collection), reverse(list)
+		binarySearch(list, key, comparator), asLifoQueue(deque), 
+		checkedList(list, class), checkedSet(set, class), checkedSortedSet(sortedSet, class)
+		
+	Collections class provides static methods for sorting the elements of collections. If collection elements are of Set or Map, we can use TreeSet or TreeMap. But We cannot sort the elements of List. Collections class provides methods for sorting the elements of List type elements.
+
+	
+	Method of Collections class for sorting List elements	
+		public void sort(List list): is used to sort the elements of List. List elements must be of Comparable type.
+		
+		
+Java List Interface
+	List Interface is the subinterface of Collection.
+	It contains methods to insert and delete elements in index basis.
+	It is a factory of ListIterator interface.
+
+Java ArrayList class
+	Java ArrayList class uses a dynamic array for storing the elements. 
+	It inherits AbstractList class and implements List interface.
+
+	Features - 
+		can contain duplicate elements.
+		maintains insertion order.
+		non synchronized.
+		allows random access because array works at the index basis.
+		manipulation is slow because a lot of shifting needs to be occurred if any element is removed from the array list.
+		
+	Constructor 
+		ArrayList(), ArrayList(Collection c), ArrayList(int capacity)
+		
+	Functions
+		boolean add(Object o), void add(int index, Object element), boolean addAll(Collection c), boolean addAll(int index, Collection c),
+		removeAll(Collection c), retainAll(Collection c),
+		void clear(), Object clone(), void trimToSize(), 
+		Object[] toArray(), Object[] toArray(Object[] a), 
+		int indexOf(Object o), int lastIndexOf(Object o),
+		
+Java LinkedList class
+	Java LinkedList class uses doubly linked list to store the elements. 
+	It provides a linked-list data structure. It inherits the AbstractList class and implements List and Deque interfaces
+	
+	Features
+		Java LinkedList class can contain duplicate elements.
+		Java LinkedList class maintains insertion order.
+		Java LinkedList class is non synchronized.
+		In Java LinkedList class, manipulation is fast because no shifting needs to be occurred.
+		Java LinkedList class can be used as list, stack or queue.
+
+	Methods
+		void addFirst(Object o), void addLast(Object o), boolean contains(Object o)
+		
+
+Java ListIterator Interface
+	ListIterator Interface is used to traverse the element in backward and forward direction.
+
+	Methods
+		hasNext(), next(), hasPrevious(), previous()
+	
+	Eg. 
+		ArrayList<String> list=new ArrayList<String>();//Creating arraylist  
+		list.add("Ravi");//Adding object in arraylist  
+		list.add("Vijay");  
+		//Traversing list through Iterator  
+		Iterator itr=list.iterator();  
+		while(itr.hasNext()){  
+			System.out.println(itr.next());  
+		} 	
+
+ArrayList	
+	not synchronized...fast.. not a legacy class... increments 50% of current array size if number of element exceeds from its capacity
+
+Vector
+	synchronized...slow.. legacy class .. increments 100% means doubles the array size if total number of element exceeds than its capacity
+
+
+Java Set Interface
+	The Set interface inherits Collection and Iterable interfaces in hierarchical order.
+	
+	List can contain duplicate elements whereas Set contains unique elements only.
+	
+	
+Java Hashset Class...
+	Java HashSet class is used to ***create a collection that uses a hash table for storage***. 
+	HashSet stores the elements by using a mechanism called hashing.
+	
+	It inherits the AbstractSet class and implements Set interface.
+	
+	Features - 
+		HashSet contains unique elements only. Removes duplicates even if added...	
+		
+	Constructor - HashSet(), HashSet(Collection c), HashSet(int capacity)
+	Methods - clear(), add(obj), remove(obj), contains(obj), isEmpty(), size(), clone() - the elements themselves are not cloned.
+	
+Java LinkedHashSet class...
+	Java LinkedHashSet class is a ***Hash table and Linked list implementation of the set interface***. 
+	
+	It inherits HashSet class and implements Set interface.
+	
+	Features - 
+		Contains unique elements only like HashSet.
+		Provides all optional set operations, and permits null elements.
+		Maintains insertion order.
+		
+	Constructor - HashSet constructors 
+					+ LinkedHashSet(int capacity, float fillRatio) - fill ratio (also called load capacity) of the hash set from its argument.
+					
+Java TreeSet class
+	Java TreeSet class implements the ***Set interface that uses a tree for storage***. 
+	
+	It inherits AbstractSet class and implements NavigableSet interface. 
+	
+	Features - 
+		Contains unique elements only like HashSet.
+		Access and retrieval times are quiet fast.
+		Maintains ascending order.
+		
+	Constructor - TreeSet(), TreeSet(Collection c), TreeSet(Comparator comp), TreeSet(SortedSet ss)
+	Methods - clear(), add(obj), addAll(Collection c), remove(obj), contains(obj), isEmpty(), size(), clone(), first(), last()...
+	
+	
+Java EnumSet class
+	Java EnumSet class is the specialized Set implementation for use with enum types. 
+	It implements the Set interface and inherits AbstractSet class.
+	
+	Methods -
+		of(enum.1, enum.2), allOf(enum.class), noneOf(enum.class), clone(), copyOf(collection), range(E from, E to)
+
+Java Queue Interface..
+	Java Queue interface orders the element in FIFO(First In First Out) manner. 
+	In FIFO, first element is removed first and last element is removed at last.	
+	
+	Methods ...
+		add(obj), offer(obj), remove(), poll(), element(), peek()
+	
+PriorityQueue class
+	The PriorityQueue class provides the facility of using queue. 
+	But it does not orders the elements in FIFO manner. 
+	It inherits AbstractQueue class.
+
+Java Deque Interface
+	Java Deque Interface is a linear collection that supports element insertion and removal at both ends. 
+	Deque is an acronym for "double ended queue".	
+	
+ArrayDeque class
+	The ArrayDeque class provides the facility of using deque and resizable-array. 
+	It inherits AbstractCollection class and implements the Deque interface.
+
+	Features - 
+		Unlike Queue, we can add or remove elements from both sides.
+		Null elements are not allowed in the ArrayDeque.
+		ArrayDeque is not thread safe, in the absence of external synchronization.
+		ArrayDeque has no capacity restrictions.
+		ArrayDeque is faster than LinkedList and Stack.
+
+	
+	
+Java Map Interface.. 
+
+	A map contains values on the basis of key i.e. key and value pair. Each key and value pair is known as an entry. 
+	Map contains only unique keys.
+	
+	Map is useful if you have to search, update or delete elements on the basis of key.
+		put(key, value), putAll(map), remove(key), get(key), containsKey(key)
+		keySet(), entrySet()
+		
+	Entry is the sub interface of Map. So we will be accessed it by Map.Entry name. It provides methods to get key and value.
+		entry.getKey(), entry.getValue()
+		
+Java HashMap class
+	
+	Java HashMap class implements the map interface by using a hashtable. 
+	It inherits AbstractMap class and implements Map interface.
+	
+	Features - 
+		It contains only unique elements.
+		It may have one null key and multiple null values.
+		It maintains no order.
+
+	Constructor - 
+		HashMap(), HashMap(Map m), HashMap(int capacity), HashMap(int capacity, float fillRatio)
+	Methods -
+		clear(), containsKey(key), containsValue(value), clone(), put(key, value), get(key), remove(key), isEmpty(), size() 
+		entrySet(), keySet(), values()
+
+	
+Java LinkedHashMap Class
+	
+	Java LinkedHashMap class is Hash table and Linked list implementation of the Map interface, with predictable iteration order. 
+	It inherits HashMap class and implements the Map interface.
+
+	Features -
+		It contains only unique elements.
+		It may have one null key and multiple null values.
+		It is same as HashMap instead maintains insertion order.
+	
+Java TreeMap class
+
+	Java TreeMap class implements the Map interface by using a tree. 
+	It implements the NavigableMap interface and extends AbstractMap class.
+	
+	Features
+		It contains only unique elements.
+		It cannot have null key but can have multiple null values.
+		It is same as HashMap instead maintains ascending order.
+	
+	Constructor -
+		TreeMap(), TreeMap(Map m), TreeMap(SortedMap sm), TreeMap(Comparator comp)
+		
+	Methods -
+		clear(), containsKey(key), containsValue(value), clone(), put(key, value), get(key), remove(key), isEmpty(), size() 
+		entrySet(), keySet(), values(),
+		firstKey(), lastKey()
+		
+Java EnumMap class
+	
+	Java EnumMap class is the specialized Map implementation for enum keys. 
+	It inherits Enum and AbstractMap classes.
+	
+	Just that key will be a enum...
+		
+Java Hashtable class
+
+	Java Hashtable class implements a hashtable, which maps keys to values. 
+	It implements the Map interface and inherits Dictionary class.
+	
+	Features - 
+		A Hashtable is an array of list. Each list is known as a bucket. The position of bucket is identified by calling the hashcode() method. 
+		A Hashtable contains values based on the key.
+		It contains only unique elements.
+		It may have not have any null key or value.
+		It is synchronized.
+		
+	Constructor - 
+		HashTable(), HashTable(int size), Hashtable(int size, fillRatio)
+		
+	Methods - 
+		All above + void rehash() - It is used to increase the size of the hash table and rehashes all of its keys.
+	
+	
+HashMap - Maintains no order.. implements Hashing... non synchronized && not-thread safe ... one null key and multiple null values
+LinkedHashMap - Maintain insertion order.. implements Hashing && linkedlist ...cannot have null key but can have multiple null values.
+TreeMap - Maintains sorting order... implements tree ...one null key and multiple null values
+HashTables - legacy class...slow.. synchronized && can't be unsynchronized && thread-safe and can be shared with many threads ... doesn't allow any null key or value
+		
+We can make the HashMap as synchronized by calling this code
+Map m = Collections.synchronizedMap(hashMap)
+
+Java Comparable interface
+	Java Comparable interface is used to order the objects of user-defined class.
+	This interface is found in java.lang package and contains only one method named compareTo(Object). 
+	It provide single sorting sequence only i.e. you can sort the elements on based on single data member only. 
+
+	Methods -
+		public int compareTo(Object obj): is used to compare the current object with the specified object.
+		
+	Eg. Collections.sort(al);
+		public int compareTo(Student st){  
+			if(age==st.age)  
+				return 0;  
+			else if(age>st.age)  
+				return 1;  
+			else  
+				return -1;  
+			}  
+		
+		
+Java Comparator interface
+	Java Comparator interface is used to order the objects of user-defined class.
+	This interface is found in java.util package and contains 2 methods compare(Object obj1,Object obj2) and equals(Object element).
+	It provides multiple sorting sequence i.e. you can sort the elements on the basis of any data member
+	
+	Methods -
+		public int compare(Object obj1,Object obj2): compares the first object with second object.
+	
+	Eg. 	Collections.sort(al,new AgeComparator());  	
+	
+			import java.util.*;  
+			class AgeComparator implements Comparator{  
+				public int compare(Object o1,Object o2){  
+					Student s1=(Student)o1;  
+					Student s2=(Student)o2;  
+			  
+					if(s1.age==s2.age)  
+						return 0;  
+					else if(s1.age>s2.age)  
+						return 1;  
+					else  
+						return -1;  
+				}  
+			}
+			
+			
+Properties class in Java
+
+	The properties object contains key and value pair both as a string. 
+	The java.util.Properties class is the subclass of Hashtable.
+
+	It can be used to get property value based on the property key. 
+	The Properties class provides methods to get data from properties file and store data into properties file. 
+	Moreover, it can be used to get properties of system.
+
+	Advantage of properties file
+		Recompilation is not required, if information is changed from properties file: 
+		It is used to store information which is to be changed frequently.
+		
+	Methods - 
+		load(Reader r), load(InputStream is),  loads data to properties object
+		store(Writer w, String comment), store(OutputStream os, String comment), stores data from properties object
+		storeToXML(OutputStream os, String comment), storeToXML(Writer w, String comment, String encoding)
+		getProperty(key), setProperty(key,value)
+
+	Eg. 1. 	db.properties
+				user=system  
+				password=oracle  
+			
+			FileReader reader=new FileReader("db.properties");  
+			Properties p=new Properties();  
+			p.load(reader);  
+		
+		2.	Properties p=System.getProperties();  
+			Set set=p.entrySet();  
+		
+		3. 	Properties p=new Properties();  
+			p.setProperty("name","Sonoo Jaiswal");  
+			p.setProperty("email","sonoojaiswal@javatpoint.com");  
+			p.store(new FileWriter("info.properties"),"Javatpoint Properties Example");  
+			
+	
+Java I/O 	
+	Java I/O (Input and Output) is used to process the input and produce the output.
+	Java uses the concept of stream to make I/O operation fast. 
+	The java.io package contains all the classes required for input and output operations.
+	We can perform file handling in java by Java I/O API.			
+
+Stream
+	A stream is a sequence of data.
+	In Java a stream is composed of bytes. It's called a stream because it is like a stream of water that continues to flow.
+
+	In java, 3 streams are created for us automatically. All these streams are attached with console.
+		1) System.out: standard output stream
+		2) System.in: standard input stream
+		3) System.err: standard error stream
+
+OutputStream vs InputStream
+	Java application uses an output stream to write data to a destination, it may be a file, an array, peripheral device or socket.
+	Java application uses an input stream to read data from a source, it may be a file, an array, peripheral device or socket.		
+	
+OutputStream class
+	OutputStream class is an abstract class. 
+	It is the super class of all classes representing an output stream of bytes. 
+	An output stream accepts output bytes and sends them to some sink.
+	
+	Methods -
+		public void write(int) throws IOException	is used to write a byte to the current output stream.
+		public void write(byte[]) throws IOException	is used to write an array of byte to the current output stream.
+		public void flush() throws IOException	
+		public void close() throws IOException
+
+InputStream class
+	InputStream class is an abstract class. 
+	It is the super class of all classes representing an input stream of bytes.
+
+	Methods -
+		public abstract int read() throws IOException	reads the next byte of data from the input stream. It returns -1 at the end of file.
+		public int available() throws IOException	returns an estimate of the number of bytes that can be read from the current input stream.
+		public void close() throws IOException
+
+Java FileOutputStream Class
+	Java FileOutputStream is an output stream used for writing data to a file.
+	
+	If you have to write primitive values into a file, use FileOutputStream class. 
+	You can write byte-oriented as well as character-oriented data through FileOutputStream class. 
+	But, for character-oriented data, it is preferred to use FileWriter than FileOutStream.
+
+	Methods - 
+		finalize(), FileChannel getChannel(), FileDescriptor getFD()
+		
+	Eg.1
+		try{    
+			FileOutputStream fout=new FileOutputStream("D:\\testout.txt");    
+			fout.write(65);    
+			fout.close();    
+			System.out.println("success...");    
+		}catch(Exception e){System.out.println(e);}    
+	O/P. testout.txt ----> A
+	
+	Eg.2
+		String s="Welcome to javaTpoint.";    
+        byte b[]=s.getBytes();//converting string into byte array 
+		fout.write(b);  
+		
+	O/P. testout.txt ---> Welcome to javaTpoint.
+	
+	
+Java FileInputStream Class
+	Java FileInputStream class obtains input bytes from a file. 
+	It is used for reading byte-oriented data (streams of raw bytes) such as image data, audio, video etc. 
+	You can also read character-stream data. But, for reading streams of characters, it is recommended to use FileReader class.
+	
+	Methods -
+		skip(long x), finalize(), FileChannel getChannel(), FileDescriptor getFD()
+		
+	Eg.1
+		try{    
+            FileInputStream fin=new FileInputStream("D:\\testout.txt");    
+            int i=fin.read();  
+            System.out.print((char)i);    
+  
+            fin.close();    
+        }catch(Exception e){System.out.println(e);}   
+	I/P. testout.txt ---> Welcome to javatpoint.
+	O/p. ----> W
+	
+	Eg.2
+		int i=0;    
+		while((i=fin.read())!=-1){    
+			System.out.print((char)i);    
+		}    
+		
+		
+Java BufferedOutputStream Class
+	Java BufferedOutputStream class is used for buffering an output stream. 
+	It internally uses buffer to store data. It adds more efficiency than to write data directly into a stream. So, it makes the performance fast.
+	
+	Constructor
+		BufferedOutputStream(OutputStream os)
+		BufferedOutputStream(OutputStream os, int size)
+	
+	Eg.
+		FileOutputStream fout=new FileOutputStream("D:\\testout.txt");    
+		 BufferedOutputStream bout=new BufferedOutputStream(fout);    
+		 String s="Welcome to javaTpoint.";    
+		 byte b[]=s.getBytes();    
+		 bout.write(b);    
+		 bout.flush();    
+		 bout.close();    
+		 fout.close();    
+		 System.out.println("success");
+
+
+
+Java BufferedInputStream Class
+	Java BufferedInputStream class is used to read information from stream. 
+	It internally uses buffer mechanism to make the performance fast.	
+
+	Constructor
+		BufferedInputStream(InputStream IS)
+		BufferedInputStream(InputStream IS, int size)
+	
+	Points.
+		When the bytes from the stream are skipped or read, the internal buffer automatically refilled from the contained input stream, many bytes at a time.
+		When a BufferedInputStream is created, an internal buffer array is created.
+		
+	Methods
+		void reset()				It repositions the stream at a position the mark method was last called on this input stream.
+		void mark(int readlimit)	It sees the general contract of the mark method for the input stream.
+		long skip(long x)			It skips over and discards x bytes of data from the input stream.
+		boolean markSupported()		It tests for the input stream to support the mark and reset methods.
+		
+	Eg.
+		 try{    
+			FileInputStream fin=new FileInputStream("D:\\testout.txt");    
+			BufferedInputStream bin=new BufferedInputStream(fin);    
+			int i;    
+			while((i=bin.read())!=-1){    
+			 System.out.print((char)i);    
+			}    
+			bin.close();    
+			fin.close();    
+		  }catch(Exception e){System.out.println(e);}   
+
+
+Java SequenceInputStream Class
+	Java SequenceInputStream class is used to read data from multiple streams. It reads data sequentially (one by one).
+	
+	**** If we need to read the data from more than two files, we need to use Enumeration. 
+	Enumeration object can be obtained by calling elements() method of the Vector class.
+	
+	Constructor
+		SequenceInputStream(InputStream s1, InputStream s2)	
+		SequenceInputStream(Enumeration e)
+	
+	Eg.1.
+		FileInputStream input1=new FileInputStream("D:\\testin1.txt");    
+		FileInputStream input2=new FileInputStream("D:\\testin2.txt");  		
+		SequenceInputStream inst=new SequenceInputStream(input1, input2); 
+		FileOutputStream fout=new FileOutputStream("D:\\testout.txt");		
+		int j;    
+		while((j=inst.read())!=-1){    
+			fout.write(i);  
+		}    
+		inst.close();    
+		fout.close(); 
+		input1.close();    
+		input2.close();
+
+	Eg.2
+		FileInputStream fin=new FileInputStream("D:\\a.txt");    
+		FileInputStream fin2=new FileInputStream("D:\\b.txt");    
+		FileInputStream fin3=new FileInputStream("D:\\c.txt");    
+		FileInputStream fin4=new FileInputStream("D:\\d.txt");    
+		//creating Vector object to all the stream    
+		Vector v=new Vector();    
+		v.add(fin);    
+		v.add(fin2);    
+		v.add(fin3);    
+		v.add(fin4);              
+		//creating enumeration object by calling the elements method    
+		Enumeration e=v.elements();      
+		//passing the enumeration object in the constructor    
+		SequenceInputStream bin=new SequenceInputStream(e);    
+		int i=0;      
+		while((i=bin.read())!=-1){    
+			System.out.print((char)i);    
+		}     
+		bin.close();    
+		fin.close();    
+		fin2.close();   
+	
+	
+Java ByteArrayOutputStream Class
+	Java ByteArrayOutputStream class is used to write common data into multiple files. In this stream, the data is written into a byte array which can be written to multiple streams later.
+
+	The ByteArrayOutputStream holds a copy of data and forwards it to multiple streams.
+	The buffer of ByteArrayOutputStream automatically grows according to data.
+	
+	Constructor
+		ByteArrayOutputStream()
+		ByteArrayOutputStream(int size)
+		
+	Methods
+		void writeTo(OutputStream out) - writing the complete content of a byte array output stream to the specified output stream.
+		String toString(String charsetName)	It is used for converting the content into a string decoding bytes using a specified charsetName.
+		
+	Eg.
+		FileOutputStream fout1=new FileOutputStream("D:\\f1.txt");    
+		FileOutputStream fout2=new FileOutputStream("D:\\f2.txt");    
+
+		ByteArrayOutputStream bout=new ByteArrayOutputStream();    
+		bout.write(65);    
+		bout.writeTo(fout1);    
+		bout.writeTo(fout2);    
+
+		bout.flush();    
+		bout.close();//has no effect    
+		System.out.println("Success...");    
+	O/p. 
+		f1.txt: ---> A
+		f2.txt: ---> A
+
+Java ByteArrayInputStream Class
+	The ByteArrayInputStream is composed of two words: ByteArray and InputStream. 
+	As the name suggests, it can be used to read byte array as input stream.
+
+	Java ByteArrayInputStream class contains an internal buffer which is used to read byte array as stream. 
+	In this stream, the data is read from a byte array.
+
+	The buffer of ByteArrayInputStream automatically grows according to data.		
+	
+	Constructor
+		ByteArrayInputStream(byte[] ary)
+		ByteArrayInputStream(byte[] ary, int offset, int len)
+		
+	Eg. 
+		byte[] buf = { 35, 36, 37, 38 };  
+		// Create the new byte array input stream  
+		ByteArrayInputStream byt = new ByteArrayInputStream(buf);  
+		int k = 0;  
+		while ((k = byt.read()) != -1) {  
+			//Conversion of a byte into character  
+			char ch = (char) k;  
+		System.out.println("ASCII value of Character is:" + k + "; Special character is: " + ch);  
+		
+	O/p. 
+		ASCII value of Character is:35; Special character is: #
+		ASCII value of Character is:36; Special character is: $
+		ASCII value of Character is:37; Special character is: %
+		ASCII value of Character is:38; Special character is: &
+		
+Java DataOutputStream Class
+	Java DataOutputStream class allows an application to write primitive Java data types to the output stream in a machine-independent way.
+	Java application generally uses the data output stream to write data that can later be read by a data input stream.
+	
+	Methods
+		void write(int b)							It is used to write the specified byte to the underlying output stream.
+		void write(byte[] b, int off, int len)		It is used to write len bytes of data to the output stream.
+		void writeBoolean(boolean v)				It is used to write Boolean to the output stream as a 1-byte value.
+		void writeChar(int v)						It is used to write char to the output stream as a 2-byte value.
+		void writeChars(String s)					It is used to write string to the output stream as a sequence of characters.
+		void writeByte(int v)						It is used to write a byte to the output stream as a 1-byte value.
+		void writeBytes(String s)					It is used to write string to the output stream as a sequence of bytes.
+		void writeInt(int v)						It is used to write an int to the output stream
+		void writeShort(int v)						It is used to write a short to the output stream.
+		void writeLong(long v)						It is used to write a long to the output stream.
+		void writeUTF(String str)					It is used to write a string to the output stream using UTF-8 encoding in portable manner.
+		
+	Eg. 
+		FileOutputStream file = new FileOutputStream(D:\\testout.txt);  
+        DataOutputStream data = new DataOutputStream(file);  
+        data.writeInt(65);  
+        data.flush();  
+        data.close(); 
+		
+Java DataInputStream Class
+	Java DataInputStream class allows an application to read primitive data from the input stream in a machine-independent way.
+	Java application generally uses the data output stream to write data that can later be read by a data input stream.
+	
+	Methods
+		int read(byte[] b)						It is used to read the number of bytes from the input stream.
+		int read(byte[] b, int off, int len)	It is used to read len bytes of data from the input stream.
+		int readInt()							It is used to read input bytes and return an int value.
+		byte readByte()							It is used to read and return the one input byte.
+		char readChar()							It is used to read two input bytes and returns a char value.
+		double readDouble()						It is used to read eight input bytes and returns a double value.
+		boolean readBoolean()					It is used to read one input byte and return true if byte is non zero, false if byte is zero.
+		int skipBytes(int x)					It is used to skip over x bytes of data from the input stream.
+		String readUTF()						It is used to read a string that has been encoded using the UTF-8 format.
+		void readFully(byte[] b)				It is used to read bytes from the input stream and store them into the buffer array.
+		void readFully(byte[] b, int off, int len)	It is used to read len bytes from the input stream.
+		
+	Eg.
+		InputStream input = new FileInputStream("D:\\testout.txt");  
+		DataInputStream inst = new DataInputStream(input);  
+		int count = input.available();  
+		byte[] ary = new byte[count];  
+		inst.read(ary);  
+		for (byte bt : ary) {  
+		  char k = (char) bt;  
+		  System.out.print(k+"-");  
+		}  
+		
+		
+Java FilterOutputStream Class
+	Java FilterOutputStream class implements the OutputStream class. 
+	It provides different sub classes such as BufferedOutputStream and DataOutputStream to provide additional functionality. 
+	So it is less used individually.
+	
+Java FilterInputStream Class
+	Java FilterInputStream class implements the InputStream. 
+	It contains different sub classes as BufferedInputStream, DataInputStream for providing additional functionality. 
+	So it is less used individually.
+	
+
+Java Console Class
+	The Java Console class is be used to get input from console. 
+	It provides methods to read texts and passwords.
+
+	If you read password using Console class, it will not be displayed to the user.
+	The java.io.Console class is attached with system console internally. The Console class is introduced since 1.5.
+	
+	Methods
+		Reader reader()								It is used to retrieve the reader object associated with the console
+		PrintWriter writer()						It is used to retrieve the PrintWriter object associated with the console.
+	
+		String readLine()							It is used to read a single line of text from the console.
+		char[] readPassword()						It is used to read password that is not being displayed on the console.
+		String readLine(String fmt, Object... args)	It provides a formatted prompt then reads the single line of text from the console.
+		
+		char[] readPassword(String fmt, Object... args)	It provides a formatted prompt then reads the password that is not being displayed on the console.
+		
+		Console format(String fmt, Object... args)	It is used to write a formatted string to the console output stream.
+		Console printf(String format, Object... args)	It is used to write a string to the console output stream.
+
+	Eg1. 
+		Console c=System.console();    
+		System.out.println("Enter your name: ");    
+		String n=c.readLine();    
+		System.out.println("Welcome "+n);   
+		
+	O/p. 
+		Enter your name: Nakul Jain
+		Welcome Nakul Jain
+		
+	Eg.2
+		Console c=System.console();    
+		System.out.println("Enter password: ");    
+		char[] ch=c.readPassword();    
+		String pass=String.valueOf(ch);//converting char array into string    
+		System.out.println("Password is: "+pass);    
+		
+	O/p.
+		Enter password: 
+		Password is: 123
+		
+	Eg.3 - Reading data from console by InputStreamReader and BufferedReader
+
+		InputStreamReader r=new InputStreamReader(System.in);    
+		BufferedReader br=new BufferedReader(r);            
+		System.out.println("Enter your name");    
+		String name=br.readLine();    
+		System.out.println("Welcome "+name);    
+
+	O/p.
+		Enter your name
+		Nakul Jain
+		Welcome Nakul Jain
+		
+	Eg.4 - Reading data from console until user writes stop
+		
+		InputStreamReader r=new InputStreamReader(System.in);    
+		BufferedReader br=new BufferedReader(r);           
+		String name="";    
+		while(!name.equals("stop")){    
+			System.out.println("Enter data: ");    
+			name=br.readLine();    
+			System.out.println("data is: "+name);    
+		}  
+
+	O/p.
+		Enter data: Nakul
+		data is: Nakul
+		Enter data: 12
+		data is: 12
+		Enter data: stop
+		data is: stop
+		
+Java FilePermission Class
+	Java FilePermission class contains the permission related to a directory or file. 
+	All the permissions are related with path. The path can be of two types:
+	1) D:\\IO\\-: It indicates that the permission is associated with all sub directories and files recursively.
+	2) D:\\IO\\*: It indicates that the permission is associated with all directory and files within this directory excluding sub directories.
+	
+	Methods -
+		String getActions()								It is used to return the "canonical string representation" of an action.
+		boolean equals(Object obj)						It is used to check the two FilePermission objects for equality.
+		boolean implies(Permission p)					It is used to check the FilePermission object for the specified permission.
+		PermissionCollection newPermissionCollection()	It is used to return the new PermissonCollection object for storing the FilePermission object.
+	
+	Eg.1
+		String srg = "D:\\IO Package\\java.txt";  
+        FilePermission file1 = new FilePermission("D:\\IO Package\\-", "read");  
+        PermissionCollection permission = file1.newPermissionCollection();  
+        permission.add(file1);  
+        FilePermission file2 = new FilePermission(srg, "write");  
+		permission.add(file2);  
+		if(permission.implies(new FilePermission(srg, "read,write"))) {  
+			System.out.println("Read, Write permission is granted for the path "+srg );  
+		}else {  
+			System.out.println("No Read, Write permission is granted for the path "+srg);            
+		}
+			
+	O/p. 
+		Read, Write permission is granted for the path D:\IO Package\java.txt
+		
+Java FileWriter Class
+	Java FileWriter class is used to write character-oriented data to a file. 
+	It is character-oriented class which is used for file handling in java.
+	Unlike FileInputStream class, you don't need to convert string into byte array because it provides method to write string directly.
+	
+	Constructor
+		FileWriter(String file), FileWriter(File file)
+		
+	Methods
+		void write(String text)		It is used to write the string into FileWriter.
+		void write(char c)			It is used to write the char into FileWriter.
+		void write(char[] c)		It is used to write char array into FileWriter.
+		
+	Eg. 
+		FileWriter fw=new FileWriter("D:\\testout.txt");    
+		fw.write("Welcome to javaTpoint.");  
+		
+Java FileReader Class
+	Java FileReader class is used to read data from the file. 
+	It returns data in byte format like FileInputStream class.
+	It is character-oriented class which is used for file handling in java.
+	
+	Constructor
+		FileReader(String file), FileReader(File file)
+		
+	Methods
+		int read() - It is used to return a character in ASCII form. It returns -1 at the end of file.
+		
+	Eg. 
+		FileReader fr=new FileReader("D:\\testout.txt");    
+		int i;    
+		while((i=fr.read())!=-1)    
+		System.out.print((char)i);   
+		
+Java BufferedWriter Class
+	Java BufferedWriter class is used to provide buffering for Writer instances. 
+	It makes the performance fast. 
+	It inherits Writer class. 
+	The buffering characters are used for providing the efficient writing of single arrays, characters, and strings.
+	
+	Eg. 
+		FileWriter writer = new FileWriter("D:\\testout.txt");  
+		BufferedWriter buffer = new BufferedWriter(writer);  
+		buffer.write("Welcome to javaTpoint.");  
+		
+Java BufferedReader Class
+	Java BufferedReader class is used to read the text from a character-based input stream. 
+	It can be used to read data line by line by readLine() method. 
+	It makes the performance fast. It inherits Reader class.
+	
+	Eg.
+		FileReader fr=new FileReader("D:\\testout.txt");    
+		BufferedReader br=new BufferedReader(fr);    
+		int i;    
+		while((i=br.read())!=-1){  
+			System.out.print((char)i);  
+		}  
+		
+Java CharArrayWriter Class
+	The CharArrayWriter class can be used to write common data to multiple files. 
+	This class inherits Writer class. 
+	Its buffer automatically grows when data is written in this stream. 
+	Calling the close() method on this object has no effect.
+	
+	Method
+		void writeTo(Writer out)	It is used to write the content of buffer to different character stream.
+	
+	Eg.
+		CharArrayWriter out=new CharArrayWriter();    
+		out.write("Welcome to javaTpoint");    
+		FileWriter f1=new FileWriter("D:\\a.txt");    
+		FileWriter f2=new FileWriter("D:\\b.txt");    
+		FileWriter f3=new FileWriter("D:\\c.txt");    
+		FileWriter f4=new FileWriter("D:\\d.txt");    
+		out.writeTo(f1);    
+		out.writeTo(f2);    
+		out.writeTo(f3);    
+		out.writeTo(f4);    
+	
+		
+Java CharArrayReader Class
+		The CharArrayReader is composed of two words: CharArray and Reader. 
+		The CharArrayReader class is used to read character array as a reader (stream). 
+		It inherits Reader class.
+		
+		Eg.
+			char[] ary = { 'j', 'a', 'v', 'a', 't', 'p', 'o', 'i', 'n', 't' };  
+			CharArrayReader reader = new CharArrayReader(ary);  
+			int k = 0;  
+			// Read until the end of a file  
+			while ((k = reader.read()) != -1) {  
+			  char ch = (char) k;  
+			  System.out.print(ch + " : ");  
+			  System.out.println(k);  
+			}  
+			
+Java PrintStream Class
+	The PrintStream class provides methods to write data to another stream. 
+	The PrintStream class automatically flushes the data so there is no need to call flush() method. 
+	Moreover, its methods don't throw IOException.		
+
+	Eg.
+		FileOutputStream fout=new FileOutputStream("D:\\testout.txt ");    
+		PrintStream pout=new PrintStream(fout);    
+		pout.println(2016);    
+		pout.println("Hello Java");    
+		pout.println("Welcome to Java");    
+		
+	O/p.
+		testout.txt --> 
+			2016
+			Hello Java
+			Welcome to Java
+			
+Java PrintWriter class
+	Java PrintWriter class is the implementation of Writer class.
+	It is used to print the formatted representation of objects to the text-output stream.
+	
+	Eg.
+		PrintWriter writer = new PrintWriter(System.out);    
+		writer.write("Javatpoint provides tutorials of all technology.");  
+		
+		//Data to write in File using PrintWriter       
+		PrintWriter writer1 = new PrintWriter(new File("D:\\testout.txt"));  
+		writer1.write("Like Java, Spring, Hibernate, Android, PHP etc.");  
+
+Java PushbackInputStream Class
+	Java PushbackInputStream class overrides InputStream and provides extra functionality to another input stream. 
+	It can unread a byte which is already read and push back one byte.		
+	
+Java PushbackReader Class
+	Java PushbackReader class is a character stream reader. 
+	It is used to pushes back a character into stream and overrides the FilterReader class.
+	
+Java StringWriter Class
+	Java StringWriter class is a character stream that collects output from string buffer, which can be used to construct a string. 
+	The StringWriter class inherits the Writer class.
+
+	In StringWriter class, system resources like network sockets and files are not used, therefore closing the StringWriter is not necessary.
+					  
+
+Java StringReader Class
+	Java StringReader class is a character stream with string as a source. 
+	It takes an input string and changes it into character stream. It inherits Reader class.
+
+	In StringReader class, system resources like network sockets and files are not used, therefore closing the StringReader is not necessary.
+	
+Marker Interface
+	has no data member and method
+	It is used to "mark" java classes so that objects of these classes may get certain capability. 
+	The Serializable, Cloneable and Remote are also marker interfaces.
+	
+	
+Java Serialization(java.io.Serializable interface)
+	Serialization in java is a mechanism of writing the state of an object into a byte stream.
+	Deserialization is the process of reconstructing the object from the serialized state. It is the reverse operation of serialization.
+
+	It is mainly used in Hibernate, RMI, JPA, EJB and JMS technologies.
+	
+	Serializable is a marker interface (has no data member and method). 
+
+	It must be implemented by the class whose object you want to persist.
+	The String class and all the wrapper classes implements java.io.Serializable interface by default.
+	
+	Note -
+		1. If a class implements serializable then all its sub classes will also be serializable.
+		2. If a class has a reference of another class, all the references must be Serializable otherwise serialization process will not be performed. 
+		   In such case, NotSerializableException is thrown at runtime.
+		3. In case of array or collection, all the objects of array or collection must be serializable. 
+		   If any object is not serialiizable, serialization will be failed.
+		4. If there is any static data member in a class, it will not be serialized because static is the part of class not object.
+
+
+	Eg. Serialization
+			Student s1 =new Student(211,"ravi");    
+			FileOutputStream fout=new FileOutputStream("f.txt");  
+			ObjectOutputStream out=new ObjectOutputStream(fout);  
+			out.writeObject(s1);  
+			out.flush();  
+		Deserialization
+			ObjectInputStream in=new ObjectInputStream(new FileInputStream("f.txt"));  
+			Student s=(Student)in.readObject();  
+			System.out.println(s.id+" "+s.name);  
+			in.close();  
+	O/p. 211 ravi
+	
+	
+Java Transient Keyword
+	If you don't want to serialize any data member of a class, you can mark it as transient.
+	If you deserialize the object, you will get the default value for transient variable.
+	
+	Eg. 						
+		Student s1 =new Student(211,"ravi",22); //id, name, age(transient)
+		FileOutputStream f=new FileOutputStream("f.txt");  
+		ObjectOutputStream out=new ObjectOutputStream(f);  
+		out.writeObject(s1);  
+		out.flush(); 
+		
+		ObjectInputStream in=new ObjectInputStream(new FileInputStream("f.txt"));  
+		Student s=(Student)in.readObject();  
+		System.out.println(s.id+" "+s.name+" "+s.age);  
+		in.close(); 
+		
+	O/p. 211 ravi 0
+			Since age is transient and also int, age wont be serialized and hence ouput will de default value of int ie, 0
+			
+
+Externalizable in java
+	The Externalizable interface provides the facility of writing the state of an object into a byte stream in compress format. 
+	It is not a marker interface.
+
+	Methods -
+		public void writeExternal(ObjectOutput out) throws IOException
+		public void readExternal(ObjectInput in) throws IOException
+	
+	
+Java Networking
+
+Java URL class
+	The Java URL class represents an URL. 
+	URL is an acronym for Uniform Resource Locator. 
+	It points to a resource on the World Wide Web. For example:http://www.javatpoint.com/java-tutorial  
+	
+	A URL contains many information:
+		Protocol: In this case, http is the protocol.
+		Server name or IP Address: In this case, www.javatpoint.com is the server name.
+		Port Number: It is an optional attribute. 
+						If we write http//ww.javatpoint.com:80/sonoojaiswal/ , 80 is the port number. 
+						If port number is not mentioned in the URL, it returns -1.
+		File Name or directory name: In this case, index.jsp is the file name.
+		
+		
+	Methods
+		getProtocol(), getHost(), getPort(), getFile(), 
+		public URLConnection openConnection()	it returns the instance of URLConnection i.e. associated with this URL.
+		
+		
+Java URLConnection class
+	The Java URLConnection class represents a communication link between the URL and the application. 
+	This class can be used to read and write data to the specified resource referred by the URL
+	
+	Methods
+		getInputStream() - returns all the data of the specified URL in the stream that can be read and displayed.
+	
+	Eg. 
+		try{  
+			URL url=new URL("http://www.javatpoint.com/java-tutorial");  
+			URLConnection urlcon=url.openConnection();  
+			InputStream stream=urlcon.getInputStream();  
+			int i;  
+			while((i=stream.read())!=-1){  
+				System.out.print((char)i);  
+			}  
+		}catch(Exception e){System.out.println(e);}  
+		
+		
+Java Inner Class
+	Java inner class or nested class is a class i.e. declared inside the class or interface.
+
+	We use inner classes to logically group classes and interfaces in one place so that it can be more readable and maintainable.
+	
+	Additionally, it can access all the members of outer class including private data members and methods.
+	
+	Advantage
+		1) Nested classes represent a special type of relationship that is it can access all the members (data members and methods) of outer class including private.
+		2) Nested classes are used to develop more readable and maintainable code because it logically group classes and interfaces in one place only.
+		3) Code Optimization: It requires less code to write.
+		
+	Note.
+		Inner class is a part of nested class. Non-static nested classes are known as inner classes.
+		1. Non-static nested class(inner class)
+			a)Member inner class 		-A class created within class and outside method.
+			b)Annomynous inner class	-A class created for implementing interface or extending class. Its name is decided by the java compiler.
+			c)Local inner class			-A class created within method.
+		2. Static nested class			-A static class created within class.
+		
+		Nested Interface	An interface created within class or interface.
+		
+		
+
+Multitasking
+	Multitasking is a process of executing multiple tasks simultaneously. 
+	We use multitasking to utilize the CPU. 
+	Multitasking can be achieved by two ways:
+		1) Process-based Multitasking (Multiprocessing)
+			Each process have its own address in memory i.e. each process allocates separate memory area.
+			Process is heavyweight.
+			Cost of communication between the process is high.
+			Switching from one process to another require some time for saving and loading registers, memory maps, updating lists etc.
+		2) Thread-based Multitasking (Multithreading)
+			Threads share the same address space.
+			Thread is lightweight.
+			Cost of communication between the thread is low.		
+			
+	But we use multithreading than multiprocessing because threads share a common memory area. 
+
+Thread
+	Thread is basically a lightweight sub-process, a smallest unit of processing. 
+	It is a separate path of execution.
+	Threads are independent, if there occurs exception in one thread, it doesn't affect other threads. 
+	It shares a common memory area.
+	
+	Note: At a time one thread is executed only.
+	
+Life cycle of a Thread (Thread States)
+	A thread can be in one of the five states. 
+	According to sun, there is only 4 states in thread life cycle in java new, runnable, non-runnable and terminated. There is no running state.
+	But for better understanding the threads, we are explaining it in the 5 states.
+
+	The life cycle of the thread in java is controlled by JVM. 
+	The java thread states are as follows:
+		1. New 			-The thread is in new state if you create an instance of Thread class but before the invocation of start() method.
+		2. Runnable		-The thread is in runnable state after invocation of start() method, but the thread scheduler has not selected it to be the              running thread.
+		3. Running		-The thread is in running state if the thread scheduler has selected it.
+		4. Non-Runnable - This is the state when the thread is still alive, but is currently not eligible to run. ((Blocked))
+		5. Terminated	- A thread is in terminated or dead state when its run() method exits.
+		
+	Thread class extends Object class and implements Runnable interface.
+	
+	There are two ways to create a thread:	
+		1. By extending Thread class
+		2. By implementing Runnable interface.
+	
+	Constructor	
+		Thread()
+		Thread(String name)
+		Thread(Runnable r)
+		Thread(Runnable r,String name)
+		
+	Methods 
+		run(), start(), getPriority(), setPriority(int priority), getName(), setName(String name), getId()
+		sleep(long milliseconds) - The sleep() method of Thread class is used to sleep a thread for the specified amount of time.
+		static Thread  currentThread() - returns the reference of currently executing thread.
+		getState()- returns the state of the thread.
+		join() - waits for a thread to die. 
+					In other words, it causes the currently running threads to stop executing until the thread it joins with completes its task.
+		join(long miliseconds)- waits for a thread to die for the specified miliseconds.
+		isAlive(): tests if the thread is alive.
+		isDaemon(): tests if the thread is a daemon thread.
+		setDaemon(boolean b): marks the thread as daemon or user thread.
+		interrupt(): interrupts the thread, 
+		public boolean isInterrupted(): tests if the thread has been interrupted.
+		public static boolean interrupted(): tests if the current thread has been interrupted.
+		
+		
+	Runnable interface:
+		The Runnable interface should be implemented by any class whose instances are intended to be executed by a thread. 
+		Runnable interface have only one method named run().
+			public void run(): is used to perform action for a thread.
+	
+	Starting a thread:
+		start() method of Thread class is used to start a newly created thread. 
+		It performs following tasks:
+			A new thread starts(with new callstack).
+			The thread moves from New state to the Runnable state.
+			When the thread gets a chance to execute, its target run() method will run.
+			
+		After starting a thread, it can never be started again. 
+		If you does so, an IllegalThreadStateException is thrown. 
+		In such case, thread will run once but for second time, it will throw exception.
+
+	Run Method
+		Each thread starts in a separate call stack.
+		Invoking the run() method from main thread, the run() method goes onto the current call stack rather than at the beginning of a new call stack.
+		Invoking run() method is like calling a normal method. Will be treated as normal object not thread object.
+		And there is no context switching.
+			
+	Eg.1.	 Java Thread Example by extending Thread class
+			class Multi extends Thread{  
+				public void run(){  
+					System.out.println("thread is running...");  
+				}  
+				public static void main(String args[]){  
+					Multi t1=new Multi();  
+					t1.start();  
+				}  
+			}  
+	Eg.2.	Java Thread Example by implementing Runnable interface
+			class Multi3 implements Runnable{  
+				public void run(){  
+					System.out.println("thread is running...");  
+				}  
+			  
+				public static void main(String args[]){  
+					Multi3 m1=new Multi3();  
+					Thread t1 =new Thread(m1);  
+					t1.start();  
+				}  
+			}
+		
+	Note.
+		If you are not extending the Thread class,your class object would not be treated as a thread object.
+		So you need to explicitely create Thread class object.
+		We are passing the object of your class that implements Runnable so that your class run() method may execute.
+		
+		
+Thread Scheduler in Java
+	Thread scheduler in java is the part of the JVM that decides which thread should run.
+	There is no guarantee that which runnable thread will be chosen to run by the thread scheduler.
+	Only one thread at a time can run in a single process.
+	The thread scheduler mainly uses preemptive or time slicing scheduling to schedule the threads.
+	
+	Under preemptive scheduling, the highest priority task executes until it enters the waiting or dead states or a higher priority task comes into existence. 
+	Under time slicing, a task executes for a predefined slice of time and then reenters the pool of ready tasks. The scheduler then determines which task should execute next, based on priority and other factors.
+		
+	Note.	
+		As you know well that at a time only one thread is executed. 
+		If you sleep a thread for the specified time,the thread shedular picks up another thread and so on.
+		
+Multithreading in Java
+	Multithreading in java is a process of executing multiple threads simultaneously.
+	
+	They don't allocate separate memory area so saves memory, and context-switching between the threads takes less time than process.
+
+	Java Multithreading is mostly used in games, animation etc.
+	
+	Advantages
+		1) It doesn't block the user because threads are independent and you can perform multiple operations at same time.
+		2) You can perform many operations together so it saves time.
+		3) Threads are independent so it doesn't affect other threads if exception occur in a single thread.
+		
+
+	Eg.	Sleep Example
+		class TestSleepMethod1 extends Thread{  
+		 public void run(){  
+		  for(int i=1;i<5;i++){  
+			try{Thread.sleep(500);}catch(InterruptedException e){System.out.println(e);}  
+			System.out.println(i);  
+		  }  
+		 }  
+		 public static void main(String args[]){  
+		  TestSleepMethod1 t1=new TestSleepMethod1();  
+		  TestSleepMethod1 t2=new TestSleepMethod1();  
+		   
+		  t1.start();  
+		  t2.start();  
+		 }  
+		}  
+	O/p.
+		1 1 2 2 3 3 4 4
+		
+	Eg. Join Example
+		public static void main(String args[]){  
+		 TestJoinMethod1 t1=new TestJoinMethod1();  
+		 TestJoinMethod1 t2=new TestJoinMethod1();  
+		 TestJoinMethod1 t3=new TestJoinMethod1();  
+		 t1.start();  
+		 try{  
+		  t1.join();  
+		 }catch(Exception e){System.out.println(e);}  
+		  
+		 t2.start();  
+		 t3.start();  
+		 }  
+		}  
+	O/p. 
+		1 2 3 4 5 1 1 2 2 3 3 4 4 5 5
+		
+	
+Thread Priority
+	Each thread have a priority. 
+	Priorities are represented by a number between 1 and 10. 
+	In most cases, thread schedular schedules the threads according to their priority (known as preemptive scheduling). 
+	But it is not guaranteed because it depends on JVM specification that which scheduling it chooses.
+	
+	3 constants defiend in Thread class:
+	public static int MIN_PRIORITY		1
+	public static int NORM_PRIORITY		5
+	public static int MAX_PRIORITY		10
+		
+
+Daemon Thread in Java
+	Daemon thread in java is a service provider thread that provides services to the user thread. 
+	Its life depend on the mercy of user threads i.e. when all the user threads dies, JVM terminates this thread automatically.
+	It is a low priority thread.
+
+	There are many java daemon threads running automatically e.g. gc, finalizer etc.
+
+	You can see all the detail by typing the jconsole in the command prompt. 
+	The jconsole tool provides information about the loaded classes, memory usage, running threads etc.	
+
+	Note: If you want to make a user thread as Daemon, it must not be started otherwise it will throw IllegalThreadStateException.
+
+Java Thread Pool
+	Java Thread pool represents a group of worker threads that are waiting for the job and reuse many times.
+	In case of thread pool, a group of fixed size threads are created. A thread from the thread pool is pulled out and assigned a job by the service provider. After completion of the job, thread is contained in the thread pool again.
+
+	Advantage of Java Thread Pool
+		Better performance It saves time because there is no need to create new thread.
+	Real time usage
+		It is used in Servlet and JSP where container creates a thread pool to process the request.
+		
+ThreadGroup in Java
+	Java provides a convenient way to group multiple threads in a single object. 
+	In such way, we can suspend, resume or interrupt group of threads by a single method call.
+	
+Java Shutdown Hook
+	The shutdown hook can be used to perform cleanup resource or save the state when JVM shuts down normally or abruptly. 
+	Performing clean resource means closing log file, sending some alerts or something else. 
+	So if you want to execute some code before JVM shuts down, use shutdown hook.
+	
+	The JVM shuts down when:
+		user presses ctrl+c on the command prompt
+		System.exit(int) method is invoked
+		user logoff
+		user shutdown etc.
+
+	Method
+		The addShutdownHook() method of Runtime class is used to register the thread with the Virtual Machine
+		The object of Runtime class can be obtained by calling the static factory method getRuntime(). For example:
+		Runtime r = Runtime.getRuntime();
+		
+	Factory method
+		The method that returns the instance of a class is known as factory method.
+
+
+	Note: The shutdown sequence can be stopped by invoking the halt(int) method of Runtime class.
+	
+	Eg.
+		class MyThread extends Thread{  
+			public void run(){  
+				System.out.println("shut down hook task completed..");  
+			}  
+		}  
+		  
+		public class TestShutdown1{  
+			public static void main(String[] args)throws Exception {  			  
+				Runtime r=Runtime.getRuntime();  
+				r.addShutdownHook(new MyThread());  
+					  
+				System.out.println("Now main sleeping... press ctrl+c to exit");  
+				try{Thread.sleep(3000);}catch (Exception e) {}  
+			}  
+		}  
+	O/p.
+		Now main sleeping... press ctrl+c to exit
+		shut down hook task completed..
+		
+	
+Java Garbage Collection
+	In java, garbage means unreferenced objects.
+	Garbage Collection is process of reclaiming the runtime unused memory automatically. 
+	In other words, it is a way to destroy the unused objects.
+
+	To do so, we were using free() function in C language and delete() in C++. 
+	But, in java it is performed automatically. So, java provides better memory management.
+
+	Advantage
+		It makes java memory efficient because garbage collector removes the unreferenced objects from heap memory.
+		It is automatically done by the garbage collector(a part of JVM) so we don't need to make extra efforts.
+		
+	How can an object be unreferenced?
+		By nulling the reference
+		By assigning a reference to another
+		By annonymous object etc.
+		
+	
+	Methods
+		finalize() - invoked each time before the object is garbage collected. 
+						This method can be used to perform cleanup processing. 
+						This method is defined in Object class as protected void finalize(){} 
+		gc() method - Used to invoke the garbage collector to perform cleanup processing. 
+						The gc() is found in System and Runtime classes.
+						
+						
+	Note: 
+		The Garbage collector of JVM collects only those objects that are created by new keyword. 
+		So if you have created any object without new, you can use finalize method to perform cleanup processing (destroying remaining objects).
+		
+		Garbage collection is performed by a daemon thread called Garbage Collector(GC). This thread calls the finalize() method before object is garbage collected.
+
+Java Runtime class
+	Java Runtime class is used to interact with java runtime environment. 
+	Java Runtime class provides methods to execute a process, invoke GC, get total and free memory etc. 
+	There is only one instance of java.lang.Runtime class is available for one java application.
+
+	The Runtime.getRuntime() method returns the singleton instance of Runtime class.
+	
+	Methods
+		1)	public static Runtime getRuntime()							returns the instance of Runtime class.
+		2)	public void exit(int status)								terminates the current virtual machine.
+		3)	public void addShutdownHook(Thread hook)					registers new hook thread.
+		4)	public Process exec(String command)throws IOException		executes given command in a separate process.
+		5)	public int availableProcessors()							returns no. of available processors.
+		6)	public long freeMemory()									returns amount of free memory in JVM.
+		7)	public long totalMemory()									returns amount of total memory in JVM.
+		
+		
+		
+Synchronization in Java
+	Synchronization in java is the capability to control the access of multiple threads to any shared resource.
+	Java Synchronization is better option where we want to allow only one thread to access the shared resource.
+
+	The synchronization is mainly used to
+		To prevent thread interference.
+		To prevent consistency problem.
+	
+Internationalization and Localization in Java
+	Java utils package
+	
+	Internationalization is also abbreviated as I18N because there are total 18 characters between the first letter 'I' and the last letter 'N'.
+	Localization is also abbreviated as I10N because there are total 10 characters between the first letter 'L' and last letter 'N'. 
+	
+	Internationalization is a mechanism to create such an application that can be adapted to different languages and regions.
+	Internationalization is one of the powerful concept of java if you are developing an application and want to display messages, currencies, date, time etc. according to the specific region or language.	
+	
+	Localization is the mechanism to create such an application that can be adapted to a specific language and region by adding locale-specific text and component.
+	
+	Before starting the internationalization, Let's first understand what are the informations that differ from one region to another. 
+	There is the list of culturally dependent data:
+		Messages
+		Dates
+		Times
+		Numbers
+		Currencies
+		Measurements
+		Phone Numbers
+		Postal Addresses
+		Labels on GUI components etc.
+		
+	
+Locale class in Internationalization
+	An object of Locale class represents a geographical or cultural region. 
+	This object can be used to get the locale specific information such as country name, language, variant etc.
+	
+	Constrcutor
+		Locale(String language)
+		Locale(String language, String country)
+		Locale(String language, String country, String variant)
+		
+	Methods
+		public static Locale getDefault() 				it returns the instance of current Locale
+		public static Locale[] getAvailableLocales() 	it returns an array of available locales.
+		public String getDisplayCountry() 				it returns the country name of this locale object.
+		public String getDisplayLanguage() 				it returns the language name of this locale object.
+		public String getDisplayVariant() 				it returns the variant code for this locale object.
+		public String getISO3Country() 					it returns the three letter abbreviation for the current locale's country.
+		public String getISO3Language() 				it returns the three letter abbreviation for the current locale's language.
+	
+	
+	Eg.
+		1. Locale locale=Locale.getDefault();  
+		2. Locale enLocale = new Locale("en", "US");  
+		
+ResourceBundle class in Java
+	The ResourceBundle class is used to internationalize the messages. 
+	In other words, we can say that it provides a mechanism to globalize the messages.
+
+	The hardcoded message is not considered good in terms of programming, because it differs from one country to another. 
+	So we use the ResourceBundle class to globalize the massages. 
+	The ResourceBundle class loads these informations from the properties file that contains the messages.
+
+	Conventionally, the name of the properties file should be filename_languagecode_country code for example MyMessage_en_US.properties.
+	
+	Methods
+		public static ResourceBundle getBundle(String basename) 
+			returns the instance of the ResourceBundle class for the default locale.
+		public static ResourceBundle getBundle(String basename, Locale locale) 
+			returns the instance of the ResourceBundle class for the specified locale.
+		public String getString(String key) 
+			returns the value for the corresponding key from this resource bundle.
+			
+	Eg.
+		MessageBundle_en_US.properties
+			greeting=Hello, how are you?
+		MessageBundle_in_ID.properties
+			greeting=Halo, apa kabar?
+		
+		ResourceBundle bundle = ResourceBundle.getBundle("MessageBundle", Locale.US);  
+		System.out.println("Message in "+Locale.US +":"+bundle.getString("greeting"));  
+
+		//changing the default locale to indonasian   
+		Locale.setDefault(new Locale("in", "ID"));  
+		bundle = ResourceBundle.getBundle("MessageBundle");  
+		System.out.println("Message in "+Locale.getDefault()+":"+bundle.getString("greeting"));  
+
+	O/p.
+		Message in en_US : Hello, how r u?
+		Message in in_ID : halo, apa kabar?
+		
+	
+Internationalizing Date (I18N with Date)
+	The format of the dates differ from one region to another that is why we internationalize the dates.
+
+	We can internationalize the date by using the getDateInstance() method of the DateFormat class. 
+	It receives the locale object as a parameter and returns the instance of the DateFormat class.
+	
+	Methods
+		public static DateFormat getDateInstance(int style, Locale locale) 
+			returns the instance of the DateFormat class for the specified style and locale. The style can be DEFAULT, SHORT, LONG etc.
+		public String format(Date date) 
+			returns the formatted and localized date as a string.
+			
+	Eg.
+		static void printDate(Locale locale){  
+			DateFormat formatter=DateFormat.getDateInstance(DateFormat.DEFAULT,locale);  
+			Date currentDate=new Date();  
+			String date=formatter.format(currentDate);  
+			System.out.println(date+" "+locale);  
+		}  
+  
+		public static void main(String[] args) {  
+			printDate(Locale.UK);  
+			printDate(Locale.US);  
+			printDate(Locale.FRANCE);  
+		}
+	O/p.
+		01-Mar-2012 en_GB
+		Mar 1, 2012 en_US
+		1 mars 2012 fr_FR
+		
+Internationalizing Time (I18N with Time)
+	The display format of the time differs from one region to another, so we need to internationalize the time.
+	For internationalizing the time, the DateFormat class provides some useful methods.
+	The getTimeInstance() method of the DateFormat class returns the instance of the DateFormat class for the specified style and locale.
+
+	Eg.
+		static void printTime(Locale locale){  
+			DateFormat formatter=DateFormat.getTimeInstance(DateFormat.DEFAULT,locale);  
+			Date currentDate=new Date();  
+			String time=formatter.format(currentDate);  
+			System.out.println(time+" in locale "+locale);  
+		}  
+
+		public static void main(String[] args) {  
+			printTime(Locale.UK);  
+			printTime(Locale.US);  
+			printTime(Locale.FRANCE);  
+		}  
+		
+	O/p.
+		16:22:49 in locale en_GB
+		4:22:49 PM in locale en_US
+		16:22:49 in locale fr_FR
+		
+Internationalizing Number (I18N with Number)
+	The representation of the numbers differ from one locale to another. 
+	Internationalizing the numbers is good approach for the application that displays the informations according to the locales.
+
+	The NumberFormat class is used to format the number according to the specific locale. 
+	To get the instance of the NumberFormat class, we need to call either getInstance() or getNumberInstance() methods.
+
+	Eg. 
+		static void printNumber(Locale locale){  
+			double dbl=105000.3245;  
+			NumberFormat formatter=NumberFormat.getNumberInstance(locale);  
+			String number=formatter.format(dbl);  
+			System.out.println(number+" for the locale "+locale);  
+		}  
+  
+		public static void main(String[] args) {  
+			printNumber(Locale.UK);  
+			printNumber(Locale.US);  
+			printNumber(Locale.FRANCE);  
+			printNumber(Locale.JAPAN); 		  
+		}  
+		
+	O/p.
+		105,500.324 for the locale en_GB
+		105,000.324 for the locale en_US
+		105,a000,324 for the locale fr_FR
+		105,000.324 for the locale ja_JP
+		
+Internationalizing Currency (I18N with Currency)
+	As we have internationalize the date, time and numbers, we can internationalize the currency also. 
+	The currency differs from one country to another so we need to internationalize the currency.
+
+	The NumberFormat class provides methods to format the currency according to the locale. 
+	The getCurrencyInstance() method of the NumberFormat class returns the instance of the NumberFormat class.
+	
+	Eg.
+		static void printCurrency(Locale locale){  
+			double dbl=10500.3245;  
+			NumberFormat formatter=NumberFormat.getCurrencyInstance(locale);  
+			String currency=formatter.format(dbl);  
+			System.out.println(currency+" for the locale "+locale);  
+		}  
+  
+		public static void main(String[] args) {  
+			printCurrency(Locale.UK);  
+			printCurrency(Locale.US);  
+			printCurrency(Locale.FRANCE);  
+		}
+
+	O/p.
+		£10,500.32 for the locale en_GB
+		$10,500.32 for the locale en_US
+		10 500,32 £ for the locale fr_FR
+
+
+Java Conversion
+	Java String to int
+		Integer.parseInt()
+		
+	
+	
+	
+	
+	
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------	
+------------------------------------------------------------------------------------------------------------------------------------------------	
+
+Typescript
+	- 	npm install -g typescript
+	-	Type annotations - number of arguments && type of arguments should be same...
+	- 	Interfaces
+			interface Person {
+				firstName: string;
+				lastName: string;
+			}
+	-	Classes
+			class Student {
+				fullName: string;
+				constructor(public firstName, public middleInitial, public lastName) {
+					this.fullName = firstName + " " + middleInitial + " " + lastName;
+				}
+			}
+			the use of ""public"" on arguments to the constructor is a shorthand that allows us to automatically create properties with that name.
+		
+	
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------	
+------------------------------------------------------------------------------------------------------------------------------------------------
+	
+Scala is object-oriented
+	Scala is a pure object-oriented language in the sense that every value is an object. 
+	Types and behavior of objects are described by classes and traits
+
+Scala is functional
+	Scala is also a functional language in the sense that every function is a value and every value is an object so ultimately every function is an object.
+
+	Scala provides a lightweight syntax for defining anonymous functions, it supports higher-order functions, it allows functions to be nested, and supports currying.
+	
+Scala is statically typed
+	Scala, unlike some of the other statically typed languages (C, Pascal, Rust, etc.), does not expect you to provide redundant type information. You don't have to specify a type in most cases, and you certainly don't have to repeat it.
+
+Scala runs on the JVM
+	Scala is compiled into Java Byte Code which is executed by the Java Virtual Machine (JVM). 
+	This means that Scala and Java have a common runtime platform. You can easily move from Java to Scala.
+	
+	The Scala compiler compiles your Scala code into Java Byte Code, which can then be executed by the 'scala' command. 
+	The 'scala' command is similar to the java command, in that it executes your compiled Scala code.
+	
+Scala can Execute Java Code
+	Scala enables you to use all the classes of the Java SDK and also your own custom Java classes, or your favorite Java open source projects.
+	
+Scala can do Concurrent & Synchronize processing
+	Scala allows you to express general programming patterns in an effective way. 
+	It reduces the number of lines and helps the programmer to code in a type-safe way. 
+	It allows you to write codes in an immutable manner, which makes it easy to apply concurrency and parallelism (Synchronize).
+	
+	
+Scala has a set of features that completely differ from Java. Some of these are −
+	All types are objects
+	Type inference
+	Nested Functions
+	Functions are objects
+	Domain specific language (DSL) support
+	Traits
+	Closures
+	Concurrency support inspired by Erlang
+	
+Set JAVA_HOME to C:\ProgramFiles\java\jdk1.7.0_60
+Append the String "C:\Program Files\Java\jdk1.7.0_60\bin" to the end of the system variable PATH.
+
+Export JAVA_HOME=/usr/local/java-current
+Export PATH=$PATH:$JAVA_HOME/bin/
+
+Scala download link http://www.scala-lang.org/downloads
+	java –jar scala-2.11.5-installer.jar
+	scala -version O/p. 2.11.5
+	
+
+	
+	
+Variables 
+	var - variable keyword
+	val - constant keyword
+	
+	var myVar : String = "Foo" --> String is datatype and var is variable...
+	
+	var myVal = "Hello, Scala!"; --> var myVal : String = "Hello, Scala!"; 
+				(Variable Type Inference - Based on the assigned value, variable type can be figured out)
+	
+		
+	
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------	
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+1. Data Binding
+	Data-binding is an automatic way of 
+	*****	updating the view whenever the model changes, 
+	*****	as well as updating the model whenever the view changes. 
+	This is awesome because it eliminates DOM manipulation from the list of things you have to worry about.
+
+2. Controller
+	Controllers are the behavior behind the DOM elements. 
+	AngularJS lets you express the behavior in a clean readable form without the usual boilerplate of 
+	*****	updating the DOM, 
+	*****	registering callbacks 
+	*****	or watching model changes.
+
+3. Plain JavaScript
+	Unlike other frameworks, there is no need to inherit from proprietary types in order to wrap the model in accessors methods. 
+	****	AngularJS models are plain old JavaScript objects. 
+	This makes your code easy to test, maintain, reuse, and again free from boilerplate.
+	
+4. Deep Linking(Routing)
+	A deep link reflects where the user is in the app. 
+	This is useful so users can bookmark and email links to locations within the app. 
+	Round trip apps get this automatically, but AJAX apps by their nature do not. 
+	AngularJS combines the benefits of deep linking with desktop app-like behavior.
+	
+5. Form Validation
+	Client-side form validation is an important part of a great user experience. 
+	****	AngularJS lets you declare the validation rules of the form without having to write JavaScript code. 
+	Write less code, go have beer sooner.
+
+6. Server Communication
+	AngularJS provides built-in services on top of XHR as well as various other backends using third party libraries. 
+	Promises further simplify your code by handling asynchronous return of data. 
+	In this example, we use the AngularFire library to wire up a Firebase backend to a simple AngularJS app.
+	
+7. Directives
+	****	Directives are a unique and powerful feature available in AngularJS. 
+	Directives let you invent new HTML syntax, specific to your application.
+	
+8. Reusable Components
+	We use directives to create reusable components. 
+	A component allows you to hide complex DOM structure, CSS, and behavior. 
+	This lets you focus either on what the application does or how the application looks separately.
+
+9. Localization
+	An important part of serious apps is localization. 
+	AngularJS's locale aware filters and stemming directives give you building blocks to make your application available in all locales.
+	
+10. Injectable
+	The dependency injection in AngularJS allows you to declaratively describe how your application is wired. 
+	This means that your application needs no main() method which is usually an unmaintainable mess. 
+	Dependency injection is also a core to AngularJS. 
+	****	This means that any component which does not fit your needs can easily be replaced.
+
+11. Testable
+	AngularJS was designed from ground up to be testable. 
+	It encourages behavior-view separation, comes pre-bundled with mocks, and takes full advantage of dependency injection. 
+	It also comes with end-to-end scenario runner which eliminates test flakiness by understanding the inner workings of AngularJS.
+	
+
+
+
+Data-binding 
+	− It is the automatic synchronization of data between model and view components.
+
+Scope 
+	− These are objects that refer to the model. They act as a glue between controller and view.
+
+Controller 
+	− These are JavaScript functions that are bound to a particular scope.
+
+Services 
+	− AngularJS come with several built-in services for example $https: to make a XMLHttpRequests. 
+	These are singleton objects which are instantiated only once in app.
+
+Filters 
+	− These select a subset of items from an array and returns a new array.
+
+Directives 
+	− Directives are markers on DOM elements (such as elements, attributes, css, and more). 
+	These can be used to create custom HTML tags that serve as new, custom widgets. 
+	AngularJS has built-in directives (ngBind, ngModel...)
+
+Templates 
+	− These are the rendered view with information from the controller and model. 
+	These can be a single file (like index.html) or multiple views in one page using "partials".
+
+Routing 
+	− It is concept of switching views.
+
+Model View Whatever 
+	− MVC is a design pattern for dividing an application into different parts (called Model, View and Controller), each with distinct responsibilities. 
+	AngularJS does not implement MVC in the traditional sense, but rather something closer to MVVM (Model-View-ViewModel).
+	The Angular JS team refers it humorously as Model View Whatever.
+
+Deep Linking 
+	− Deep linking allows you to encode the state of application in the URL so that it can be bookmarked. The application can then be restored from the URL to the same state.
+
+Dependency Injection 
+	− AngularJS has a built-in dependency injection subsystem that helps the developer by making the application easier to develop, understand, and test.	
+	
+	
+Advantages
+	- provides capability to create Single Page Application in a very clean and maintainable way.
+	- provides data binding capability to HTML thus giving user a rich and responsive experience
+	- code is unit testable.
+	- uses dependency injection and make use of separation of concerns.
+	- provides reusable components.
+	- write less code and get more functionality.
+	- views are pure html pages, and controllers written in JavaScript do the business processing.
+	- AngularJS applications can run on all major browsers and smart phones including Android and iOS based phones/tablets.
+	
+Disadvantages
+	Not Secure − Being JavaScript only framework, application written in AngularJS are not safe. 
+				 Server side authentication and authorization is must to keep an application secure.
+	Not degradable − If your application user disables JavaScript then user will just see the basic page and nothing more.
+		
+Execution
+	When the page is loaded in the browser, following things happen −
+
+	- HTML document is loaded into the browser, and evaluated by the browser. 
+	  AngularJS JavaScript file is loaded, the angular global object is created. 
+	  Next, JavaScript which registers controller functions is executed.
+
+	- Next AngularJS scans through the HTML to look for AngularJS apps and views. 
+	  Once view is located, it connects that view to the corresponding controller function.
+
+	- Next, AngularJS executes the controller functions. 
+	  It then renders the views with data from the model populated by the controller. 
+	  The page is now ready.
+	  
+	  
+MVC
+	The Model
+		The model is responsible for managing application data. 
+		It responds to the request from view and to the instructions from controller to update itself.
+
+	The View
+		A presentation of data in a particular format, triggered by the controller's decision to present the data. 
+		They are script-based template systems such as JSP, ASP, PHP and very easy to integrate with AJAX technology.
+
+	The Controller
+		The controller responds to user input and performs interactions on the data model objects. 
+		The controller receives input, validates it, and then performs business operations that modify the state of the data model.
+		
+		
+The AngularJS Components
+	The AngularJS framework can be divided into following three major parts −
+
+	ng-app − This directive defines and links an AngularJS application to HTML.
+	ng-model − This directive binds the values of AngularJS application data to HTML input controls.
+	ng-bind − This directive binds the AngularJS Application data to HTML tags.
+	
+	
+Steps to create AngularJS Application
+	Step 1 − Load framework
+		Being a pure JavaScript framework, It can be added using <Script> tag.
+		<script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js">
+		</script>
+	Step 2 − Define AngularJS Application using ng-app directive
+		<div ng-app = "">
+		   ...
+		</div>
+	Step 3 − Define a model name using ng-model directive
+		<p>Enter your Name: <input type = "text" ng-model = "name"></p>
+	Step 4 − Bind the value of above model defined using ng-bind directive.
+		<p>Hello <span ng-bind = "name"></span>!</p>
+		
+Some directives
+	ng-init
+		- ng-init directive initializes an AngularJS Application data. 
+		  It is used to put values to the variables to be used in the application.
+		  
+		<div ng-app = "" ng-init = "countries = [{locale:'en-US',name:'United States'}, {locale:'en-GB',name:'United Kingdom'}, 					{locale:'en-FR',name:'France'}]">
+			...
+		</div>
+
+	ng-repeat − This directive repeats html elements for each item in a collection.
+		<li ng-repeat = "country in countries">
+			{{ 'Country: ' + country.name + ', Locale: ' + country.locale }}
+		</li>
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------	
+------------------------------------------------------------------------------------------------------------------------------------------------
+	
+Angular 2	
+	Angular uses TypeScript because its types make it easy to support developer productivity with tooling
+	
+	Angular applications are made up of components. 
+	A component is the combination of an HTML template and a component class that controls a portion of the screen
+	
+	Eg.
+		import { Component } from '@angular/core';
+		@Component({
+			selector: 'my-app',
+			template: `<h1>Hello {{name}}</h1>`
+		})
+		export class AppComponent { 
+			name = 'Angular'; 
+		}
+		
+		<my-app>Loading AppComponent content here ...</my-app>
+		
+		
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------	
+------------------------------------------------------------------------------------------------------------------------------------------------		
+		
+Object
+	Any entity that has state and behavior is known as an object. 
+	For example: chair, pen, table, keyboard, bike etc. 
+	It can be physical and logical.
+
+Class
+	Collection of objects is called class. It is a logical entity.		
+	
+Inheritance
+	When one object acquires all the properties and behaviours of parent object i.e. known as inheritance. 
+	It provides code reusability. 
+	It is used to achieve runtime polymorphism.
+	
+Polymorphism
+	When one task is performed by different ways i.e. known as polymorphism. 
+	For example: to convince the customer differently, to draw something e.g. shape or rectangle etc.
+
+	In java, we use method overloading and method overriding to achieve polymorphism.
+	
+	In java, Method Overloading is not possible by changing the return type of the method only.
+		
+Abstraction in Java
+	Abstraction is a process of hiding the implementation details and showing only functionality to the user.
+
+	Another way, it shows only important things to the user and hides the internal details for example sending sms, you just type the text and send the message. You don't know the internal processing about the message delivery.
+
+	Abstraction lets you focus on what the object does instead of how it does it.
+
+	Ways to achieve Abstaction
+
+	There are two ways to achieve abstraction in java
+
+	Abstract class (0 to 100%)
+	Interface (100%)		
+		
+Encapsulation
+	Binding (or wrapping) code and data together into a single unit is known as encapsulation. For example: capsule, it is wrapped with different medicines.
+	A java class is the example of encapsulation. Java bean is the fully encapsulated class because all the data members are private here.		
+		
+Data Binding
+	Connecting a method call to the method body is known as binding.
+	There are two types of binding
+		static binding (also known as early binding).
+			When type of the object is determined at compiled time(by the compiler), it is known as static binding.
+			If there is any private, final or static method in a class, there is static binding.
+		dynamic binding (also known as late binding).
+			When type of the object is determined at run-time, it is known as dynamic binding.
+			
+			
+			
+	
+Object, Class, Inheritance, Polymorphism, Abstraction, Encapsulation	
+		
+		
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------	
+------------------------------------------------------------------------------------------------------------------------------------------------
+onload
+
+Javascript
+	JavaScript ("JS" for short) is a full-fledged dynamic programming language that, 
+	when applied to an HTML document, can provide dynamic interactivity on websites
+	
+	JavaScript is the programming language that runs in your browser. You can use it to add interactivity and other dynamic features to your website or application.
+
+	Note.
+		Do you wonder why we do not have type="text/javascript" inside the <script> tag?
+		This is not required in HTML5. JavaScript is the default scripting language in HTML5 and in all modern browsers!
+	
+JavaScript Closures
+	Closures are functions that refer to independent (free) variables (variables that are used locally, but defined in an enclosing scope). 
+	In other words, these functions 'remember' the environment in which they were created.
+	
+JavaScript prototypes
+	The prototype property is used primarily for inheritance; 
+	you add methods and properties on a function’s prototype property to make those methods and properties available to instances of that function.
+	
+Javascript callbacks
+	Because functions are first-class objects, we can pass a function as an argument in another function and later execute that passed-in function or even return it to be executed later. This is the essence of using callback functions in JavaScript.
+	
+JavaScript Timing Events
+	setTimeout(function, milliseconds)
+		Executes a function, after waiting a specified number of milliseconds.
+	clearTimeout(timeoutVariable)
+		The clearTimeout() method stops the execution of the function specified in setTimeout().
+	setInterval(function, milliseconds)
+		The setInterval() method repeats a given function at every given time-interval.
+	clearInterval(timerVariable)
+		The clearInterval() method stops the executions of the function specified in the setInterval() method.
+	
+	Above are of the HTML DOM Window object.
+	
+JavaScript Cookies
+	Cookies let you store user information in web pages.
+	Cookies are data, stored in small text files, on your computer.
+	
+	Cookies are saved in name-value pairs like:
+		username = John Doe
+		
+	JavaScript can create, read, and delete cookies with the document.cookie property.
+		Create cookie
+			document.cookie = "username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC";
+		Change a cookie
+			document.cookie = "username=John Smith; expires=Thu, 18 Dec 2013 12:00:00 UTC; path=/";
+		Delete Cookies
+			document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+		Read a cookie
+			var x = document.cookie; // Returns all cookies
+
+JavaScript Popup Boxes
+	Alert box 
+		An alert box is often used if you want to make sure information comes through to the user.
+		Eg.
+			alert("sometext");
+	Confirm box
+		A confirm box is often used if you want the user to verify or accept something.
+		When a confirm box pops up, the user will have to click either "OK" or "Cancel" to proceed.
+		If the user clicks "OK", the box returns true. If the user clicks "Cancel", the box returns false.
+		Eg.
+			var r = confirm("Press a button");
+			if (r == true) {
+				x = "You pressed OK!";
+			} else {
+				x = "You pressed Cancel!";
+			}
+	Prompt box
+		A prompt box is often used if you want the user to input a value before entering a page.
+		When a prompt box pops up, the user will have to click either "OK" or "Cancel" to proceed after entering an input value.
+		If the user clicks "OK" the box returns the input value. If the user clicks "Cancel" the box returns null.
+		Eg.
+			var person = prompt("Please enter your name", "Harry Potter");
+			if (person != null) {
+				document.getElementById("demo").innerHTML =
+				"Hello " + person + "! How are you today?";
+			}
+		
+	Above are of the HTML DOM Window object.
+
+JavaScript Window
+	The window object is supported by all browsers. It represents the browser's window.
+	All global JavaScript objects, functions, and variables automatically become members of the window object.
+	Even the document object (of the HTML DOM) is a property of the window object:
+	
+	Propeties
+		window.innerHeight - the inner height of the browser window (in pixels)
+		window.innerWidth - the inner width of the browser window (in pixels)
+		
+	Methods
+		window.open() - open a new window
+		window.close() - close the current window
+		window.moveTo() -move the current window
+		window.resizeTo() -resize the current window
+	
+JavaScript Window Screen
+	The window.screen object contains information about the user's screen.
+	The window.screen object can be written without the window prefix.
+	Properties:
+		screen.width
+		screen.height
+		screen.availWidth
+		screen.availHeight
+		screen.colorDepth
+		screen.pixelDepth
+	
+JavaScript Window Location
+	The window.location object can be used to get the current page address (URL) and to redirect the browser to a new page.
+	The window.location object can be written without the window prefix.
+	Eg.
+		window.location.href 		returns the href (URL) of the current page
+		window.location.hostname 	returns the domain name of the web host
+		window.location.pathname 	returns the path and filename of the current page
+		window.location.protocol 	returns the web protocol used (http: or https:)
+		window.location.assign 		loads a new document
+
+	
+JavaScript Window History
+	The window.history object contains the browsers history.
+	The window.history object can be written without the window prefix.
+
+	To protect the privacy of the users, there are limitations to how JavaScript can access this object.
+	Some methods:
+		history.back() - same as clicking back button in the browser.
+							The history.back() method loads the previous URL in the history list.
+		history.forward() - same as clicking forward button in the browser
+							The history forward() method loads the next URL in the history list.
+JavaScript Window Navigator
+	The window.navigator object contains information about the visitor's browser.
+	The window.navigator object can be written without the window prefix.
+	Some properties
+		navigator.appName		- returns the application name of the browser: 
+									"Netscape" is the application name for both IE11, Chrome, Firefox, and Safari.
+		navigator.appCodeName	- returns the application code name of the browser:
+									"Mozilla" is the application code name for both Chrome, Firefox, IE, Safari, and Opera
+		navigator.platform		- returns the browser platform (operating system):
+		navigator.cookieEnabled - returns true if cookies are enabled, otherwise false:
+		navigator.product		- returns the product name of the browser engine:
+		navigator.appVersion	- returns version information about the browser:
+		navigator.userAgent		- returns the user-agent header sent by the browser to the server:
+		navigator.language		- returns the browser's language:
+		navigator.onLine		- returns true if the browser is online:
+		navigator.javaEnabled	- returns true if Java is enabled
+		
+		
+Local Storage
+	With local storage, web applications can store data locally within the user's browser.
+	
+	Before HTML5, application data had to be stored in cookies, included in every server request. 
+	Local storage is more secure, and large amounts of data can be stored locally, without affecting website performance.
+
+	Unlike cookies, the storage limit is far larger (at least 5MB) and information is never transferred to the server.
+
+	Note.
+		Local storage is per origin (per domain and protocol). All pages, from one origin, can store and access the same data.
+		
+	Properties
+		length
+	Methods
+		clear(), getItem(), key(), removeItem(), setItem()
+	
+	HTML local storage provides two objects for storing data on the client:
+		window.localStorage 
+			- stores data with no expiration date
+			- The data will not be deleted when the browser is closed, and will be available the next day, week, or year.
+			Eg.
+				// Store
+				localStorage.setItem("lastname", "Smith");
+				// Retrieve
+				document.getElementById("result").innerHTML = localStorage.getItem("lastname");
+				
+			Eg.
+				// Store
+				localStorage.lastname = "Smith";
+				// Retrieve
+				document.getElementById("result").innerHTML = localStorage.lastname;
+			Eg.
+				The syntax for removing the localStorage item is as follows:
+				localStorage.removeItem("lastname");
+			Eg.
+				localStorage.clear();
+				
+		window.sessionStorage 
+			- stores data for one session (data is lost when the browser tab is closed)
+			- The sessionStorage object is equal to the localStorage object, except that it stores the data for only one session. 
+			  The data is deleted when the user closes the specific browser tab.
+	
+	
+	
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------	
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+jQuery
+	jQuery is a lightweight, "write less, do more", JavaScript library.
+	The purpose of jQuery is to make it much easier to use JavaScript on your website.
+
+	jQuery takes a lot of common tasks that require many lines of JavaScript code to accomplish, and wraps them into methods that you can call with a single line of code.
+
+	jQuery also simplifies a lot of the complicated things from JavaScript, like AJAX calls and DOM manipulation.
+
+	The jQuery library contains the following features:
+		HTML/DOM manipulation
+		CSS manipulation
+		HTML event methods
+		Effects and animations
+		AJAX
+		Utilities
+		
+		
+jQuery Syntax
+	With jQuery you select (query) HTML elements and perform "actions" on them.
+	
+	Basic syntax is: $(selector).action()
+
+		A $ sign to define/access jQuery
+		A (selector) to "query (or find)" HTML elements
+		A jQuery action() to be performed on the element(s)
+		
+	Eg.
+		$(this).hide() - hides the current element.
+		$("p").hide() - hides all <p> elements.
+		$(".test").hide() - hides all elements with class="test".
+		$("#test").hide() - hides the element with id="test".
+		$("h1,div,p") - hides All <h1>, <div> and <p> elements
+
+
+The Document Ready Event
+	You might have noticed that all jQuery methods in our examples, are inside a document ready event:
+
+		$(document).ready(function(){
+		   // jQuery methods go here...
+		});
+		
+		$(function(){
+			// jQuery methods go here...
+		});
+	This is to prevent any jQuery code from running before the document is finished loading (is ready).
+
+	Here are some examples of actions that can fail if methods are run before the document is fully loaded:
+		Trying to hide an element that is not created yet
+		Trying to get the size of an image that is not loaded yet
+		
+jQuery Selectors
+	jQuery selectors allow you to select and manipulate HTML element(s) 
+	based on their name, id, classes, types, attributes, values of attributes and much more.
+	
+	The element Selector
+		The jQuery element selector selects elements based on the element name.
+		You can select all <p> elements on a page like this:
+		$("p")
+		
+	The #id Selector
+		The jQuery #id selector uses the id attribute of an HTML tag to find the specific element.
+		An id should be unique within a page, so you should use the #id selector when you want to find a single, unique element.
+		To find an element with a specific id, write a hash character, followed by the id of the HTML element:
+		$("#test")
+		
+	The .class Selector
+		The jQuery class selector finds elements with a specific class.
+		To find elements with a specific class, write a period character, followed by the name of the class:
+		$(".test")
+		
+	Eg.
+		$("*")						Selects all elements	
+		$(this)						Selects the current HTML element	
+		$("p.intro")				Selects all <p> elements with class="intro"	
+		$("p:first")				Selects the first <p> element	
+		$("ul li:first")			Selects the first <li> element of the first <ul>	
+		$("ul li:first-child")		Selects the first <li> element of every <ul>	
+		$("[href]")					Selects all elements with an href attribute	
+		$("a[target='_blank']")		Selects all <a> elements with a target attribute value equal to "_blank"	
+		$("a[target!='_blank']")	Selects all <a> elements with a target attribute value NOT equal to "_blank"	
+		$(":button")				Selects all <button> elements and <input> elements of type="button"	
+		$("tr:even")				Selects all even <tr> elements	
+		$("tr:odd")					Selects all odd <tr> elements
+
+jQuery Traversing
+	jQuery traversing, which means "move through", are used to "find" (or select) HTML elements based on their relation to other elements. 
+	Start with one selection and move through that selection until you reach the elements you desire.
+
+	The image below illustrates a family tree. With jQuery traversing, you can easily move up (ancestors), down (descendants) and sideways (siblings) in the family tree, starting from the selected (current) element. This movement is called traversing - or moving through - the DOM.
+
+	Eg.
+							<div>
+							  |
+							<ul>
+				 _____________|___________
+				 |						  |	
+				<li>					<li>
+		  _______|______				  |
+	 	  |	            |				  | 
+		<span>		<span>				 <b>	
+
+	The <div> element is the parent of <ul>, and an ancestor of everything inside of it
+	The <ul> element is the parent of both <li> elements, and a child of <div>
+	The left <li> element is the parent of <span>, child of <ul> and a descendant of <div>
+	The <span> element is a child of the left <li> and a descendant of <ul> and <div>
+	The two <li> elements are siblings (they share the same parent)
+	The right <li> element is the parent of <b>, child of <ul> and a descendant of <div>
+	The <b> element is a child of the right <li> and a descendant of <ul> and <div>
+	
+	Note.
+		An ancestor is a parent, grandparent, great-grandparent, and so on.
+		A descendant is a child, grandchild, great-grandchild, and so on.
+		Siblings share the same parent.
+
+	Traversing the DOM
+		jQuery provides a variety of methods that allows us to traverse the DOM.
+		The largest category of traversal methods are tree-traversal.
+
+	Ancestors - Traversing Up the DOM Tree
+		parent() - the direct parent element of the selected element.
+		parents() - all ancestor elements of the selected element, all the way up to the document's root element
+					You can also use an optional parameter to filter the search for ancestors.
+						$("span").parents("ul");
+		parentsUntil() - returns all ancestor elements between two given arguments.
+							$("span").parentsUntil("div");
+							
+	Descendants - Traversing Down the DOM Tree
+		children() - The children() method returns all direct children of the selected element.
+						You can also use an optional parameter to filter the search for children.
+						$("div").children("p.first");
+		find() - The find() method returns descendant elements of the selected element, all the way down to the last descendant.
+					 $("div").find("span");
+					returns all descendants of <div>
+					 $("div").find("*");
+					 
+	Siblings - Traversing Sideways in The DOM Tree
+		siblings()		- returns all sibling elements of the selected element.
+							You can also use an optional parameter to filter the search for siblings
+							Eg. $("h2").siblings("p");
+		next()			- returns the next sibling element of the selected element.
+		nextAll()		- returns all next sibling elements of the selected element.
+		nextUntil()		- returns all next sibling elements between two given arguments.
+		prev(), prevAll(), prevUntil - raverse backwards along sibling elements in the DOM tree, instead of forward
+		
+	Filtering - Narrow Down The Search For Elements
+		first()  - The first() method returns the first element of the selected elements.
+					$("div p").first(); - selects the first <p> element inside the first <div> element
+		last()   - The last() method returns the last element of the selected elements.
+		eq()	 - The eq() method returns an element with a specific index number of the selected elements.
+					The index numbers start at 0, so the first element will have the index number 0 and not 1. 
+					Eg. $("p").eq(1); The following example selects the second <p> element (index number 1):	
+					
+		filter() - The filter() method lets you specify a criteria. 
+					Elements that do not match the criteria are removed from the selection, and those that match will be returned.
+					Eg. $("p").filter(".intro"); returns all <p> elements with class name "intro":
+					
+		not()	 - The not() method returns all elements that do not match the criteria.
+					Eg. $("p").not(".intro"); returns all <p> elements that do not have class name "intro":
+				
+	
+jQuery Event Methods
+	All the different visitor's actions that a web page can respond to are called events.
+	An event represents the precise moment when something happens.
+	
+	Examples:
+		moving a mouse over an element
+		selecting a radio button
+		clicking on an element
+		
+		
+	Mouse Events		Keyboard Events			Form Events			Document/Window Events
+	click				keypress				submit				load
+	dblclick			keydown					change				resize
+	mouseenter			keyup					focus				scroll
+	mouseleave	 								blur				unload
+	mousedown
+	mouseup
+	hover() - mouseenter + mouseleave
+	
+	Eg.
+		$("p").click(function(){
+			$(this).hide();
+		});
+		
+		
+	The on() Method
+		The on() method attaches one or more event handlers for the selected elements.
+		
+		Eg.
+			$("p").on("click", function(){
+				$(this).hide();
+			});
+			
+		Eg.
+			$("p").on({
+				mouseenter: function(){
+					$(this).css("background-color", "lightgray");
+				}, 
+				mouseleave: function(){
+					$(this).css("background-color", "lightblue");
+				}, 
+				click: function(){
+					$(this).css("background-color", "yellow");
+				} 
+			});
+			
+jQuery Effects
+	Hide, Show, Toggle, Slide, Fade, and Animate. Stop & chaining.
+	
+	All effects have two optional parameters
+		The optional speed parameter specifies the speed of the hiding/showing, and can take the following values: "slow", "fast", or milliseconds.
+		The optional callback parameter is a function to be executed after the current animation is finished.
+		Eg.
+			$("button").click(function(){
+				$("p").hide("slow", function(){
+					alert("The paragraph is now hidden");
+				});
+			});
+	
+	Hide & show
+		$(selector).hide(speed,callback);
+		$(selector).show(speed,callback);
+		$(selector).toggle(speed,callback);
+		
+	Fading
+		fadeIn(speed,callback)
+		fadeOut(speed,callback)
+		fadeToggle(speed,callback)
+		fadeTo(speed,opacity,callback)	opacity (value between 0 and 1).
+		
+	Sliding 
+		slideDown(speed,callback)
+		slideUp(speed,callback)
+		slideToggle(speed,callback)
+		
+	Animation
+		$(selector).animate({params},speed,callback);
+			Note
+				all property names in params must be camel-cased (paddingLeft instead of padding-left)
+				Also, color animation is not included in the core jQuery library.
+				It is also possible to define relative values (the value is then relative to the element's current value). 
+					This is done by putting += or -= in front of the value:
+			Eg. { params } - { left: '250px', opacity: '0.5', height: '150px', width: '150px' }
+		
+	Stop
+		The jQuery stop() method is used to stop animations or effects before it is finished.
+		$(selector).stop(stopAll,goToEnd);
+		
+		The optional stopAll parameter specifies whether also the animation queue should be cleared or not. 
+		Default is false, which means that only the active animation will be stopped, allowing any queued animations to be performed afterwards.
+		The optional goToEnd parameter specifies whether or not to complete the current animation immediately. Default is false.
+
+		So, by default, the stop() method kills the current animation being performed on the selected element.
+		
+	
+	Chaining
+		With jQuery, you can chain together actions/methods.
+		Chaining allows us to run multiple jQuery methods (on the same element) within a single statement.
+		
+		Eg. $("#p1").css("color", "red").slideUp(2000).slideDown(2000);
+		
+jQuery DOM Manipulation
+	One very important part of jQuery is the possibility to manipulate the DOM.
+	jQuery comes with a bunch of DOM related methods that make it easy to access and manipulate elements and attributes.
+
+	DOM = Document Object Model
+	The DOM defines a standard for accessing HTML and XML documents:
+	"The W3C Document Object Model (DOM) is a platform and language-neutral interface that allows programs and scripts to dynamically access and update the content, structure, and style of a document."
+
+	Get Content - text(), html(), and val()
+		text() - Sets or returns the text content of selected elements
+		html() - Sets or returns the content of selected elements (including HTML markup)
+		val() - Sets or returns the value of form fields
+		
+	Set Content - text(), html(), and val()
+		We will use the same three methods from the previous page to set content:
+		text() - Sets or returns the text content of selected elements
+		html() - Sets or returns the content of selected elements (including HTML markup)
+		val() - Sets or returns the value of form fields
+	
+	Get Attributes - attr()
+		The jQuery attr() method is used to get attribute values.
+		Eg. $("#w3s").attr("href")
+		
+	Set Attributes - attr()
+		The jQuery attr() method is also used to set/change attribute values.
+		$("#w3s").attr("href", "https://www.w3schools.com/jquery");
+		
+		
+	A Callback Function for text(), html(), and val()
+		All of the three jQuery methods above: text(), html(), and val(), also come with a callback function. 
+		The callback function has two parameters: 
+			the index of the current element in the list of elements selected and the original (old) value. 
+		You then return the string you wish to use as the new value from the function.
+	Eg.	
+		$("#test2").html(function(i, origText){
+			return "Old html: " + origText + " New html: Hello <b>world!</b>
+			(index: " + i + ")"; 
+		});
+	Eg.
+		$("#w3s").attr("href", function(i, origValue){
+			return origValue + "/jquery"; 
+		});
+		
+		
+	Add Elements	
+		it is easy to add new elements/content.
+			append() - Inserts content at the end of the selected elements
+			prepend() - Inserts content at the beginning of the selected elements
+			after() - Inserts content after the selected elements
+			before() - Inserts content before the selected elements
+		
+	Remove Elements/Content
+		To remove elements and content
+			remove() - Removes the selected element (and its child elements)
+						Eg. $("p").remove();
+						The jQuery remove() method also accepts one parameter, which allows you to filter the elements to be removed.
+						Eg.	$("p").remove(".test");
+			empty() - Removes the child elements from the selected element
+			
+	
+	Manipulating CSS
+		addClass() - Adds one or more classes to the selected elements
+		removeClass() - Removes one or more classes from the selected elements
+		toggleClass() - Toggles between adding/removing classes from the selected elements
+		css() - Sets or returns the style attribute
+				Eg. $("p").css("background-color"); - Fetches the background-color
+					$("p").css("background-color", "yellow"); - Sets the background-color
+					$("p").css({"background-color": "yellow", "font-size": "200%"}); - Multiple properties
+					
+	
+	Dimension Methods
+		width()
+		height()
+		innerWidth()
+		innerHeight() - height()+padding
+		outerWidth()
+		outerHeight() - height()+padding+border+margin
+		outerWidth(true)
+		outerHeight(ture) - height()+padding+border+margin
+		
+			$(document).height(), $(document).width()
+			$(window).height(), $(window).width() 
+			
+		Sets the width and height of a specified element:
+			 $("#div1").width(500).height(500);
+		
+		
+jQuery AJAX(Asynchronous JavaScript and XML)
+	AJAX is the art of exchanging data with a server, and updating parts of a web page - without reloading the whole page.
+	
+	jQuery provides several methods for AJAX functionality.
+	With the jQuery AJAX methods, you can request text, HTML, XML, or JSON from a remote server using both HTTP Get and HTTP Post - 
+	And you can load the external data directly into the selected HTML elements of your web page!
+	
+	load() Method
+		The jQuery load() method is a simple, but powerful AJAX method.
+		The load() method loads data from a server and puts the returned data into the selected element.
+		Syntax:
+			$(selector).load(URL,data,callback);
+				The required URL parameter specifies the URL you wish to load.
+				The optional data parameter specifies a set of querystring key/value pairs to send along with the request.
+				The optional callback parameter is the name of a function to be executed after the load() method is completed.
+		Eg. $("#div1").load("demo_test.txt");
+		
+		It is also possible to add a jQuery selector to the URL parameter.
+		Eg. $("#div1").load("demo_test.txt #p1");
+				Loads the content of the element with id="p1", inside the file "demo_test.txt", into a specific <div> element
+				
+		The optional callback parameter specifies a callback function to run when the load() method is completed. 
+		The callback function can have different parameters:
+			responseTxt - contains the resulting content if the call succeeds
+			statusTxt - contains the status of the call
+			xhr - contains the XMLHttpRequest object
+		Eg. 
+			 $("#div1").load("demo_test.txt", 
+								function(responseTxt, statusTxt, xhr){
+									if(statusTxt == "success")
+										alert("External content loaded successfully!");
+									if(statusTxt == "error")
+										alert("Error: " + xhr.status + ": " + xhr.statusText);
+								});
+								
+	
+		jQuery $.get() Method
+			The $.get() method requests data from the server with an HTTP GET request(specified resource).
+			The GET method may return cached data.
+			Syntax:
+				$.get(URL,callback);
+				The required URL parameter specifies the URL you wish to request.
+				The optional callback parameter is the name of a function to be executed if the request succeeds.
+				Eg.
+					$.get("demo_test.asp", function(data, status){
+						alert("Data: " + data + "\nStatus: " + status);
+					});
+
+					The first parameter of $.get() is the URL we wish to request ("demo_test.asp").
+					The second parameter is a callback function. 
+						The first callback parameter holds the content of the page requested, 
+						and the second callback parameter holds the status of the request.
+
+		jQuery $.post() Method
+			The $.post() method requests data from the server using an HTTP POST request.
+			However, the POST method NEVER caches data, and is often used to send data along with the request.
+			Syntax:
+				$.post(URL,data,callback);
+				The required URL parameter specifies the URL you wish to request.
+				The optional data parameter specifies some data to send along with the request.
+				The optional callback parameter is the name of a function to be executed if the request succeeds.
+
+				The following example uses the $.post() method to send some data along with the request:
+				Eg.
+					$.post("demo_test_post.asp",
+					{
+						name: "Donald Duck",
+						city: "Duckburg"
+					},
+					function(data, status){
+						alert("Data: " + data + "\nStatus: " + status);
+					});
+
+					The first parameter of $.post() is the URL we wish to request ("demo_test_post.asp").
+					Then we pass in some data to send along with the request (name and city).
+					The third parameter is a callback function. 
+						The first callback parameter holds the content of the page requested, 
+						and the second callback parameter holds the status of the request.
+
+						
+jQuery - The noConflict() Method
+	As you already know; jQuery uses the $ sign as a shortcut for jQuery.
+	There are many other popular JavaScript frameworks like: Angular, Backbone, Ember, Knockout, and more.
+	What if other JavaScript frameworks also use the $ sign as a shortcut?
+	If two different frameworks are using the same shortcut, one of them might stop working.
+	The jQuery team have already thought about this, and implemented the noConflict() method.
+	
+	The noConflict() method releases the hold on the $ shortcut identifier, so that other scripts can use it.
+	You can of course still use jQuery, simply by writing the full name instead of the shortcut:
+	
+	Eg.
+		$.noConflict();
+		jQuery(document).ready(function(){
+			jQuery("button").click(function(){
+				jQuery("p").text("jQuery is still working!");
+			});
+		});
+		
+	You can also create your own shortcut very easily. 
+	The noConflict() method returns a reference to jQuery, that you can save in a variable, for later use. 
+	Eg.
+		var jq = $.noConflict();
+		jq(document).ready(function(){
+			jq("button").click(function(){
+				jq("p").text("jQuery is still working!");
+			});
+		});
+		
+	If you have a block of jQuery code which uses the $ shortcut and you do not want to change it all, you can pass the $ sign in as a parameter to the ready method. This allows you to access jQuery using $, inside this function - outside of it, you will have to use "jQuery":
+	Eg. 
+		$.noConflict();
+		jQuery(document).ready(function($){
+			$("button").click(function(){
+				$("p").text("jQuery is still working!");
+			});
+		});
+		
+		
+jQuery Misc data() Method
+	The data() method attaches data to, or gets data from, selected elements.
+	
+	Tip: To remove data, use the removeData() method.
+	Return Data from an Element
+		$(selector).data(name)
+		name is Optional. Specifies the name of data to retrieve.
+		If no name is specified, this method will return all stored data for the element as an object
+	Attach Data to an Element
+		$(selector).data(name,value)
+		$(selector).data(object)
+		
+	
+jQuery Misc each() Method
+	The each() method specifies a function to run for each matched element.
+
+	$(selector).each(function(index,element))
+	
+	Eg. 
+		$("li").each(function(){
+			alert($(this).text())
+		});
+		
+jQuery Misc get() Method
+	The get() method gets the DOM elements specified by the selector.
+	$(selector).get(index)
+	
+	Eg.
+		var x = $("p").get(0);
+		$("div").text(x.nodeName + ": " + x.innerHTML);
+	
+jQuery Misc toArray() Method
+	The toArray() method returns the elements matched by the jQuery selector as an array.
+	$(selector).toArray()
+	
+	Eg.
+		var x = $("li").toArray()
+		for (i = 0; i < x.length; i++) {
+			alert(x[i].innerHTML);
+		}
+
+
+jQuery Misc param() Method
+	The param() method creates a serialized representation of an array or an object.
+	The serialized values can be used in the URL query string when making an AJAX request.
+	$.param(object,trad)
+	
+	Eg.
+		personObj = new Object();
+		personObj.firstname = "John";
+		personObj.lastname = "Doe";
+		personObj.age = 50;
+		personObj.eyecolor = "blue"; 
+		$("div").text($.param(personObj));
+		
+	O/p.
+		firstname=John&lastname=Doe&age=50&eyecolor=blue
+		
+jQuery Misc index() Method
+	The index() method returns the index position of specified elements relative to other specified elements.
+	The elements can be specified by jQuery selectors, or a DOM element.
+	Note: If the element is not found, index() will return -1.
+	
+	$(selector).index()	
+		Get the index position of the first matched selected element relative to its sibling elements.
+	$(selector).index(element)
+		Get the index position of an element, relative to the selector.
+		
+
+jQuery jquery Property
+	The jquery property returns a string containing the jQuery version number.
+	Eg.
+		var version = $().jquery; 
+		alert("You are running jQuery version: " + version);
+	
+	
+	
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------	
+------------------------------------------------------------------------------------------------------------------------------------------------
+	
+	
+	
+JSON(JavaScript Object Notation)
+	JSON is a syntax for storing and exchanging data.
+	JSON is text, written with JavaScript object notation.
+	
+	JSON Files
+		The file type for JSON files is ".json"
+		The MIME type for JSON text is "application/json"
+	
+	Exchanging Data
+		When exchanging data between a browser and a server, the data can only be text.
+		JSON is text, and we can convert any JavaScript object into JSON, and send JSON to the server.
+		We can also convert any JSON received from the server into JavaScript objects.
+		This way we can work with the data as JavaScript objects, with no complicated parsing and translations.
+		
+	Sending Data
+		If you have data stored in a JavaScript object, you can convert the object into JSON, and send it to a server:
+		Eg.
+			var myObj = { "name":"John", "age":31, "city":"New York" };
+			var myJSON = JSON.stringify(myObj);
+			window.location = "demo_json.php?x=" + myJSON;
+						
+	Receiving Data
+		If you receive data in JSON format, you can convert it into a JavaScript object:
+		Eg.
+			var myJSON = '{ "name":"John", "age":31, "city":"New York" }';
+			var myObj = JSON.parse(myJSON);
+			document.getElementById("demo").innerHTML = myObj.name;
+			
+	Storing Data
+		When storing data, the data has to be a certain format, and regardless of where you choose to store it, text is always one of the legal formats.
+		Eg.
+			//Storing data in local storage
+			myObj = { "name":"John", "age":31, "city":"New York" };
+			myJSON = JSON.stringify(myObj);
+			localStorage.setItem("testJSON", myJSON);
+
+			//Retrieving data from local storage
+			text = localStorage.getItem("testJSON");
+			obj = JSON.parse(text);
+			document.getElementById("demo").innerHTML = obj.name;
+	
+JSON Syntax
+	The JSON syntax is a subset of the JavaScript syntax.
+	
+	JSON Uses JavaScript Syntax
+		Because JSON syntax is derived from JavaScript object notation, very little extra software is needed to work with JSON within JavaScript.
+		With JavaScript you can create an object and assign data to it, like this:
+		Eg.
+			var person = { "name":"John", "age":31, "city":"New York" };
+	
+	JSON Syntax Rules
+		JSON syntax is derived from JavaScript object notation syntax:
+			- Data is in name/value pairs
+			- Data is separated by commas
+			- Curly braces hold objects
+			- Square brackets hold arrays
+			
+	JSON Data - A Name and a Value
+		JSON data is written as name/value pairs.
+		A name/value pair consists of a field name (in double quotes), followed by a colon, followed by a value:
+		Eg.
+			"name":"John"
+
+	JSON - Evaluates to JavaScript Objects
+		The JSON format is almost identical to JavaScript objects.
+Valid Data Types
+	JSON Keys
+		In JSON, keys must be strings, written with double quotes:
+		Eg.
+			{ "name":"John" }
+		In JavaScript, keys can be strings, numbers, or identifier names:
+		Eg.
+			{ name:"John" }
+			
+	JSON Values
+		In JSON, values must be one of the following data types:
+			a string
+				{ "name":"John" }
+			a number
+				{ "age":30, "exp":2.7 }, 
+			an object (JSON object)
+				{	"employee":{ "name":"John", "age":30, "city":"New York" }	}
+			an array
+				{	"employees":[ "John", "Anna", "Peter" ]		}
+			a boolean
+				{ "sale":true }
+			null
+				{ "middlename":null }
+				
+		JSON values cannot be one of the following data types:
+			a function
+			a date
+			undefined
+		
+		In JavaScript values can be all of the above, plus any other valid JavaScript expression, including:
+			a function, a date, undefined
+		
+		In JSON, string values must be written with double quotes:
+			{ "name":"John" }
+			
+		In JavaScript, you can write string values with double or single quotes:
+			{ name:'John' }
+			
+			
+		Note.
+			Exceptions
+				In JSON, date objects are not allowed. The JSON.stringify() function will convert any dates into strings.
+				You can convert the string back into a date object at the receiver.
+				
+				In JSON, functions are not allowed as object values.
+				The JSON.stringify() function will remove any functions from a JavaScript object, both the key and the value:
+				This can be omitted if you convert your functions into strings before running the JSON.stringify() function.
+				You should avoid using functions in JSON, the functions will lose their scope, and you would have to use eval() to convert them back into functions.
+				
+				
+				
+Accessing Object Values			
+	You can access a JavaScript object like this:
+		person.name;
+		person["name"];
+Modify Values		
+	Data can be modified like this:
+		person.name = "Gilbert";
+		person["name"] = "Gilbert";
+		
+		
+Arrays as JSON Objects
+	The same way JavaScript objects can be used as JSON, JavaScript arrays can also be used as JSON.
+	In JSON, array values must be of type string, number, object, array, boolean or null.
+	
+Looping an Object
+	You can loop through object properties by using the for-in loop:
+	Eg.
+		myObj = { "name":"John", "age":30, "car":null };
+		for (x in myObj) {
+			document.getElementById("demo").innerHTML += x;
+		}
+		
+Delete Object Properties
+	Use the delete keyword to delete properties from a JSON object:
+	Eg.
+		delete myObj.cars.car2;
+		
+		
+JSON vs XML
+	Both JSON and XML can be used to receive data from a web server.
+	JSON is Like XML Because
+		Both JSON and XML are "self describing" (human readable)
+		Both JSON and XML are hierarchical (values within values)
+		Both JSON and XML can be parsed and used by lots of programming languages
+		Both JSON and XML can be fetched with an XMLHttpRequest
+	JSON is Unlike XML Because
+		JSON doesn't use end tag
+		JSON is shorter
+		JSON is quicker to read and write
+		JSON can use arrays
+
+	The biggest difference is:
+		XML has to be parsed with an XML parser. JSON can be parsed by a standard JavaScript function.
+		
+	Why JSON is Better Than XML
+		XML is much more difficult to parse than JSON.
+		JSON is parsed into a ready-to-use JavaScript object.
+
+		For AJAX applications, JSON is faster and easier than XML:
+			Using XML
+				Fetch an XML document
+				Use the XML DOM to loop through the document
+				Extract values and store in variables
+			Using JSON
+				Fetch a JSON string
+				JSON.Parse the JSON string
+
+JSONP is a simple way to overcome browser restrictions when sending JSON responses from different domains from the client.				
+				
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------	
+------------------------------------------------------------------------------------------------------------------------------------------------
+				
+				
+AJAX (Asynchronous JavaScript And XML)
+	AJAX is a developer's dream, because you can:
+		Update a web page without reloading the page
+		Request data from a server - after the page has loaded
+		Receive data from a server - after the page has loaded
+		Send data to a server - in the background
+		
+	AJAX is not a programming language.
+	AJAX just uses a combination of:
+		A browser built-in XMLHttpRequest object (to request data from a web server)
+		JavaScript and HTML DOM (to display or use the data)
+		
+		
+	AJAX allows web pages to be updated asynchronously by exchanging data with a web server behind the scenes. 
+	This means that it is possible to update parts of a web page, without reloading the whole page
+	
+	The XMLHttpRequest Object
+		The XMLHttpRequest object is used to exchange data with a server behind the scenes.
+		
+		Create an XMLHttpRequest Object
+			var xhttp = new XMLHttpRequest();
+		Send a Request To a Server
+			To send a request to a server, we use the open() and send() methods of the XMLHttpRequest object:
+			Eg.
+				xhttp.open("GET", "ajax_info.txt", true);
+				xhttp.send();
+			
+			open(method, url, async)	
+						method: the type of request: GET or POST
+						url: the server (file) location
+						async: true (asynchronous) or false (synchronous)
+			send()		Sends the request to the server (used for GET)
+			send(string)Sends the request to the server (used for POST)
+			
+			
+		GET or POST?
+			GET is simpler and faster than POST, and can be used in most cases.
+
+			However, always use POST requests when:
+				A cached file is not an option (update a file or database on the server).
+				Sending a large amount of data to the server (POST has no size limitations).
+				Sending user input (which can contain unknown characters), POST is more robust and secure than GET.
+				
+			If you want to send information with the GET method, add the information to the URL:
+				Eg. 
+					xhttp.open("GET", "demo_get2.asp?fname=Henry&lname=Ford", true);
+					xhttp.send();
+					
+			To POST data like an HTML form, add an HTTP header with setRequestHeader(). Specify the data you want to send in the send() method:
+			Eg.
+				xhttp.open("POST", "ajax_test.asp", true);
+				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+				xhttp.send("fname=Henry&lname=Ford");
+				
+				
+			When you use async = false, do NOT write an onreadystatechange function - just put the code after the send() statement:
+
+	Server Response
+		The readyState property holds the status of the XMLHttpRequest.
+		The onreadystatechange property defines a function to be executed when the readyState changes.
+		The status property and the statusText property holds the status of the XMLHttpRequest object.
+		
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("demo").innerHTML =
+				this.responseText;
+		   }
+		};
+		responseText	get the response data as a string
+		responseXML		get the response data as XML data
+		
+		getResponseHeader()	Returns specific header information from the server resource
+		getAllResponseHeaders()	Returns all the header information from the server resource
+		
+		readyState		Holds the status of the XMLHttpRequest. 
+						0: request not initialized 
+						1: server connection established
+						2: request received 
+						3: processing request 
+						4: request finished and response is ready
+		status			200: "OK"
+						403: "Forbidden"
+						404: "Page not found"
+		statusText		Returns the status-text (e.g. "OK" or "Not Found")
+		
+		
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------	
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Rest API
+	RESTful Web Services are basically REST Architecture based Web Services. 
+	In REST Architecture everything is a resource. 
+	RESTful web services are light weight, highly scalable and maintainable and are very commonly used to create APIs for web-based applications.
+	
+	API(Application program Interface)		
+		Structured request & response
+		Contract provided by one software to another...
+	Rest(Representational state transfer)
+		Architectural style for desiging networked application..
+		Relies on stateless, client-server protocol, almost always HTTP..
+		
+	HTTP Methods	
+		GET - Retrieve data from specified resource....Even we can use to submit data but not secure..data can be seen by others...
+		POST - submit data to be processed to a specified resource
+		PUT - update an specified resource
+		DELETE - Delete a specified resource
+		
+		HEAD - same as get but doesn't return a body in the response
+ 		OPTIONS - Returns the supported HTTP methods
+		PATCH - Update partial resources
+		
+	Authentication
+		Some API's require authentication to use their service..
+			OAUTH(access token)
+			Client id && secret..
+			
+			
+https://www.youtube.com/watch?v=RsQ1tFLwldY
+
+
+
+
+
+
+Hibernate and Spring Integration			
+
+	In hibernate framework, we provide all the database information hibernate.cfg.xml file.
+
+	But if we are going to integrate the hibernate application with spring, we don't need to create the hibernate.cfg.xml file. 
+	We can provide all the information in the applicationContext.xml file.
+	
+	Hiberante Steps
+		Create Configuration, 
+		Build SessionFactory, 
+		Open Session
+		Begin Transaction
+		Persist object to session
+		Commit Transaction
+		Close Session
+		
+	Eg.
+		//creating configuration  
+		Configuration cfg=new Configuration();    
+		cfg.configure("hibernate.cfg.xml");    
+			
+		//creating session factory object    
+		SessionFactory factory=cfg.buildSessionFactory();    
+			
+		//creating session object    
+		Session session=factory.openSession();    
+			
+		//creating transaction object    
+		Transaction t=session.beginTransaction();    
+				
+		Employee e1=new Employee(111,"arun",40000);    
+		session.persist(e1);//persisting the object    
+			
+		t.commit();//transaction is commited    
+		session.close();    
+		
+	Advantage of Spring framework with hibernate
+		The Spring framework provides HibernateTemplate class which will avoid all the above steps every time..
+		
+		Methods of HibernateTemplate class
+			void persist(Object entity)						persists the given object.
+			Serializable save(Object entity)				persists the given object and returns id.
+			void saveOrUpdate(Object entity)				persists or updates the given object. 
+															If id is found, it updates the record otherwise saves the record.
+			void update(Object entity)						updates the given object.
+			void delete(Object entity)						deletes the given object on the basis of id.
+			Object get(Class entityClass, Serializable id)	returns the persistent object on the basis of given id.
+			Object load(Class entityClass, Serializable id)	returns the persistent object on the basis of given id.
+			List loadAll(Class entityClass)					returns the all the persistent objects.
+			
+	Steps
+		create table in the database 			It is optional.
+		create applicationContext.xml file 		It contains information of DataSource, SessionFactory etc.
+		create Employee.java file 				It is the persistent class
+		create employee.hbm.xml file 			It is the mapping file.
+		create EmployeeDao.java file 			It is the dao class that uses HibernateTemplate.
+		create InsertTest.java file 			It calls methods of EmployeeDao class.
+		
+	Eg.
+		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">  
+			<property name="driverClassName"  value="oracle.jdbc.driver.OracleDriver"></property>  
+			<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"></property>  
+			<property name="username" value="system"></property>  
+			<property name="password" value="oracle"></property>  
+		</bean>  
+		  
+		<bean id="mysessionFactory"  class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">  
+			<property name="dataSource" ref="dataSource"></property>  
+			  
+			<property name="mappingResources">  
+				<list>  
+					<value>employee.hbm.xml</value>  
+				</list>  
+			</property>  
+			  
+			<property name="hibernateProperties">  
+				<props>  
+					<prop key="hibernate.dialect">org.hibernate.dialect.Oracle9Dialect</prop>  
+					<prop key="hibernate.hbm2ddl.auto">update</prop>  
+					<prop key="hibernate.show_sql">true</prop>  
+					  
+				</props>  
+			</property>  
+		</bean>  
+		  
+		<bean id="template" class="org.springframework.orm.hibernate3.HibernateTemplate">  
+			<property name="sessionFactory" ref="mysessionFactory"></property>  
+		</bean>  
+		  
+		<bean id="d" class="com.javatpoint.EmployeeDao">  
+			<property name="template" ref="template"></property>  
+		</bean>  
+		
+		
+Links
+	https://docs.spring.io/spring-boot/docs/current/reference/html/getting-started-first-application.html
+	http://www.bogotobogo.com/Java/tutorials/Spring-Boot/Spring-Boot-HelloWorld-with-Maven.php
+	https://spring.io/guides/gs/rest-service/
+	http://docs.spring.io/spring-boot/docs/current/reference/html/getting-started-first-application.html
+
+	
+http://www.dineshonjava.com/2012/07/stereotype-annotations-in-spring.html	
+@Controller 
+	annotation is for a class as a Spring Web MVC controller. 
+	It is a meta annotation of @Component, so beans annotated with it are automatically imported into the Spring container. 
+	If you add the @Controller annotation to a class then you can use handler mappling annotation i.e. @RequestMapping; to map URLs to instance methods of a class.
+@Service 
+	annotation is for a class as a Service of application.
+@Repository 
+	annotation is more suitable annotation that provides additional benefits specifically for DAOs. 
+	The @Repository annotation is a meta annotation of the @Component annotation with similar use and functionality. 
+	In addition to importing the DAOs into the DI container, it also makes the unchecked exceptions eligible for translation into Spring DataAccessException.
+@Component 
+	annotation should be used when your class does not fall into either of three categories i.e. Controllers, Services and DAOs.
+
+Enable component scanning	
+	Spring by default does not scan means Spring container does create bean for those classes whose annotated with above for stereotype annotations. 
+	So we have to enable component scanning explicity by using "context:component-scan" tag in your applicationContext.xml file. 
+	So stereotype annotations will be scanned and configured only when they are scanned by DI container of spring framework. 
+	
+		<context:component-scan base-package=" " />	
+	
+	Note
+		The context:component-scan element requires a base-package attribute, the value of base-package attribute should specifies a starting point for a recursive component search. 
+		Spring recommends do not use your top package for scanning, so you should declare specific component-scan elements.
+	
+@RequestMapping	
+	The @RequestMapping annotation provides “routing” information. 
+	It is telling Spring that any HTTP request with the path “/” should be mapped to the home method.	
+	
+@SessionAttributes 
+	annotation is used to store the model object in the session.	
+	
+@RestController
+	class is a web @Controller so Spring will consider it when handling incoming web requests.
+	The @RestController annotation tells Spring to render the resulting string directly back to the caller.
+	
+@EnableAutoConfiguration
+	 This annotation tells Spring Boot to “guess” how you will want to configure Spring, based on the jar dependencies that you have added. 
+	 Since spring-boot-starter-web added Tomcat and Spring MVC, the auto-configuration will assume that you are developing a web application and setup Spring accordingly.	
+	 
+The mvn dependency:tree command prints a tree representation of your project dependencies.
+
+Type mvn spring-boot:run from the root project directory to start the application:
+
+To create an executable jar we need to add the spring-boot-maven-plugin to our pom.xml	 
+
+run mvn package
+
+jar tvf target/myproject-0.0.1-SNAPSHOT.jar
+
+To run that application, use the java -jar command:
+
+
+	 
+	 
+@SpringBootApplication is a convenience annotation that adds all of the following:
+	@Configuration tags the class as a source of bean definitions for the application context.
+	@EnableAutoConfiguration tells Spring Boot to start adding beans based on classpath settings, other beans, and various property settings.
+	Normally you would add @EnableWebMvc for a Spring MVC app, but Spring Boot adds it automatically when it sees spring-webmvc on the classpath. This flags the application as a web application and activates key behaviors such as setting up a DispatcherServlet.
+	@ComponentScan tells Spring to look for other components, configurations, and services in the hello package, allowing it to find the controllers.
+	 
+
+
+@EnableScheduling ensures that a background task executor is created. Without it, nothing gets scheduled.
+
+https://spring.io/guides/gs/scheduling-tasks
+http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/support/CronSequenceGenerator.html
+
+
+http://viralpatel.net/blogs/spring-4-mvc-rest-example-json/
+

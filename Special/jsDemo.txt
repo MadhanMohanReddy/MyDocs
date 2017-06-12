@@ -1,0 +1,190 @@
+Javascript
+
+Objects
+	Function objects & Non function objects
+	
+	Create object
+		1. var x = new Object();
+		2. var x = {};
+		Both are same...
+		
+	Non Function objects	
+		var person = {
+			name : 'maddy',
+			age : 25,
+			howMuchAge : function() {
+				return this.age;
+			}
+		};
+		Access object
+			directly ie, person
+		Add property
+			person.location = 'bng';
+		Delete property	
+			delete(person.location) or delete person.location
+		
+	Function Objects
+		var Person = function() {
+			this.name = 'maddy';
+			this.age = 25;
+			this.howMuchAge = function() {
+				return this.age;
+			};
+		};
+		Access object	
+			var person = new Person();
+		Add a property
+			var person1 = new Person();
+			var person2 = new Person();
+			person1.name = 'mmm';
+			console.log(person1.name); // mmm
+			console.log(person2.name); // maddy
+			
+	Note.
+		1. To make variable/function public, we should use this.variableName/functionName
+		2. To make same as private, just declare it as var or without this. 
+		3. Expose local variables using "return";
+		4. If we declare as var, then instances can't use them until expose them with return. But it can be used within class it is created.
+		Eg.
+			var Person = function() {
+				this.name = 'maddy'; 			// public
+				var age = 25; 					// private
+				this.getName = function() {
+					return this.age;			// Access public variable
+				};
+				this.howMuchAge = function() {
+					return age;					// Access private variable
+				};
+				
+			};
+
+Function Chaining
+	
+	var obj = function() {
+		this.i = 0;
+		
+		this.add = function(i) {
+			this.i += i;
+		}
+		this.substract = function(i) {
+			this.i -= i;
+		}
+		this.print = function() {
+			console.log(this.i);
+		}	
+	}
+	var obj1 = new obj();
+	obj1.add(3);
+	obj1.substract(1);
+	obj1.print();
+	
+	//obj1.add(3).substract(1).print(); This function chaining is not possible..
+	
+	To achieve the same..
+	var obj = function() {
+		this.i = 0;
+		
+		this.add = function(i) {
+			this.i += i;
+			return this;
+		}
+		this.substract = function(i) {
+			this.i -= i;
+			return this.
+		}
+		this.print = function() {
+			console.log(this.i);
+		}	
+	}
+	var obj1 = new obj();
+	obj1.add(3).substract(1).print();
+	
+Function chaining with closure
+	var obj = function() {
+		var i = 0;
+		
+		var add = function(j) {
+			i += j;
+			return this;
+		}
+		var substract = function(j) {
+			i -= j;
+			return this;
+		}
+		var print = function() {
+			console.log(i);
+		}
+		return { add: add, substract: substract, print:print};
+	}
+	var obj1 = new obj();
+	obj1.add(3).substract(1).print();
+	
+	
+		
+Varible Hoisting
+	Hoisting is a JavaScript mechanism where variables and function declarations are moved to the top of their scope before code execution.
+
+	In JavaScript, a variable can be declared after it has been used. In other words; a variable can be used before it has been declared.
+	Eg.
+		x = 5; // Assign 5 to x
+		elem = document.getElementById("demo"); // Find an element 
+		elem.innerHTML = x;                     // Display x in the element
+		var x; // Declare x
+	
+	JavaScript only hoists declarations, not initializations.
+	Eg.
+		var x = 5; // Initialize x
+		elem = document.getElementById("demo"); // Find an element 
+		elem.innerHTML = x + " " + y;           // Display x and y
+		var y = 7; // Initialize y
+		
+		o/p. 5 undefined
+		
+	Note.
+		JavaScript in strict mode does not allow variables to be used if they are not declared.
+		
+		We enable strict mode by prefacing our file or function with
+		Eg.
+			'use strict';
+		
+		
+	Eg.
+		function hoist() {
+		  a = 20;
+		  var b = 100;
+		}
+		hoist();
+		console.log(a); 
+		/* 
+		Accessible as a global variable outside hoist() function
+		Output: 20
+		*/
+
+		console.log(b); 
+		/*
+		Since it was declared, it is confined to the hoist() function scope.
+		We can't print it out outside the confines of the hoist() function.
+		Output: ReferenceError: b is not defined
+		*/
+		
+	Eg.
+		console.log(hoist); // Output: undefined
+		var hoist = 'The variable has been hoisted.';
+		
+		
+Javascript Closures
+	A closure is an inner function that has access to the outer (enclosing) function's variables—scope chain. 
+	The closure has three scope chains: 
+		it has access to its own scope (variables defined between its curly brackets), 
+		it has access to the outer function's variables, 
+		it has access to the global variables.
+		
+	Eg.
+		var add = (function () {
+			var counter = 0;
+			return function () {return counter += 1;}
+		})();
+
+		add();
+		add();
+		add();
