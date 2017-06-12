@@ -1,0 +1,73 @@
+Processing fees - 5000
+EMI 14122
+Interest 38929
+Interest rate - 12%
+
+
+--------------------------
+Interest rate - 10.99%
+--------------------------
+Loan amount 3laks
+
+Duration - 2 years
+
+EMI - 13981
+Interest - 35543
+--------------------------
+Loan amount 4laks
+Duration 3 years
+
+EMI 13094
+Interest 71369
+--------------------------
+
+
+ppf
+rd 1000 7.2% per annum (quarterly compounded)
+Savings account
+
+rd
+1000
+5 years
+11800+60000
+
+ppf
+ 
+15 years
+7.8%
+
+
+Postal RD
+Monthly Deposit Amount for Post Office RD	
+1000
+
+Rate of Interest (i.e. currently 8.4%)	
+7.2
+
+Period (in No. of Months; i.e. 60 Months)
+60
+
+Frequency of Compounding 
+Quarterly
+
+Maturity Amount of Post Office RD (Rs.)
+72314
+
+Effective yield of Post Office RD
+8.57%
+
+
+MOOLE1
+9030484716M@
+
+photoshoot
+
+flexi 2300
+
+44800
+
+44800
+
+27800
+
+

@@ -1,0 +1,100 @@
+# Copyright (c) 1993-2009 Microsoft Corp.
+#
+# This is a sample HOSTS file used by Microsoft TCP/IP for Windows.
+#
+# This file contains the mappings of IP addresses to host names. Each
+# entry should be kept on an individual line. The IP address should
+# be placed in the first column followed by the corresponding host name.
+# The IP address and the host name should be separated by at least one
+# space.
+#
+# Additionally, comments (such as these) may be inserted on individual
+# lines or following the machine name denoted by a '#' symbol.
+#
+# For example:
+#
+#      102.54.94.97     rhino.acme.com          # source server
+#       38.25.63.10     x.acme.com              # x client host
+
+# localhost name resolution is handled within DNS itself.
+#	127.0.0.1       localhost
+#	::1             localhost
+0.0.0.0 xml.bobcat.com 
+127.0.0.2 sandbox.hortonworks.com
+#127.0.0.1 sandbox.hortonworks.com
+#127.0.0.1 c6409.ambari.apache.org
+#127.0.0.1 localhost localhost.localdomain
+172.22.92.109 ambari-test-cluster-1-1.openstacklocal
+172.22.125.97 mramasami-falcon-testing-6.openstacklocal
+172.22.125.94 mramasami-falcon-testing-2.openstacklocal
+
+172.22.75.69  peeyush-rhel2-1.openstacklocal  peeyush-rhel2-1  peeyush-rhel2-1.openstacklocal.
+
+172.22.65.209   DataMovement1203-5.openstacklocal       DataMovement1203-5      DataMovement1203-5.openstacklocal.
+172.22.65.208   DataMovement1203-6.openstacklocal       DataMovement1203-6      DataMovement1203-6.openstacklocal.
+172.22.65.205   DataMovement1203-4.openstacklocal       DataMovement1203-4      DataMovement1203-4.openstacklocal.      Secondary
+
+172.22.65.207   DataMovement1203-1.openstacklocal       DataMovement1203-1      DataMovement1203-1.openstacklocal.      Primary
+172.22.65.204   DataMovement1203-3.openstacklocal       DataMovement1203-3      DataMovement1203-3.openstacklocal.
+172.22.65.206   DataMovement1203-2.openstacklocal       DataMovement1203-2      DataMovement1203-2.openstacklocal.
+
+172.22.65.77   nat-u14-ynas-falcon-3-5.openstacklocal
+172.22.65.75   nat-u14-ynas-falcon-3-6.openstacklocal
+172.22.65.74   nat-u14-ynas-falcon-3-7.openstacklocal
+172.22.65.252   nat-u14-ynas-falcon-3-2.openstacklocal
+172.22.65.253   nat-u14-ynas-falcon-3-4.openstacklocal
+172.22.65.250   nat-u14-ynas-falcon-3-1.openstacklocal
+172.22.65.251   nat-u14-ynas-falcon-3-3.openstacklocal
+
+
+172.22.77.207  peeyush-rhel3-1.openstacklocal  peeyush-rhel3-1 peeyush-rhel3-1.openstacklocal.
+
+172.22.85.26	rconline-demo-6.novalocal	rconline-demo-6 rconline-demo-6.novalocal
+172.22.85.255	rconline-demo-5.novalocal	rconline-demo-5 rconline-demo-5.novalocal
+172.22.85.254	rconline-demo-2.novalocal	rconline-demo-2 rconline-demo-2.novalocal
+172.22.85.252	rconline-demo-4.novalocal	rconline-demo-4 rconline-demo-4.novalocal
+172.22.85.251	rconline-demo-1.novalocal	rconline-demo-1 rconline-demo-1.novalocal
+172.22.85.250	rconline-demo-3.novalocal	rconline-demo-3 rconline-demo-3.novalocal
+
+
+172.22.120.184  machine-1-1.openstacklocal  machine-1-1 machine-1-1.openstacklocal.
+172.22.120.185  machine-2-1.openstacklocal  machine-2-1 machine-2-1.openstacklocal.
+
+
+172.21.195.163 ctr-e3360-1481344454043-0181-01-000002.hwxdev.site
+
+
+172.27.9.8	ctr-e129-1487033772569-21908-01-000005.hwx.site
+172.27.35.202	ctr-e129-1487033772569-21908-01-000002.hwx.site
+172.27.30.202	ctr-e129-1487033772569-21908-01-000004.hwx.site
+172.27.29.137	ctr-e129-1487033772569-21908-01-000006.hwx.site
+
+
+172.22.94.187  rconline-dp-4.novalocal rconline-dp-4   rconline-dp-4.novalocal. rconline-dp-4.openstacklocal
+172.22.94.186 rconline-dp-1.novalocal rconline-dp-1   rconline-dp-1.novalocal. rconline-dp-1.openstacklocal
+172.22.94.185 rconline-dp-3.novalocal rconline-dp-3   rconline-dp-3.novalocal. rconline-dp-3.openstacklocal
+172.22.94.188 rconline-dp-2.novalocal rconline-dp-2   rconline-dp-2.novalocal. rconline-dp-2.openstacklocal
+
+172.22.101.198  wfmanager-test-1.openstacklocal	wfmanager-test-1	wfmanager-test-1.openstacklocal.
+
+172.22.76.63	falcon-ui-1.openstacklocal	falcon-ui-1	falcon-ui-1.openstacklocal.
+
+172.22.107.131	wfm-cluster-1.openstacklocal	wfm-cluster-1	wfm-cluster-1.openstacklocal.
+
+172.22.77.255	dp-cluster-1.openstacklocal	dp-cluster-1	dp-cluster-1.openstacklocal.
+
+
+172.22.108.241	repro-cluster-ra-5.openstacklocal	repro-cluster-ra-5	repro-cluster-ra-5.openstacklocal.
+172.22.108.238	repro-cluster-ra-3.openstacklocal	repro-cluster-ra-3	repro-cluster-ra-3.openstacklocal.
+172.22.108.236	repro-cluster-ra-1.openstacklocal	repro-cluster-ra-1	repro-cluster-ra-1.openstacklocal.
+172.22.108.237	repro-cluster-ra-2.openstacklocal	repro-cluster-ra-2	repro-cluster-ra-2.openstacklocal.
+172.22.108.235	repro-cluster-ra-4.openstacklocal	repro-cluster-ra-4	repro-cluster-ra-4.openstacklocal.
+
+
+172.22.112.193	wfm-cluster-1-1.openstacklocal	wfm-cluster-1-1	wfm-cluster-1-1.openstacklocal.
+172.22.112.196	wfd-cluster-1.openstacklocal	wfd-cluster-1	wfd-cluster-1.openstacklocal.
+
+172.22.98.23	wf-cluster-1-1.openstacklocal	wf-cluster-1-1	wf-cluster-1-1.openstacklocal.
+172.22.98.231	wf-cluster-2-1.openstacklocal	wf-cluster-2-1	wf-cluster-2-1.openstacklocal.
+
+0.0.0.0 xa.ghokswa.com 
