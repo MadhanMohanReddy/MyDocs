@@ -1,0 +1,757 @@
+Dependency Injection
+	Java components / classes should be as independent as possible of other Java classes. 
+	This increases the possibility to reuse these classes and to test them independently of other classes(Unit Testing). 
+	To decouple Java components from other Java components the dependency to a certain other class should get injected into them rather that the class itself creates / finds this object. 
+	A class A has a dependency to class B if class uses class B as a variable.
+		If dependency injection is used then the class B is given to class A via
+		1. the constructor of the class A - this is then called construction injection
+		2. a setter - this is then called setter injection
+
+	The general concept between dependency injection is called Inversion of Control. 
+	A class should not configure itself but should be configured from outside. 
+	A design based on independent classes / components increases the re-usability and possibility to test the software. 
+	
+	For example, if a class A expects a Dao (Data Access object) for receiving the data from a database you can easily create another test object which mocks the database connection and inject this object into A to test A without having an actual database connection. 
+	A software design based on dependency injection is possible with standard Java. 
+	Spring just simplifies the use of dependency injection by providing a standard way of providing the configuration and by managing the reference to the created objects.
+	
+	References
+		http://www.vogella.com/tutorials/SpringDependencyInjection/article.html#springoverview
+	
+
+Bean Scopes
+	When defining a <bean> you have the option of declaring a scope for that bean. 
+	For example, 
+		To force Spring to produce a new bean instance each time one is needed, you should declare the bean's scope attribute to be prototype. 
+		If you want Spring to return the same bean instance each time one is needed, you should declare the bean's scope attribute to be singleton.
+
+	The Spring Framework supports the following five scopes, three of which are available only if you use a web-aware ApplicationContext.
+
+	Scope				Description
+	singleton			This scopes the bean definition to a single instance per Spring IoC container (default).
+	prototype			This scopes a single bean definition to have any number of object instances.
+	request				This scopes a bean definition to an HTTP request. Only valid in the context of a web-aware Spring ApplicationContext.
+	session				This scopes a bean definition to an HTTP session. Only valid in the context of a web-aware Spring ApplicationContext.
+	global-session		This scopes a bean definition to a global HTTP session. Only valid in the context of a web-aware Spring ApplicationContext.
+
+
+Spring Annotations
+References
+	http://www.techferry.com/articles/spring-annotations.html#MVC
+
+@Service
+	Annotate all your service classes with @Service. All your business logic should be in Service classes.
+	Eg.
+		@Service
+		public class CompanyServiceImpl implements CompanyService {
+			...
+		}
+
+@Repository
+	Annotate all your DAO classes with @Repository. All your database access logic should be in DAO classes.
+	Eg.
+		@Repository
+		public class CompanyDAOImpl implements CompanyDAO {
+			...
+		}
+		
+@Component
+	Annotate your other components (for example REST resource classes) with @Component.
+	Eg.
+		@Component
+		public class ContactResource {
+			...
+		}
+		
+	Note.
+		@Component is a generic stereotype for any Spring-managed component. 
+		@Repository, @Service, and @Controller are specializations of @Component for more specific use cases, for example, in the persistence, service, and presentation layers, respectively. 
+		
+		
+@Autowired
+	Let Spring auto-wire other beans into your classes using @Autowired annotation. 
+	Eg.
+		@Service
+		public class CompanyServiceImpl implements CompanyService {		 
+		  @Autowired
+		  private CompanyDAO companyDAO;			   
+		  ...
+		}
+	Note. 
+		1. Spring beans can be wired by name or by type.
+		2. @Autowired can be applied on setter method, constructor or a field.
+		3. @Autowired by default is a type driven injection. 
+		4. @Qualifier spring annotation can be used to further fine-tune autowiring.
+			Eg.
+				@Autowired
+				@Qualifier("PersonBean1")
+				private Person person;
+		
+		5. @Resource (javax.annotation.Resource) annotation can be used for wiring by name.
+
+		6. Beans that are themselves defined as a collection or map type cannot be injected through @Autowired, because type matching is not properly applicable to them. 
+		   Use @Resource for such beans, referring to the specific collection or map bean by unique name.
+		
+		7. By default, the @Autowired will perform the dependency checking to make sure the property has been wired properly. 
+		   When Spring can’t find a matching bean to wire, it will throw an exception. 
+		   To fix it, you can disable this checking feature by setting the “required” attribute of @Autowired to false.
+		   Eg.
+				@Autowired(required = false)
+				private MyComponent1 myComponent;
+		  
+		
+@Transactional
+	Configure your transactions with @Transactional spring annotation.
+	Eg.
+		@Service
+		public class CompanyServiceImpl implements CompanyService {
+		 
+		  @Autowired
+		  private CompanyDAO companyDAO;
+		 
+		  @Transactional
+		  public Company findByName(String name) {
+		 
+			Company company = companyDAO.findByName(name);
+			return company;
+		  }
+		  ...
+		}
+		
+	The default @Transactional settings are as follows:
+		Propagation setting is PROPAGATION_REQUIRED.
+		Isolation level is ISOLATION_DEFAULT.
+		Transaction is read/write.
+		Transaction timeout defaults to the default timeout of the underlying transaction system, or to none if timeouts are not supported.
+		Any RuntimeException triggers rollback, and any checked Exception does not.
+	These default settings can be changed using various properties of the @Transactional spring annotation. 	
+
+	Note.
+		To activate processing of Spring's @Transactional annotation, use the <tx:annotation-driven/> element in your spring's configuration file.
+		
+		Specifying the @Transactional annotation on the bean class means that it applies to all applicable business methods of the class. 
+		Specifying the annotation on a method applies it to that method only. 
+		If the annotation is applied at both the class and the method level, the method value overrides if the two disagree.
+		
+		
+@Scope
+	As with Spring-managed components in general, the default and most common scope for autodetected components is singleton. 
+	To change this default behavior, use @Scope spring annotation.
+	Eg.
+		@Component
+		@Scope("request")
+		public class ContactResource {
+		...
+		}
+	Similarly, you can annotate your component with @Scope("prototype") for beans with prototype scopes.
+	
+	Note.
+		Please note that the dependencies are resolved at instantiation time. 
+		For prototype scope, it does NOT create a new instance at runtime more than once. It is only during instantiation that each bean is injected with a separate instance of prototype bean.
+		
+		
+		
+Spring MVC Annotations
+
+@Controller
+	Annotate your controller classes with @Controller.
+	Eg.
+		@Controller
+		public class CompanyController {
+			...
+		}
+		
+@RequestMapping
+	You use the @RequestMapping spring annotation to map URLs onto an entire class or a particular handler method. 
+	Typically the class-level annotation maps a specific request path (or path pattern) onto a form controller, with additional method-level annotations narrowing the primary mapping.
+	Eg.
+		@Controller
+		@RequestMapping("/company")
+		public class CompanyController {
+		 
+		  @Autowired
+		  private CompanyService companyService;
+		  ...
+		}
+		
+@PathVariable
+	You can use the @PathVariable spring annotation on a method argument to bind it to the value of a URI template variable. 
+	In our example below, a request path of /company/techferry will bind companyName variable with 'techferry' value.
+	Eg.
+		@Controller
+		@RequestMapping("/company")
+		public class CompanyController {
+		 
+		  @Autowired
+		  private CompanyService companyService;
+		 
+		  @RequestMapping("{companyName}")
+		  public String getCompany(Map<String, Object> map, @PathVariable String companyName) {
+			Company company = companyService.findByName(companyName);
+			map.put("company", company);
+			return "company";
+		  }
+		  ...
+		}
+		
+@RequestParam
+	You can bind request parameters to method variables using spring annotation @RequestParam.
+	Eg.
+		@Controller
+		@RequestMapping("/company")
+		public class CompanyController {
+		 
+		  @Autowired
+		  private CompanyService companyService;
+		 
+		  @RequestMapping("/companyList")
+		  public String listCompanies(Map<String, Object> map, @RequestParam int pageNum) {
+			map.put("pageNum", pageNum);
+			map.put("companyList", companyService.listCompanies(pageNum));
+			return "companyList";
+		  }
+		  ...
+		}
+@RequestHeader
+	Similarly, you can use spring annotation @RequestHeader to bind request headers.		
+	
+@ModelAttribute
+	An @ModelAttribute on a method argument indicates the argument should be retrieved from the model. 
+	If not present in the model, the argument should be instantiated first and then added to the model. 
+	Once present in the model, the argument's fields should be populated from all request parameters that have matching names. 
+	This is known as data binding in Spring MVC, a very useful mechanism that saves you from having to parse each form field individually.
+	Eg.
+		@Controller
+		@RequestMapping("/company")
+		public class CompanyController {
+		 
+		  @Autowired
+		  private CompanyService companyService;
+		 
+		  @RequestMapping("/add")
+		  public String saveNewCompany(@ModelAttribute Company company) {
+			companyService.add(company);
+			return "redirect:" + company.getName();
+		  }
+		...
+		}	
+		
+@SessionAttributes
+	@SessionAttributes spring annotation declares session attributes. 
+	This will typically list the names of model attributes which should be transparently stored in the session, serving as form-backing beans between subsequent requests.
+	Eg.
+		@Controller
+		@RequestMapping("/company")
+		@SessionAttributes("company")
+		public class CompanyController {
+		 
+		  @Autowired
+		  private CompanyService companyService;
+		  ...
+		}
+		
+	@SessionAttribute works as follows:
+		@SessionAttribute is initialized when you put the corresponding attribute into model (either explicitly or using @ModelAttribute-annotated method).
+		@SessionAttribute is updated by the data from HTTP parameters when controller method with the corresponding model attribute in its signature is invoked.
+		@SessionAttributes are cleared when you call setComplete() on SessionStatus object passed into controller method as an argument.
+		The following listing illustrate these concepts. It is also an example for pre-populating Model objects.
+		Eg.
+			@Controller
+			@RequestMapping("/owners/{ownerId}/pets/{petId}/edit")
+			@SessionAttributes("pet")
+			public class EditPetForm {
+			 
+				@ModelAttribute("types")
+				 
+				public Collection<PetType> populatePetTypes() {
+					return this.clinic.getPetTypes();
+				}
+				 
+				@RequestMapping(method = RequestMethod.POST)
+				public String processSubmit(@ModelAttribute("pet") Pet pet, BindingResult result, SessionStatus status) {
+					new PetValidator().validate(pet, result);
+					if (result.hasErrors()) {
+						return "petForm";
+					}else {
+						this.clinic.storePet(pet);
+						status.setComplete();
+						return "redirect:owner.do?ownerId="
+							+ pet.getOwner().getId();
+					}
+				}
+			}
+			
+			
+Spring Security Annotations
+
+@PreAuthorize
+	Using Spring Security @PreAuthorize annotation, you can authorize or deny a functionality. 
+	In our example below, only a user with Admin role has the access to delete a contact.
+	Eg.
+		@Transactional
+		@PreAuthorize("hasRole('ROLE_ADMIN')")
+		public void removeContact(Integer id) {
+		  contactDAO.removeContact(id);
+		}			
+		
+		
+
+		
+Spring Framework is developed on two core concepts – Dependency Injection and Aspect Oriented Programming ( Spring AOP).
+
+Spring MVC	
+	Below are the core components that are available in the Spring MVC for the Web Tier
+		Dispatcher Servlet, 
+		Handler Mappings, 
+		Controller, 
+		Model, 
+		View 
+		View Resolver 
+		along with the appropriate Api
+			
+	The Spring Workflow		
+		1. The Client requests for a Resource in the Web Application.
+		2. The Spring Front Controller, which is implemented as a Servlet, will intercept the Request and then will try to find out the appropriate   Handler Mappings.
+		3. The Handler Mappings is used to map a request from the Client to its Controller object by browsing over the various Controllers defined in the Configuration file.
+		4. With the help of Handler Adapters, the Dispatcher Servlet will dispatch the Request to the Controller.
+		5. The Controller processes the Client Request and returns the Model and the View in the form of ModelAndView object back to the Front Controller.
+		6. The Front Controller then tries to resolve the actual View (which may be Jsp, Velocity or Free marker) by consulting the View Resolver object.
+		7. Then the selected View is rendered back to the Client.
+		
+		
+	Dispatcher Servlet
+		 Whatever Url comes from the Client, Dispatcher Servlet will intercept the Client Request and passes the Request Object to the Controller. 
+		 
+		1. The Web Configuration file(web.xml) should be given definition in such a way that this Dispatcher Servlet should be invoked for Client 	Requests.
+		
+			<?xml version='1.0' encoding='UTF-8'?>
+			<web-app version='2.4'>
+				<servlet>
+					<servlet-name>dispatcher</servlet-name>
+					<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+					<load-on-startup>2</load-on-startup>
+				</servlet>
+
+				<servlet-mapping>
+					<servlet-name>dispatcher</servlet-name>
+					<url-pattern>*.*</url-pattern>
+				</servlet-mapping>
+			</web-app>
+			
+		Look into the definition of servlet-mapping tag. It tells that whatever be the Client Request (represented by *.* meaning any Url with any extension), invoke the Servlet by name 'dispatcher'. In our case, the ‘dispatcher’ servlet is nothing but an instance of type 'org.springframework.web.servlet.DispatcherServlet'.
+
+		2. Closing associated term with the Dispatcher Servlet is the Application Context. An Application Context usually represents a set of Configuration Files that are used to provide Configuration Information to the Application. The Application Context is a Xml file that contain various Bean Definitions. By default the Dispatcher Servlet will try to look for a file by name <servlet-name>-servlet.xml in the WEB-INF directory. So, in our case the Servlet will look for a file name called dispatcher-servlet.xml file in the WEB-INF directory.
+
+		It is wise sometimes to split all the Configuration information across multiple Configuration Files. In such a case we have to depend on a Listener Servlet called Context Loader represented by org.springframework.web.context.ContextLoaderListener.
+		
+			<web-app>
+				<listener>
+					<listener-class>
+						org.springframework.web.context.ContextLoaderListener
+					</listener-class>
+				</listener>
+			</web-app>
+			
+		3. By default, this Context Listener will try to look for the Configuration File by name 'applicationContext.xml' in the '/WEB-INF' directory. But with the help of the parameter 'contextConfigLocation' the default location can be overridden. Even multiple Configuration Files each containing separate piece of Information is also possible.	
+		
+			<?xml version='1.0' encoding='UTF-8'?>
+				<web-app version='2.4'>
+					<listener>
+						<listener-class>
+							org.springframework.web.context.ContextLoaderListener
+						</listener-class>
+					</listener>
+
+					<context-param>
+						<param-name>contextConfigLocation</param-name>
+						<param-value>/WEB-INF/contacts.xml, /WEB-INF/resources.xml</param-value>
+					</context-param>
+				</web-app>
+				
+			The above definition instructs the Framework to look and load for the Configuration Files by name 'contacts.xml' and 'resources.xml' in the WEB-INF directory.
+
+	Handler Mappings
+		When the Client Request reaches the Dispatcher Servlet, the Dispatcher Servlet tries to find the appropriate Handler Mapping Object to map between the Request and the Handling Object. 
+		A Handler Mapping provides an abstract way that tell how the Client’s Url has to be mapped to the Handlers. 
+		Four concrete variation of Handler Mapping are available. They are defined as follows
+			BeanNameUrl HandlerMapping
+			CommonsPathMap HandlerMapping
+			ControllerClassName HandlerMapping
+			SimpleUrl HandlerMapping
+			
+		BeanNameUrl HandlerMapping
+			This is the simplest of the Handler Mapping and it is used to map the Url that comes from the Clients directly to the Bean Object which is nothing but a Controller object. 
+			For example, consider that the following are the valid Url in a Web Application that a Client Application can request for.
+				http://myserver.com/eMail/showAllMails
+				http://myserver.com/eMail/composeMail
+				http://myserver.com/eMail/deleteMail
+			Note that the Url (excluding the Application Context) in the above cases are 'showAllMails', 'composeMail' and 'deleteMail'.
+			This means that the Framework will look for Bean Definitions with Identifiers ‘showAllMails’, ‘composeMail’ and ‘deleteMail’. 
+			Consider the following Xml code snippet in the Configuration file,
+				<beans>
+					<bean name='/showAllMails.jsp' class='com.javabeat.net.ShowAllMailsController'></bean>
+					<bean name='/composeMail.jsp' class='com.javabeat.net.ComposeMailController'></bean>
+					<bean name='/ deleteMail.jsp' class='com.javabeat.net.DeleteMailController'></bean>
+				</beans>
+				
+			So, in BeanNameUrl Handler Mapping, the Url of the Client is directly mapped to the Controller. 
+			To enable this kind of Handler Mapping in the Application, the Configuration file should have a similar kind of definition like the following,
+				<beans>
+					…
+				   <bean id='beanNameUrl' class='org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping'/>
+					…
+				</beans>		
+				
+				
+		CommonsPathMap HandlerMapping
+			This is a rarely used Handler Mapping in which case, the name of the Url to which the Controller has to be mapped is specified directly in the Source file of the Controller. 
+			Considering the previous example, if we want to map ‘showAllMails’, ‘composeMail’ and ‘deleteMail’ to Controllers namely ShowAllMailsController, ComposeMailController and DeleteMailController, then the mapping information must be specified in the form of meta-data in the source files inside the Javadoc comments. Consider the following Controller Definitions,
+
+				/**
+				*@@ org.springframework.web.servlet.handler.commonsattributes.
+				*PathMap('/showAllMails.jsp')
+				*/
+				public class ShowAllMailsController{
+				}
+
+				/**
+				*@@ org.springframework.web.servlet.handler.commonsattributes.
+				*PathMap('/composeMail.jsp')
+				*/
+				public class ComposeMailController{
+				}
+
+				/**
+				*@@ org.springframework.web.servlet.handler.commonsattributes.
+				*PathMap('/deleteMail.jsp')
+				*/
+				public class DeleteMailController {
+				}
+				
+			The attribute must point to org.springframework.web.servlet.handler.commonsattributes.PathMap. 
+			By defining Controllers in this way, one more additional compilation step is needed. That is to make the availability of this attribute in the Class files, this Java Source has to be compiled with the Commons Attribute Compiler which comes along with the Spring Distribution. As before, to enable this kind of mapping , the Configuration File should have an entry similar to this,
+
+				<beans>
+					<bean id='metaHandlerMapping' class='org.springframework.web.servlet.handler.metadata.CommonsPathMapHandlerMapping'/>
+				</beans>		
+				
+		ControllerClassName HandlerMapping
+			In this kind of Handler Mapping, the name of the Controller is taking directly from the Url itself with slight modifications. 
+			For example, let us assume that the Client request ends with Url as shown below,
+				http://myserver.com/emailApp/showInbox.jsp
+				http://myserver.com/emailApp/showDeletedItems.jsp
+			And as such, we have a Controller definition by name ShowController as follows,
+			ShowController.java
+				public class ShowController{
+				}
+			Also the Configuration file is made to activate this kind of Handler Mapping by making the following definition,
+				<beans>
+					<bean id='controllerClassName' class='org.springframework.web.servlet.handler.metadata.ControllerClassNameHandlerMapping'/>
+				</beans>
+			The first thing the Framework does it, it will traverse through the List of Controllers defined in the Configuration File and perform these actions. 
+			For the Controller ShowController, then Framework will remove the Controller String and then lowercase the first letter. In our case the string now becomes show. Now whatever Client Request matches the pattern /show*, then the ShowController will be invoked.
+			
+		SimpleUrl HandlerMapping
+			This is the Simplest of all the Handler Mappings as it directly maps the Client Request to some Controller object. 
+			Consider the following Configuration File,
+				<bean id='simpleUrlMapping' class='org.springframework.web.servlet.handler.SimpleUrlHandlerMapping'>
+					<property name='mappings'>
+						<props>
+							<prop key='/showAllMails.jsp'>showController</prop>
+							<prop key='/composeMail.jsp'>composeController</prop>
+							<prop key='/deleteMail.jsp'>deleteController</prop>
+						</props>
+					</property>
+				</bean>
+			The set of mappings is encapsulated in the 'property' tag with each defined in a 'prop' element with the 'key' attribute being the Url, the value being the Identifier of the Controller Objects. Note that the Beans for the above Identifiers should be defined somewhere in the Configuration File.
+			
+	Handler Adapters
+		It is important to understand that the Spring Framework is so flexible enough to define what Components should be delegated the Request once the Dispatcher Servlet finds the appropriate Handler Mapping. This is achieved in the form of Handler Adapters. 
+		If you remember in the Spring Work flow section, that it is mentioned once the Dispatcher Servlet chooses the appropriate Handler Mapping, the Request is then forwarded to the Controller object that is defined in the Configuration File. This is the default case.
+
+		1. And this so happens because the Default Handler Adapter is Simple Controller Handler Adapter (represented by org.springframework.web.servlet.SimpleControllerHandlerAdapter), which will do the job of the Forwarding the Request from the Dispatcher to the Controller object.
+		Other types of Handler Adapters are
+		2. Throwaway Controller HandlerAdapter (org.springframework.web.servlet.ThrowawayControllerHandlerAdapter)
+				The Throwaway Controller HandlerAdapter, for example, carries the Request from the Dispatcher Servlet to the Throwaway Controller 
+		3. SimpleServlet HandlerAdapter (org.springframework.web.servlet.SimpleServletHandlerAdapter)
+				Simple Servlet Handler Adapter will carry forward the Request from the Dispatcher Servlet to a Servlet thereby making the Servlet.service() method to be invoked.	
+
+		If, for example, you don’t want the default Simple Controller Handler Adapter, then you have to redefine the Configuration file with the similar kind of information as shown below,
+
+			<bean id='throwawayHandler' class = 'org.springframework.web.servlet.mvc.throwaway.ThrowawayControllerHandlerAdapter'/>
+			or
+			<bean id='throwawayHandler' class='org.springframework.web.servlet.mvc.throwaway.SimpleServletHandlerAdapter'/>
+				
+		Even, it is possible to write a Custom Handler Adapter by implementing the HandlerAdapter interface available in the org.springframework.web.servlet package.
+
+	Spring MVC Controller
+		Controllers are components that are being called by the Dispatcher Servlet for doing any kind of Business Logic. 
+		Spring Distribution already comes with a variety of Controller Components each doing a specific purpose. All Controller Components in Spring implement the org.springframework.web.servlet.mvc.Controller interface. 
+		The following are the Controller Components available in the Spring Distribution.
+			SimpleFormController
+			AbstractController
+			AbstractCommandController
+			CancellableFormController
+			AbstractCommandController
+			MultiActionController
+			ParameterizableViewController
+			ServletForwardingController
+			ServletWrappingController
+			UrlFilenameViewController
+			
+		Abstract Controller
+			If one wants to implement Custom Controller Component right from the scratch, then instead of implementing the Controller interface, extending AbstractController can be preferred as it provides the basic support for the GET and the POST methods. 
+			It is advised that only for simple purpose, this type of extensions should be used. 
+			The purpose may be as simple as returning a resource to the Client upon request without having the need to examine the Request Parameters or other Stuffs. 
+			Eg.
+				MySimpleController.java
+
+				public class MySimpleController extends AbstractController{
+
+					public ModelAndView handleRequestInternal(HttpServletRequest request, HttpServletResponse response){
+						return new ModelAndView('myView');
+					}
+				}
+				
+			Note that the Dispatcher Servlet will call the handleRequest() method by passing the Request and the Response parameters. The implementation just returns a ModelAndView object with myView being the logical view name. 
+			There are Components called View Resolvers whose job is to provide a mapping between the Logical View Name and the actual Physical Location of the View Resource. For the time being, assume that somehow, myView is mapped to myView.jsp. 
+			So, whenever the Dispatcher Servlet invokes this MySimpleController object, finally myView.jsp will be rendered back to the Client.
+			
+			
+		Abstract Command Controller
+			The concept of Command Controller comes into picture when the Business Logic depends upon the values that are submitted by the User. Instead of depending on the Servlet Api to get the Request Parameter Values and other session Objects, we can depend on this Abstract Command Controller to take those pieces of Information. 
+			For example consider the following code snippet which has a simple business logic telling that, depending on the existence of username, display the form success.jsp or failure.jsp
+				MySimpleController.java
+
+				public class MySimpleController extends AbstractCommandController{
+
+					public MySimpleController(){
+						setCommandClass(UserInfo.class);
+					}
+
+					public ModelAndView handle(HttpServletRequest request, HttpServletResponse response, Object command){
+
+						UserInfo userInfo = (UserInfo)command;
+						if ( exists(userInfo.getUserName){
+							return new ModelAndView('success');
+						}else{
+							return new ModelAndView('failure');
+						}
+					}
+
+					private boolean exits(String username){
+						// Some logic here.
+					}
+				}
+				
+			Note that the Client Parameters (username , in this case) is encapsulated in a simple Class called UserInfo which is given below. 
+			The value given by the Client for the username field will be directly mapped to the property called username in the UserInfo. 
+			In the Constructor of the MySimpleController class, we have mentioned the name of the Command Class which is going to hold the Client Request Parameters by calling the setCommandClass() method. Also note that in the case of Command Controller, the method that will be called by the Dispatcher Servlet will be handle() which is passed with the Command object apart from the Request and the Response objects.
+				UserInfo.java
+
+				public class UserInfo{
+					private String username;
+					// Getters and Setters here.
+				}
+	
+
+		Simple Form Controller
+			Asking the User to fill in a Form containing various information and submitting the form normally happens in almost every Web Application. 
+			The Simple Form Controller is exactly used for that purpose. Let us give a simple example to illustrate this. 
+			Assume that upon Client Request a page called empInfo.jsp is rendered to the client containing empName, empAge and empSalary fields. 
+			Upon successful completion a Jsp Page called empSuccess.jsp is displayed back to the Client. 
+			Now let us see how we can make use of the Simple Form Controller to achieve this kind functionality.
+			The very first thing is that, to collect the Client Input Values, a Command object which contains getter and setters must be defined. Following the skeleton of the class called EmpInfo.
+				EmpInfo.java
+
+				public class EmpInfo{
+					private String empName;
+					private int empAge;
+					private double empSalary;
+					// Getters and setters for the above properties.
+
+				}
+			The next thing is to write a class that extends SimpleFormController. But this time, the doSubmitAction() method should be overridden. This is the method that will be called when the Client submits the form. 
+			Following is the definition of the Controller class.
+				EmpFormController.java
+
+				public class EmpFormController extends SimpleFormController{
+
+					public EmpFormController(){
+						setCommandClass(EmpInfo.class);
+					}
+
+					public void doSubmitAction(Object command){
+						EmpInfo info = (EmpInfo)command;
+						process(info);
+					}
+
+					private void process(EmpInfo info){
+						//Do some processing with this object.
+					}
+				}
+	
+			As we mentioned previously, the form that collects information from the Client is empInfo.jsp and upon successful submission the view empSuccess.jsp should be displayed. 
+			This information is externalized from the Controller class and it is maintained in the Configuration File like the following,
+				<bean id = 'empForm' class='EmpFormController'>
+					<property name='formView'>
+						<value>empInfo</value>
+					</property>
+
+					<property name='successView'>
+						<value>empSuccess</value>
+					</property>
+				</bean>
+			Note the two property names 'formView' and 'successView' along with the values 'empInfo' and 'empSuccess'. These properties represent the initial View to be displayed and the final view (after successful Form submission) to be rendered to the Client.
+			
+		Cancellable FormController
+			If you carefully notice with the implementation of Simple Form Controller, there are ways to provide the Initial and the Successful View to the Clients. But what happens when the Form is cancelled by the User? Who will process the Cancel operation of the Form?
+			The above issues can be given immediate solution with the usage of Cancellable FormController. The good thing is that Cancellable FormController extends SimpleForm Controller so that all the functionalities are visible to this Controller also. Suppose say that the User clicks the cancel button, the Framework will check in the Request parameter for a key with name 'cancelParamKey'. If it is so, then it will call the onCancel() method. Consider the following definition,
+				MyCompleteFormController.java
+
+				public class MyCompleteFormController extends CancellableFormController{
+					public ModelAndView onCancel(){
+						return new ModelAndView('cancelView');
+					}
+				}	
+				
+				
+	Model And View
+		Model and View (represented by the class org.springframework.web.servlet.ModelAndView) is returned by the Controller object back to the Dispatcher Servlet. This class is just a Container class for holding the Model and the View information. The Model object represents some piece of information that can be used by the View to display the information. Both these Objects are given high degree of abstraction in the Spring Framework.
+		Any kind of View Technology (org.springframework.web.servlet.View) can be plugged into the Framework with ease. 
+		For example, Excel, Jasper Reports, Pdf, Xslt, Free Marker, Html, Tiles, Velocity etc. are the supported Frameworks as of now. 
+		The Model object (represented by org.springframework.ui.ModelMap) is internally maintained as a Map for storing the Information.
+		Following are the ways to Construct the Model and the View object.
+			View pdfView = …;
+			Map modelData = new HashMap();
+			ModelAndView mv1 = new ModelAndView(pdfView, modelData);
+			The above constructs a ModelAndView object by passing the actual View object along with the Model object. 
+			
+			Now consider the following code,
+			ModelAndView mv1 = new ModelAndView('myView', someData);
+			
+			Note, in the above example, a string with “myView” is passed for the View. This way of specifying a View is called a Logical View. 
+			It means that myView either can point to something called myView.jsp or myView.pdf or myView.xml. 
+			The Physical View Location corresponding to the Logical View can be made configurable in the Configuration File.
+			
+	View Resolver
+		In the previous section, we talked about Logical View and the Physical View Location for the Logical View.
+		The mapping between the Logical name and the Physical View Location is taken care by the View Resolver object. 
+		Without any surprise, Spring comes with a set of Built-In Spring Resolvers. It is even possible to write Custom View Resolvers by implementing the org.springframework.web.servlet.ViewResolver interface. 
+		Following are the available View Resolvers in the Spring Distribution.
+			BeanNameViewResolver
+			FreeMarkerViewResolver
+			InternalResourceViewResolver
+			JasperReportsViewResolver
+			ResourceBundleViewResolver
+			UrlBasedViewResolver
+			VelocityLayoutViewResolver
+			VelocityViewResolver
+			XmlViewResolver
+			XsltViewResolver
+		
+		Internal Resource View Resolver
+			The Internal Resource View Resolver will try to map the Logical name of the Resource as returned by the Controller object in the form of ModelAndView object to the Physical View location. 
+			For example, consider the following class definition which returns different ModelAndView objects.
+				MyController.java
+
+				public class MyController {
+					public ModelAndView handle(){
+						if(condition1()){
+							return new ModelAndView('myView1');
+						}else if (condition2()){
+							return new ModelAndView('myView2');
+						}
+						return new ModelAndView('myView3');
+					}
+				}
+			Assume that if the Client Request satisfies condition1(), then the view myView.jsp which is present in the /WEB-INF folder should be displayed and for the client Requests satisfying condition2() and the other one, myView2.jsp and myView3.jsp should be displayed.
+			For this to happen, the following entry must be made in the Configuration File,
+
+				<bean id='viewResolver' class='org.springframework.web.servlet.view.InternalResourceViewResolver'>
+					<property name='prefix'><value>/WEB-INF/</value></property>
+					<property name='suffix'><value>.jsp</value></property>
+				</bean>
+			
+			This is how the Internal Resource View Resolver will map the Logical View Name to the physical Location. When the logical View name is myView1, then it will construct a view name which is the summation of the prefix + the logical View Name + the suffix, which is going to be /WEB-INF/myView.jsp. The same is the case for myView2.jsp and 
+
+
+		Bean Name View Resolver
+			One of the dis-advantage of using Internal Resource View Resolver is that the name of the View file (whether it is a Jsp File or the Pdf File) must be present in the Web Application Context. 
+			Dynamically generated View files may not be possible. In such a case, we may use the Bean Name View Resolver which will dynamically generate View in Pdf or Excel Formats.
+			For the example, if the ModelAndView object represents a View by name “pdf” as shown in the following snippet,
+				return ModelAndView('pdf')
+				And, if we want to generate the Pdf file, then we should have defined the Configuration information in the file as follows,
+				
+					<bean id='beanNameResolver' class='org.springframework.web.servlet.view.BeanNameViewResolver'/>
+			
+			The above code configures the Framework to use BeanNameViewResolver. Since the logical name ‘pdf’ must resolve to a Bean Name, we should define a similar entry like the following in the Configuration File. 
+			Note that, in the following MyPdfGenerator may be the sub-class of org.springframework.web.servlet.view.document.AbstractPdfView for generating the Pdf File.
+			
+				<bean id = ' pdf ' class = 'MyPdfGenerator'/>
+
+				
+Xml	
+	1. beans element default-autowire is used to define the default autowiring method. Here I am defining the default autowiring method to be byName.
+	Eg.	resouces/beans.xml
+		<beans xmlns="http://www.springframework.org/schema/beans"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xmlns:context="http://www.springframework.org/schema/context"
+			xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd"
+			
+			default-autowire="byName" default-autowire-candidates="*" >
+			
+			<bean name="employee" class="com.mine.model.Employee">
+				<property name="name" value="Maddy"></property>
+			</bean>
+
+			<bean name="employee1" class="com.mine.model.Employee" autowire-candidate="false">
+				<property name="name" value="Dummy Name"></property>
+			</bean>
+			
+			<!-- Enable Annotation based configuration -->
+			<context:annotation-config />
+			
+			<!-- autowiring byName, bean name should be same as the property name -->
+			<bean name="employeeServiceByName" class="com.mine.service.EmployeeService" autowire="byName" />
+
+			<!-- autowiring byType, there should be only one bean definition for the mapping -->
+			<bean name="employeeServiceByType" class="com.mine.service.EmployeeService" autowire="byType" />
+
+			<!-- autowiring by constructor -->
+			<bean name="employeeServiceConstructor" class="com.mine.service.EmployeeService" autowire="constructor" />
+
+		</beans>
+		
+		public static void main(String[] args) {
+			ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml");
+			
+			EmployeeService serviceByName = ctx.getBean("employeeServiceByName", EmployeeService.class);			
+			System.out.println("Autowiring byName. Employee Name="+serviceByName.getEmployee().getName());
+			
+			EmployeeService serviceByType = ctx.getBean("employeeServiceByType", EmployeeService.class);			
+			System.out.println("Autowiring byType. Employee Name="+serviceByType.getEmployee().getName());
+			
+			EmployeeService serviceByConstructor = ctx.getBean("employeeServiceConstructor", EmployeeService.class);
+			System.out.println("Autowiring by Constructor. Employee Name="+serviceByConstructor.getEmployee().getName());
+		}
+		
+	2. beans element default-autowire-candidates is used to provide the pattern for bean names that can be used for autowiring. 
+	For simplicity I am allowing all the bean definitions to be eligible for autowiring, however if we can define some pattern for autowiring. 
+	For example, if we want only DAO bean definitions for autowiring, we can specify it as default-autowire-candidates="*DAO".
+	
+	3. autowire-candidate="false" is used in a bean definition to make it ineligible for autowiring. It’s useful when we have multiple bean definitions for a single type and we want some of them not to be autowired. 
+	For example, in above spring bean configurations “employee1” bean will not be used for autowiring.
+	
+	4. context:annotation-config is used to enable annotation based configuration support. 
+	
+	5. As you can see that for autowire byName and byType, default no-args constructor is used to initialize the bean. 
+	   For autowire by constructor, parameter based constructor is used.
+	   
+	   
+	   
+	   
+References
+	http://www.journaldev.com/2623/spring-autowired-annotation
+	

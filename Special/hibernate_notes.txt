@@ -1,0 +1,288 @@
+Overview
+	Hibernate is an Object-Relational Mapping(ORM) solution for JAVA and it raised as an open source persistent framework created by Gavin King in 2001. 
+	It is a powerful, high performance Object-Relational Persistence and Query service for any Java Application.		
+	
+	iBATIS is a persistence framework which automates the mapping between SQL databases and objects in Java
+	iBATIS Data Mapping Framework for Java
+		
+Hibernate Annotations
+References
+	http://www.techferry.com/articles/hibernate-jpa-annotations.html
+	
+@Entity
+	Annotate all your entity beans with @Entity. 
+	Eg.
+		@Entity
+		public class Company implements Serializable {
+		...
+		}
+		
+@Table
+	Specify the database table this Entity maps to using the name attribute of @Table annotation. 
+	In the example below, the data will be stored in 'company' table in the database. 
+	Eg.
+		@Entity
+		@Table(name = "company", schema="abc")
+		public class Company implements Serializable {
+			...
+		}
+		
+	Note1.
+		If you don't provide table name, then it will take class name as table name by default
+	Note2.
+		We can use the name attribute of the @Entity annotation to provide an explicit entity name to match with the database table name.
+		For our example we could have used @Entity(name = company) in our Company class if our table name was company.
+		
+		From these two approaches the @Table annotation provides more options to customize the mapping.
+		2nd option is not feasible if you want to add schema name.
+	Note3.
+		What if rather than specifying the schema name in the @Table annotation you append the schema name in the table name itself, like this -
+			@Entity
+			@Table(name = "document.document_collection")
+			public class DocumentCollection {
+			// rest of the class
+			}
+		Inlining the schema name with the table name this way is not guaranteed to work across all JPA implementations because support for this is not specified in the JPA specification (non-standard). So it’s better if you do not make a habit of doing this even if your persistence provider supports it.
+		
+		
+@Column
+	Specify the column mapping using @Column annotation.
+	Eg.
+		@Entity
+		@Table(name = "company")
+		public class Company implements Serializable {
+		 
+		  @Column(name = "name")
+		  private String name;
+		   ...
+		}
+		
+	Note.
+		At first it checks to see if any explicit column mapping information is given. 
+		If no column mapping information is found, it treats the field name as the column names by default.
+		
+		
+@Id
+	Annotate the id column using @Id.
+	Eg.
+		@Entity
+		@Table(name = "company")
+		public class Company implements Serializable {
+		 
+		  @Id
+		  @Column(name = "id")
+		  private int id;
+		   
+		...
+		}
+		
+@GeneratedValue
+	Let database generate (auto-increment) the id column.
+	Eg.
+		@Entity
+		@Table(name = "company")
+		public class Company implements Serializable {
+		 
+		  @Id
+		  @Column(name = "id")
+		  @GeneratedValue
+		  private int id;
+		   
+		...
+		}
+		
+@Version
+	Control versioning or concurrency using @Version annotation.
+	Eg.
+		@Entity
+		@Table(name = "company")
+		public class Company implements Serializable {
+		 
+		  @Version
+		  @Column(name = "version")
+		  private Date version;
+		   
+		...
+		}	
+
+@OrderBy
+	Sort your data using @OrderBy annotation. 
+	In example below, it will sort all contacts in a company by their firstname in ascending order.
+	Eg.
+		@OrderBy("firstName asc")
+		private Set contacts;
+		
+@Transient
+	Annotate any fields that you don't want to be persisted as @Transient
+	
+	Transient entity fields are fields that do not participate in persistence and their values are never stored in the database (similar to transient fields in Java that do not participate in serialization). 
+	
+	Static and final entity fields are always considered to be transient. 
+	Other fields can be declared explicitly as transient using either the Java transient modifier (which also affects serialization) 
+	or the JPA @Transient annotation (which only affects persistence)
+	
+	If we use the transient keyword instead of the annotation, then if one of the Address entities gets serialized from one JVM to another then the transientColumn field will get reinitialized again (just like any other transient fields in Java). For the annotation, this will not happen and the transientColumn field will retain its value across the serialization. As a rule of thumb, I always use the annotation if I do not need to worry about serialization (and in most of the cases I don’t).
+
+@Lob
+	Annotate large objects with @Lob.		
+	
+	
+Hibernate Association Mapping Annotations	
+
+@OneToOne
+	1.	
+		For entities Company and CompanyDetail sharing the same primary key, we can associate them using @OneToOne and @PrimaryKeyJoinColumn as shown in the example below. 
+		Eg.
+			Notice that the id property of CompanyDetail is NOT annotated with @GeneratedValue. It will be populated by id value of Company.
+			
+			@Entity
+			@Table(name = "company")
+			public class Company implements Serializable {
+			   
+			  @Id
+			  @Column(name = "id")
+			  @GeneratedValue
+			  private int id;
+			   
+			  @OneToOne(cascade = CascadeType.MERGE)
+			  @PrimaryKeyJoinColumn
+			  private CompanyDetail companyDetail;
+			   
+			  ...
+			}
+			 
+			@Entity
+			@Table(name = "companyDetail")
+			public class CompanyDetail implements Serializable {
+			 
+			  @Id
+			  @Column(name = "id")
+			  private int id;
+			   
+			  ...
+			}
+
+	2.
+		For entities Contact and ContactDetail linked through a foriegn key, we can use @OneToOne and @JoinColumn annotations. 
+		In example below, the id genereated for Contact will be mapped to 'contact_id' column of ContactDetail table. 
+		Please note the usage of @MapsId for the same.
+		Eg.
+			@Entity
+			@Table(name = "contactDetail")
+			public class ContactDetail implements Serializable {
+			 
+			  @Id
+			  @Column(name = "id")
+			  @GeneratedValue
+			  private int id;
+			   
+			  @OneToOne
+			  @MapsId
+			  @JoinColumn(name = "contactId")
+			  private Contact contact;
+			   
+			  ...
+			}
+			 
+			@Entity
+			@Table(name = "contact")
+			public class Contact implements Serializable {
+			 
+			  @Id
+			  @Column(name = "ID")
+			  @GeneratedValue
+			  private Integer id;
+			 
+			  @OneToOne(mappedBy = "contact", cascade = CascadeType.ALL)
+			  private ContactDetail contactDetail;
+			 
+			  ....
+			}
+			
+	Note.
+		Use @PrimaryKeyJoinColumn for associated entities sharing the same primary key.
+		
+		Use @JoinColumn & @OneToOne mappedBy attribute when foreign key is held by one of the entities.
+		Use @JoinTable and mappedBy entities linked through an association table.
+		Persist two entities with shared key using @MapsId
+		
+	Also note that the relationship between Company and CompanyDetail is uni-directional. On the other hand, the relationship between Contact and Contact Detail is bi-directional and that can be achieved using 'mappedBy' attribute. 
+
+	The rationale to have one relationship as uni-directional and other as bi-directional in this tutorial is to illustrate both concepts and their usage. You can opt for uni-directional or bi-directional relationships to suit your needs.	
+	
+@ManyToOne
+	The two examples below illustrate many-to-one relationships. 
+	Contact to Company and Company to CompanyStatus. 
+	Many contacts can belong to a company. 
+	Similary many companies can share the same status (Lead, Prospect, Customer) - there will be many companies that are currently leads.	
+	
+	Eg.1
+		@Entity
+		@Table(name = "contact")
+		public class Contact implements Serializable {
+		 
+		  @ManyToOne
+		  @JoinColumn(name = "companyId")
+		  private Company company;	   
+		  ...	   
+		 }
+		 
+	Eg.2
+		@Entity
+		@Table(name = "company")
+		public class Company implements Serializable {
+		 
+		  @ManyToOne
+		  @JoinColumn(name = "statusId")
+		  private CompanyStatus status;	   
+		  ...	   
+		 }
+	 
+	Note.
+		Use @JoinColumn when foreign key is held by one of the entities.
+		Use @JoinTable for entities linked through an association table.
+		
+		
+@OneToMany
+	Please see the many-to-one relationship between Contact and Company above. 
+	Company to Contact will be a one-to-many relationship. 
+	The owner of this relationship is Company and hence we will use 'mappedBy' attribute in Company to make it bi-directional relationship.
+	
+	Eg.
+		@Entity
+		@Table(name = "company")
+		public class Company implements Serializable {
+		 
+		  @OneToMany(mappedBy = "company", fetch = FetchType.EAGER)
+		  private Set contacts;			 
+		  ...
+		   
+		 }
+	Again, for this tutorial, we have kept Company to CompanyStatus relationship as uni-directional.
+	
+	Note.
+		Important point to note is the OneToMany annotation where mappedBy variable is used to define the property in Contact class that will be used for the mapping purpose. So we should have a property named "company" in Contact class. Don’t forget to include all the getter-setter methods.
+		
+		Use mappedBy attribute for bi-directional associations with ManyToOne being the owner.
+		OneToMany being the owner or unidirectional with foreign key - try to avoid such associations but can be achieved with @JoinColumn
+		@JoinTable for Unidirectional with association table
+		
+@ManyToMany
+
+
+@PrimaryKeyJoinColumn
+	@PrimaryKeyJoinColumn annotation is used for associated entities sharing the same primary key.
+	
+@JoinColumn
+	Use @JoinColumn annotation for one-to-one or many-to-one associations when foreign key is held by one of the entities. 
+	We can use @OneToOne or @ManyToOne mappedBy attribute for bi-directional relations. Also see OneToOne and ManyToOne sections for more details.
+
+@JoinTable
+	Use @JoinTable and mappedBy for entities linked through an association table.
+	
+@MapsId
+	Persist two entities with shared key (when one entity holds a foreign key to the other) using @MapsId annotation. 
+
+
+
+			

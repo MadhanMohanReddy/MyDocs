@@ -26,7 +26,9 @@ Quickstart
 		  selector: 'my-app',
 		  template: `<h1>Hello {{name}}</h1>`
 		})
-		export class AppComponent { name = 'Angular'; }
+		export class AppComponent { 
+			name = 'Angular'; 
+		}
 
 		
 	---To diasble proxy
@@ -278,6 +280,7 @@ Data binding
 		<li>{{hero.name}}</li>
 		<hero-detail [hero]="selectedHero"></hero-detail>
 		<li (click)="selectHero(hero)"></li>
+		<input [(ngModel)]="hero.name">
 		
 	interpolation/one way binding
 		The {{hero.name}} interpolation displays the component's hero.name property value within the <li> element.

@@ -1,0 +1,125 @@
+	Build Phase		Description
+	validate		Validates that the project is correct and all necessary information is available. 
+					This also makes sure the dependencies are downloaded.
+	compile			Compiles the source code of the project.
+	test			Runs the tests against the compiled source code using a suitable unit testing framework. 
+					These tests should not require the code be packaged or deployed.
+	package			Packs the compiled code in its distributable format, such as a JAR.
+	install			Install the package into the local repository, for use as a dependency in other projects locally.
+	deploy			Copies the final package to the remote repository for sharing with other developers and projects.
+
+1. Creating a new Project (jar)
+		mvn archetype:create 
+			-DgroupId=Artifact Group
+			-DartifactId=Artifact ID
+			
+	Eg.
+		mvn archetype:create 
+				-DgroupId=de.focusdv.bcs
+				-DartifactId=new-app
+
+2. Creating a new Project (war)
+		mvn archetype:create
+			-DgroupId=Artifact Group
+			-DartifactId=Artifact ID
+			-DarchetypeArtifactId=maven-archetype-webapp
+	Eg.
+		mvn archetype:create
+			 -DgroupId=de.focusdv.bcs
+			 -DartifactId=new-webapp
+			 -DarchetypeArtifactId=maven-archetype-webapp
+			
+3. Compiling
+		mvn compile			
+		
+4. Running Unit Tests / Code Coverage
+		mvn test
+		
+5. Cleaning Up
+		mvn clean
+
+6. Creating Eclipse Project Structure
+		mvn eclipse:eclipse
+		
+7. Packaging (jar, war)
+		mvn clean package
+			compiles, runs unit tests and packages the artifact (clean makes sure there are no unwanted files in the package) 
+			
+8. Installing Artifact in Local Repository
+		mvn clean install
+			compiles, runs unit tests, packages and installs the artifact in the local repository. (User Home Directory/.m2/repository/) 
+			
+9. Installing Artifact in Remote Repository
+		mvn clean deploy
+			compiles, runs unit tests, packages and installs the artifact in the remote repository. 
+			
+10.	Installing 3rdParty jar in local Repository
+		mvn install:install-file 
+			-Dfile=foo.jar
+			-DgroupId=org.foosoft 
+			-DartifactId=foo
+			-Dversion=1.2.3 
+			-Dpackaging=jar
+			
+11. Install 3rdParty jar to Remote Repository
+		mvn deploy:deploy-file 
+			-Dfile=collections-generic-4.0.jar
+			-DgroupId=commons-collections
+			-DartifactId=collections-generic -Dversion=4.0
+			-Dpackaging=jar 
+			-DrepositoryId=focus-repository
+			-Durl=scp://host/home/mvn/public_html/repository
+
+
+Online web-development with Jetty plugin
+	Add Maven-Plugin to pom.xml:
+		<plugins>
+		 …
+			 <plugin>
+				 <groupId>org.mortbay.jetty</groupId>
+				 <artifactId>maven-jetty6-plugin</artifactId>
+				 <configuration>
+				 <scanIntervalSeconds>10</scanIntervalSeconds>
+				 </configuration>
+			 </plugin>
+		 …
+		 </plugins>
+		 
+	Then run Jetty with
+		mvn jetty6:run
+		
+Online web-development and automatic deployment with tomcat plugin
+	Add Maven-Plugin to pom.xml:
+		<plugins>
+			 …
+			 <plugin>
+				 <groupId>org.codehaus.mojo</groupId>
+				 <artifactId>tomcat-maven-plugin</artifactId>
+				 <configuration>
+					<url>http://192.168.129.36:8080/manager/html</url>
+				 </configuration>
+			 </plugin>
+			 <plugin>
+				<groupId>org.codehaus.cargo</groupId>
+				<artifactId>cargo-maven2-plugin</artifactId>
+			 </plugin>
+			 …
+		 </plugins>
+		…
+		 <repositories>
+			<repository>
+				<id>codehaus</id>
+				<name>Codehaus maven repository</name>
+				<url>http://dist.codehaus.org/</url>
+				<layout>legacy</layout>
+			</repository>
+		 …
+		 </repositories>
+	
+	Then run Tomcat with
+		mvn tomcat:run
+	Deploy the war automatically with
+		mvn tomcat:deploy
+	If already deployed, the webapp needs to be undeployed first:
+		mvn tomcat:undeploy		
+			

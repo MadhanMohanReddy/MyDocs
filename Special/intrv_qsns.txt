@@ -1,0 +1,33 @@
+Basic
+	University
+		Lecturers can teach multiple subjects.
+		Students can enroll for multiple subjects.
+		Students can enroll for only one subject in a group(Eg, M1, M2, discrete mathematics comes in a group.. select only one in that..)
+		
+	Identify classes and relationships..
+	
+Javascript		
+	How to select list of checkboxes after some search
+	
+java class && also table creation
+	user
+		common properties
+	guest user
+		specific properties
+	permanent user
+		specific properties
+	temporary user
+		specific properties
+		
+	Create tables and classes..
+
+Spring
+	Inject component with name && type using annotation
+	
+Hibernate
+	one to many mapping using annotation
+	student
+		id
+		name,
+		multiple addresses
+	
